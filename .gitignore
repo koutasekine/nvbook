@@ -35,3 +35,6 @@ texput.*
 *.swp
 *.swo
 *~
+
+# 不要なスクリプト
+tete.sh
