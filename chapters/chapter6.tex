@@ -1,0 +1,928 @@
+\chapter{射影を用いた無限次元線形問題の解法}\label{sec:infinite_dimensional}
+ここでは，Banach空間$X$とし，有界な線形作用素$L \in {\mathcal B}(X)$と$g \in X$に対して問題
+\begin{align}
+	\label{eq:infinite_linear_prog}
+	\mbox{Find} ~ \phi \in X ~ \mbox{s.t.} ~ L \phi = g
+\end{align}
+の解を求める方法を考えてみましょう．
+ここで求める方法は，コンピュータではなく，解析的に求める方法を指します．
+しかし，この問題は，系\ref{Cor:Kantorovich}の$\left\| F'[\hat{u}]^{-1} F(\hat{u}) \right\|_X$や\\
+$\left\| F'[\hat{u}]^{-1} \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \right\|_{{\mathcal B}(X)}$を求める際に利用することを想定しています．
+例えば，$\phi = F'[\hat{u}]^{-1} F(\hat{u})$とすれば，
+\begin{align*}
+	\mbox{Find} ~ \phi \in X ~ \mbox{s.t.} ~ F'[\hat{u}] \phi = F(\hat{u})
+\end{align*}
+となるので，無限次元線形問題の解$\phi$を求める問題に帰着することができます．
+その上，解$\phi$のノルム$\| \phi \|_X$を計算すれば系\ref{Cor:Kantorovich}の利用に一歩近づくために，無限次元非線形問題の解の品質保証法の準備になります!
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{直和と射影 ～計算できる部分とできない部分の分離～}
+コンピュータは残念ながら有限次元の計算しか実行できません．
+そのため，無限次元の問題も有限次元に近似して解く必要があります．
+ここでは，無限次元空間$X$を有限次元部分と無限次元部分にわけるための道具として，一般的なBanach空間上の射影を紹介します．
+
+まず，Banach空間上の直和として，代数的直和を定義します:
+\begin{defi}[代数的直和]
+	Banach空間$X$とする．
+	また，$X_1$,$X_2$を$X$の線形部分空間とする($X_1$と$X_2$は「閉」である必要がないので注意!)．
+	ただし，$X_1$と$X_2$のノルムは，$X$のノルムと同一とする．
+	そのとき，$X$が$X_1$と$X_2$の代数的直和であるとは
+	\begin{itemize}
+		\item $X = X_1 + X_2 := \{ x_1 + x_2 ~ | ~ \forall x_1 \in X_1, ~ \forall x_2 \in X_2 \}$
+		\item $X_1 \cap X_2 = \{ 0 \}$ (すなわち，$x = x_1 + x_2, x_1 \in X_1, x_2 \in X_2$が一意に表せること)
+	\end{itemize}
+	が成立することをいう．
+\end{defi}
+
+
+代数的直和は分解した線形部分空間$X_1,  X_2$がともに閉である必要がありません．
+そのため，定理\ref{thm:Banach_space_closed_subspace}から$X_1$や$X_2$がBanach空間ではない可能性もでてきてしまいます．
+$X_1$や$X_2$がBanach空間ではなくなってしまったら，折角分解しても使いづらくなってしまいますね．
+そこで，$X_1,  X_2$がBanach空間になるための必要十分条件を考えていきましょう．
+
+それでは，まず，射影を定義します:
+\begin{defi}[射影]
+	$X$をノルム空間とする．定義域を$X$とした$X$上の線形作用素$P$が
+	\[
+		P^2 = P
+	\]
+	となるとき，射影作用素，あるいは，単に射影と呼ぶ．		
+\end{defi}
+
+射影の定義には，Banach空間であることも，有界性も連続性も直交性も仮定していないことに注意して下さい．
+では，代数的直和と射影の関係を見ていきましょう．
+
+\begin{Thm}\label{thm:projection}
+	Banach空間$X$がその線形部分空間$X_1$,$X_2$の代数的直和であるとする．
+	そのとき，$x \in X$について
+	\[
+	x = x_1 + x_2, ~ x_1 \in X_1, x_2 \in X_2
+	\]
+	とし，${\mathcal D}(P) = X$となる$X$上の線形作用素$P$を
+	\begin{align*}
+		P x = x_1,~ ~ (I - P)x = x_2
+	\end{align*}
+	とすると，線形作用素$P$と$I-P$は射影となる．
+\end{Thm}
+
+\begin{Proof}
+	まず，$P x_2 = 0$を証明する．
+	$P x_2 \neq 0$となる$x_2 \in X_2$が存在すると仮定し，矛盾を示す．
+	定義より，
+	\begin{align*}
+		x = x_1 + x_2 = x_1 + P x_2 + (I - P) x_2
+	\end{align*}
+	に対して，$P$の値域${\mathcal R}(P) = X_1$であることと，$X_1$が線形空間であることに注意すると，$x_1 + P x_2 \in X_1$は$x_1 + P x_2 \neq x_1$となる．
+	また，${\mathcal R}(I-P) = X_2$であるため$(I - P)x_2 \in X_2$である．
+	しかし，これは代数的直和の定義$X_1 \cap X_2 = \{ 0 \}$より$x$の分解の一意性に矛盾する．
+	よって$P x_2 = 0$となる．
+	
+	
+	そのうえで，
+	\begin{align*}
+		P x_2 = P (I - P)x = Px - P^2 x = 0
+	\end{align*}
+	より
+	\begin{align*}
+		Px = P^2 x
+	\end{align*}
+	となるため，$P$は射影となる．
+	
+	また，
+	\begin{align*}
+		(I - P) ( I - P )x = (I - 2 P + P^2)x = (I - 2 P + P)x = (I - P)x
+	\end{align*}
+	となるため，$I - P$も射影となる．
+
+\qed
+\end{Proof}
+
+定理\ref{thm:projection}の証明中に$P x_2 = 0, ~ \forall x_2 \in X_2$を示しました．
+これ以外にも
+\begin{align*}
+	P x_1 =& x_1, ~  \forall x_1 \in X_1, & (I - P) x_2 =& x_2, ~  \forall x_2 \in X_2, & (I - P) x_1 =& 0, ~  \forall x_1 \in X_1
+\end{align*}
+といった性質を代数的直和の分解の一意性に対する矛盾をつく背理法で証明することができます．
+実際に，$P x_1 = x_1$を証明するには，$P x_1 \neq x_1$を仮定し，$x = x_1 + x_2 = P x_1 + (I - P)x_1 + x_2$となるため分解の一意性に対して矛盾することを示せば良いです．
+
+では，いよいよ，$X$が$X_1$と$X_2$の代数的直和である際に，$X_1,  X_2$がBanach空間になるための必要十分条件を見てみましょう．
+
+\begin{Thm}
+Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．
+$x \in X$について
+\[
+x = x_1 + x_2, ~ x_1 \in X_1, x_2 \in X_2
+\]
+とし，${\mathcal D}(P) = X$となる$X$上の線形作用素$P$を
+\begin{align*}
+	P x = x_1,~ ~ (I - P)x = x_2
+\end{align*}
+とすると以下が成立する:
+\begin{align*}
+	P\mbox{が連続} \Leftrightarrow X_1, X_2\mbox{が共にBanach空間}
+\end{align*}
+(「作用素が連続である」を忘れてしまった場合は定義\ref{def:operator_continue}を思い出そう!)
+
+\end{Thm}
+
+\begin{Proof}
+\noindent 「$P\mbox{が連続} \Rightarrow X_1, X_2\mbox{が共にBanach空間}$の証明」
+
+まず，$X_1$がBanach空間であることを示す．
+$X$が$X_1$と$X_2$の代数的直和であることから，$X_1$は$X$の線形部分空間である．
+そのため，$X_1$が閉集合になること(すなわち，閉部分空間であること)を示せば定理\ref{thm:Banach_space_closed_subspace}より，$X_1$がBanach空間であることを示せる．
+よって，$X_1$の任意の点列$(x_n) \subset X_1$に対し，極限$x^*$が$X_1$にも属することを示せば良い．
+$x_n$は$X_1$に属することから$P x_n = x_n$になる．
+そのうえで，$P$が連続であることから，$P x_n = x_n$の極限は$P x^* = x^*$となる．
+よって，$P x^* = x^* \in X_1$から，$X_1$は閉集合となるため，Banach空間となる．
+
+次に，$X_2$がBanach空間であることを示す．
+そのために，まず，$I-P$が連続になることを示す．
+$P$が連続であることから，$x_n \rightarrow x^*$となる任意の$x_n \in X$に対して，$P x_n \rightarrow P x^*$となることに注意すると
+\begin{align*}
+	(I - P) x_n = x_n - P x_n \rightarrow x^* - P x^* = (I - P) x^*
+\end{align*}
+となるため，$I - P$も連続となる．
+あとは，$P$と$X_1$のときと同様の議論をすればよい．
+すなわち，$X_2$の任意の点列$(x_n) \subset X_2$に対し，極限$x^*$が$X_2$にも属することを示せば良い．
+$I - P$が連続であることから，$(I - P)x_n = x_n $の極限は$(I - P)x^* = x^* $となる．
+よって，$(I - P) x^* = x^* \in X_2$から，$X_2$は閉集合となるため，Banach空間となる．
+\\
+
+\noindent 「$P\mbox{が連続} \Leftarrow X_1, X_2\mbox{が共にBanach空間}$の証明」
+
+Banach空間$X$の$x_n \rightarrow x^*$となる任意の点列$(x_n)$に対し，$P x_n \rightarrow y$としたとき，$y = P x^*$となることを示せば良い．
+上記の点列を用いて$X_1$の点列$( P x_n )$を作成すると，$X_1$がBanach空間であることから，閉集合であるため点列$( P x_n )$の極限$y$は$X_1$にも属する．
+よって，
+\begin{align*}
+	y = Py
+\end{align*}
+となる．
+
+さらに，同様に$X_2$の点列$( (I - P)x_n )$を作成すると，その極限は
+\begin{align*}
+	(I - P)x_n = x_n - P x_n \rightarrow x^* - y
+\end{align*}
+となり，$X_2$もBanach空間であることから，閉集合であるため点列$((I-P)x_n)$の極限$x^* - y$は$X_2$にも属する．
+そのうえで，Banach空間$X$が$X_1$と$X_2$の代数的直和であることから，$X_1 \cap X_2 = \{ 0 \}$に注意すると$P(x^* - y) = 0$となる．
+よって
+\begin{align*}
+	0 = P(x^* - y) = P x^* - P y = P x^* - y
+\end{align*}
+となるため，
+\begin{align*}
+	P x^* = y
+\end{align*}
+となる．
+
+
+\qed
+\end{Proof}
+
+最後に，位相的直和を定義しましょう．
+\begin{defi}[位相的直和]
+	Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．
+	その上，$X_1$と$X_2$が共にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
+\end{defi}
+
+もちろん，位相的直和は射影の連続性を用いて定義することも可能です．
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{射影を用いたBanach空間上のガウスの消去法}\label{sec:infgauss}
+本節では，有界な線形作用素$L \in {\mathcal B}(X)$と$g \in X$で構成される問題\eqref{eq:infinite_linear_prog}に対してガウスの消去法で解$\phi$が存在するための条件と解を求める方法を紹介します．
+まず，Banach空間$X$が$X_1$と$X_2$の代数的直和であるとし，$x \in X$について
+\[
+x = x_1 + x_2, ~ x_1 \in X_1, x_2 \in X_2
+\]
+とし，$P$を${\mathcal D}(P) = X$
+\begin{align*}
+	P x = x_1,~ ~ (I - P)x = x_2
+\end{align*}
+を満たす射影とします．
+特段，強い仮定を設けずに議論は進めますが，コンピュータで解くことを意識する際には，$X_1$がコンピュータで解ける有限次元部分，$X_2$がコンピュータで解けない無限次元部分と心の中に留めておく良いです．
+
+まず，はじめに，Banach空間$X$が$X_1$と$X_2$の代数的直和であることから，$x = x_1 + x_2, x_1 \in X_1, x_2 \in X_2$が一意に表せることを利用し，射影を使って問題\eqref{eq:infinite_linear_prog}を変形させます:
+\begin{align*}
+	L \phi = g \Leftrightarrow& \left\{ \begin{array}{l}
+		P L \phi = Pg \\
+		(I - P) L \phi = (I - P) g
+	\end{array}\right.
+\end{align*}
+さらに，解$\phi$も射影を使って次のように分解します:
+\begin{align*}
+	\phi = \phi_1 + \phi_2, ~~ \phi_1 := P \phi, ~~ \phi_2 := (I-P) \phi
+\end{align*}
+この分解した解を利用すると
+\begin{align*}
+\left\{ \begin{array}{l}
+		P L ( \phi_1 + \phi_2 ) = Pg \\
+		(I - P) L ( \phi_1 + \phi_2 ) = (I - P) g
+	\end{array}\right.
+\end{align*}
+となります．
+ここで，4つの線形作用素をそれぞれ
+\begin{align}
+	T :=& PL|_{X_1} : X_1 \rightarrow X_1, & B :=& PL|_{X_2}: X_2 \rightarrow X_1 \label{def:TBCD} \\
+	C :=& (I - P) L |_{X_1}: X_1 \rightarrow X_2, & D :=& (I - P) L |_{X_2}: X_2 \rightarrow X_2 \nonumber
+\end{align}
+と定義すると，次のように変形できます:
+\begin{align*}
+\left\{ \begin{array}{l}
+		T \phi_1 + B \phi_2 = Pg \\
+		C \phi_1 + D \phi_2 = (I - P) g
+	\end{array}\right.
+\end{align*}
+この問題はある種，連立一次方程式として見ることができるため，作用素行列
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right) : X_1 \times X_2 \rightarrow X_1 \times X_2
+\end{align*}
+を定義すると
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+のように作用素行列の方程式に帰着できます．
+そのために，いくつかの仮定を加えてこの方程式をガウスの消去法(正確に言うとブロックガウスの消去法)と同じ手順で計算すると次の定理が得られます:
+
+\begin{Thm} \label{thm:infinite_Gauss}
+	$X$, $X_1$, $X_2$, $L$, $g$, $P$, $\phi_1$, $\phi_2$, $T$, $B$, $C$, $D$をすべて本節で定義したものとする．
+	線形作用素$T$を全単射であると仮定する．
+	線形作用素$S$を
+	\begin{align} \label{def:S_operator}
+		S := D - C T^{-1} B : ~ X_2 \rightarrow X_2
+	\end{align}
+	とする．
+	もし，$S$が全単射ならば，
+	\begin{align*}
+	\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+	\end{align*}
+	となり，有界線形作用素$L$は全単射である．
+\end{Thm}
+
+\begin{Proof}
+方程式
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+に対して，$T$が全単射であることから左から
+\begin{align*}
+	 \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		0 & I_{X_2}
+	\end{array} \right)
+\end{align*}
+を掛けると	
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		C & D
+	\end{array} \right) \left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		0 & I_{X_2}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+となる．
+次に，左から
+\begin{align*}
+	 \left( \begin{array}{cc}
+		 I_{X_1} & 0  \\
+		 -C & I_{X_2}
+	\end{array} \right)
+\end{align*}
+を掛けると
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right) \left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) =&  \left( \begin{array}{cc}
+		 I_{X_1} & 0  \\
+		 -C & I_{X_2}
+	\end{array} \right) \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		0 & I_{X_2}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)\\
+	=& \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		-CT^{-1} & I_{X_2}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+となる．
+次に，$S$が全単射であることから左から
+\begin{align*}
+	 \left( \begin{array}{cc}
+		 I_{X_1} & 0  \\
+		0 & S^{-1}
+	\end{array} \right)
+\end{align*}
+を掛けると
+\begin{align}\label{eq:proof_gauss}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & I_{X_2}
+	\end{array} \right) \left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) =& \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align}
+となる．
+最後に，
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & -T^{-1} B \\
+		0 & I_{X_2}
+	\end{array} \right)
+\end{align*}
+を左から掛けると
+\begin{align*}
+	\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) =& \left( \begin{array}{cc}
+		I_{X_1} & -T^{-1} B \\
+		0 & I_{X_2}
+	\end{array} \right) \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right) \\
+	=& \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+が得られる．
+これは，
+\begin{align*}
+	 \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right) = \left( \begin{array}{cc}
+		I_{X_1} & 0 \\
+		0 & I_{X_2}
+	\end{array} \right)
+\end{align*}
+を意味する．
+逆に
+\begin{align*}
+	 & \left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)  \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \\
+	=& \left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B + T^{-1}BS^{-1}CT^{-1}B - T^{-1} B S^{-1} D \\
+		0 & - S^{-1} C T^{-1} B + S^{-1} D
+	\end{array} \right) \\
+	=& \left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B - T^{-1}BS^{-1} ( D - CT^{-1}B ) \\
+		0 & S^{-1} ( D - CT^{-1}B )
+	\end{array} \right) = \left( \begin{array}{cc}
+		I_{X_1} & 0 \\
+		0 & I_{X_2}
+	\end{array} \right)
+\end{align*}
+となるため，定義\ref{def:inv_operator}と定理\ref{thm:inj_inve}から
+\begin{align*}
+\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)
+\end{align*}
+は単射である．
+また，任意の$g_1 \in X_1$と$g_2 \in X_2$に対して，
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{c}
+		g_1 \\
+		g_2
+	\end{array} \right)
+\end{align*}
+は
+\begin{align*}
+	\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) =& \left( \begin{array}{cc}
+		I_{X_1} & -T^{-1} B \\
+		0 & I_{X_2}
+	\end{array} \right) \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right) \\
+	=& \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		g_1 \\
+		g_2
+	\end{array} \right)
+\end{align*}
+となる解
+\begin{align*}
+	\left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) \in X_1 \times X_2
+\end{align*}
+を持つため，
+\begin{align*}
+\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right): X_1 \times X_2 \rightarrow X_1 \times X_2
+\end{align*}
+は全射でもある．
+
+続いて，$L$が単射であることを示す．
+定理\ref{thm:linear_operator_injective11}から，$L \phi = 0$において，解が$\phi = 0$だけであることを示せば良い．
+$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi$は$P \phi$と$(I - P)\phi$に一意に分解できる．
+その上，
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right) \left( \begin{array}{c}
+		P \phi \\
+		(I - P)\phi
+	\end{array} \right) = \left( \begin{array}{c}
+		0 \\
+		0
+	\end{array} \right)
+\end{align*}
+となる．
+ここで，
+\begin{align*}
+\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)
+\end{align*}
+が全単射であることから，解は$P \phi = 0$, $(I - P)\phi = 0$のみである．
+よって，$L \phi = 0$において，解は$\phi = 0$のみである．
+
+最後に，$L$が全射であることを示す．
+任意の$g \in X$に対して$L \phi = g$を満たす解$\phi \in X$が存在すれば，定義\ref{def:sur_operator}から$L$が全射であることがいえる．
+$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi$は$P \phi$と$(I - P)\phi$に一意に分解できる．
+その上，
+\begin{align*}
+	\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right) \left( \begin{array}{c}
+		P \phi \\
+		(I - P)\phi
+	\end{array} \right) = \left( \begin{array}{c}
+		Pg \\
+		(I - P)g
+	\end{array} \right)
+\end{align*}
+となる．
+ここで，
+\begin{align*}
+\left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)
+\end{align*}
+が全単射であることから，解$ (P \phi, (I - P) \phi ) \in X_1 \times X_2$は常に存在する．
+よって，$\phi = P \phi + (I - P) \phi \in X$であるため，任意の$g \in X$に対して解$\phi \in X$は存在する．
+
+
+\qed
+\end{Proof}
+
+定理\ref{thm:infinite_Gauss}は冒頭にも記載した通り，線形・非線形問わず，無限次元問題の解の品質保証に利用します．
+では，定理\ref{thm:infinite_Gauss}の十分条件である$S$が全単射，というのは$L$の全単射性にどれくらい重要なのでしょうか?
+簡単にいうと，必要条件になるのか?という疑問が生まれてきます．
+それは，次の定理で解決されます:
+
+\begin{Thm} \label{thm:invert_S_L}
+	$X$, $X_1$, $X_2$, $L$, $g$, $P$, $\phi_1$, $\phi_2$, $T$, $B$, $C$, $D$をすべて本節で定義したものとする．
+	線形作用素$T$を全単射であると仮定する．
+	そのとき，
+	\begin{align*}
+		S\mbox{が全単射} \Leftrightarrow L\mbox{が全単射}
+	\end{align*}
+\end{Thm}
+
+\begin{Proof}
+「$S$が全単射 $\Rightarrow$ $L$が全単射」は定理\ref{thm:infinite_Gauss}でいえているため，「$S$が全単射 $\Leftarrow$ $L$が全単射」のみ示す．
+$L$が全単射であることから，$L \phi = 0$を満たす解は$\phi = 0$のみである．
+また，$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi = 0$は$P \phi = 0$と$(I - P)\phi = 0$に一意に分解できる．
+その上，$T$が全単射であることを利用すると\eqref{eq:proof_gauss}が得られるため，以下のようになる:
+\begin{align*}
+	L \phi = 0 \Leftrightarrow& \left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)\left( \begin{array}{c}
+		P \phi \\
+		(I - P) \phi
+	\end{array} \right) = \left( \begin{array}{c}
+		0 \\
+		0
+	\end{array} \right) \\
+	\Leftrightarrow& \left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right) \left( \begin{array}{c}
+		P \phi \\
+		(I - P) \phi
+	\end{array} \right) = \left( \begin{array}{c}
+		0 \\
+		0
+	\end{array} \right)
+\end{align*}
+上記の方程式を満たす解が，$P \phi = 0$と$(I - P)\phi = 0$のみのため，
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right)
+\end{align*}
+は単射である．
+ここで，$S$が単射でないと仮定して，矛盾を示す．
+$S$が単射でないことから，
+\begin{align*}
+	S \phi_2 = 0 
+\end{align*}
+を満たす$0$以外の解$\phi_2 \in X_2$が存在する．
+そのうえで，
+\begin{align*}
+	\phi_1 = -T^{-1} B \phi_2
+\end{align*}
+とすると$( \phi_1, \phi_2 )$は方程式
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right) \left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{c}
+		0 \\
+		0
+	\end{array} \right)
+\end{align*}
+の解となる．
+しかし，$L \phi = 0$を満たす解は$\phi = 0$のみであり，
+\begin{align*}
+	\left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right) \left( \begin{array}{c}
+		\phi_1 \\
+		\phi_2
+	\end{array} \right) = \left( \begin{array}{c}
+		0 \\
+		0
+	\end{array} \right)
+\end{align*}
+を満たす解は$0$のみであるため矛盾する．
+よって，$S$は単射である．
+
+続いて，$L$が全単射のとき，$S$が全射であることを示す．
+$L$が全単射であるため，任意の$g \in X$に対して
+\begin{align*}
+	\phi = L^{-1} g
+\end{align*}
+となる解$\phi \in X$が一意に存在する．
+よって，代数的直和による分解の一意性から$P \phi \in X_1$と$(I-P)\phi \in X_2$が一意に存在する．
+そのうえで，
+\begin{align*}
+	L \phi = g \Leftrightarrow& \left( \begin{array}{cc}
+		T & B \\
+		C & D
+	\end{array} \right)\left( \begin{array}{c}
+		P \phi \\
+		(I - P) \phi
+	\end{array} \right) = \left( \begin{array}{c}
+		P g \\
+		(I - P) g
+	\end{array} \right) \\
+	\Leftrightarrow& \left( \begin{array}{cc}
+		I_{X_1} & T^{-1} B \\
+		0 & S
+	\end{array} \right) \left( \begin{array}{c}
+		P \phi \\
+		(I - P) \phi
+	\end{array} \right) = \left( \begin{array}{cc}
+		T^{-1} & 0  \\
+		-CT^{-1} & I_{X_2}
+	\end{array} \right) \left( \begin{array}{c}
+		Pg \\
+		(I-P)g
+	\end{array} \right)
+\end{align*}
+となる．
+さらに，第二式
+\begin{align*}
+	S (I - P) \phi = -CT^{-1} Pg + (I - P)g
+\end{align*}
+となる．
+ここで，任意の$g \in X$に対して$L \phi = g$となる解$\phi \in X$が存在し，$\phi = P \phi + (I - P)\phi$のように一意に分解できることに注意すると，任意の$g_2 \in X_2$に対しても$L \phi = g_2$となる解$\phi \in X$が存在し，$\phi = P \phi + (I - P)\phi$となる$(I - P)\phi \in X_2$が存在する．
+そのうえで，$P g_2 = -$より
+\begin{align*}
+	S (I - P) \phi = -CT^{-1} Pg_2 + (I - P)g_2 = g_2
+\end{align*}
+となる解$(I - P) \phi \in X_2$が存在するため，$S$は全射である．
+
+\qed
+\end{Proof}
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{準直交射影と$\| L^{-1} \|_{{\mathcal B}(X)}$の評価方法}
+本節ではBanach空間$X$が$X_1$と$X_2$の代数的直和になる際に，代数的直和から誘導される射影$P$と$I -P$に対して，さらに制限をつけた際の$\| L^{-1} \|_{{\mathcal B}(X)}$の評価方法を紹介します．
+その制限というのが次に定義する準直交射影です．
+準直交射影はこの本の特有の言い回しであり，一般的な用語ではないので注意してください．
+
+\begin{defi}[準直交射影]\label{def:orth_projection}
+	Banach空間$X$がその線形部分空間$X_1$,$X_2$の代数的直和であるとする．
+	そのとき，$x \in X$について
+	\[
+	x = x_1 + x_2, ~ x_1 \in X_1, x_2 \in X_2
+	\]
+	とし，${\mathcal D}(P) = X$となる$X$上の射影作用素$P$を
+	\begin{align*}
+		P x = x_1,~ ~ (I - P)x = x_2
+	\end{align*}
+	とする．
+	そのとき，任意の$x \in X$に対して
+	\begin{align*}
+		\| x \|_{X}^2 = \| P x \|_{X}^2 + \| (I - P) x \|_{X}^2
+	\end{align*}
+	が成立するとき$P$を準直交射影と呼ぶ．
+\end{defi}
+
+定義\ref{def:orth_projection}を端的に言うとピタゴラスの定理$\| u \|_{X}^2 = \| P u \|_{X}^2 + \| (I - P) u \|_{X}^2$が成立するような射影のことを準直交射影
+\footnote{本書ではまだ定義していませんがHilbert空間において内積から作成した直交射影ならばピタゴラスの定理が成立するために，準直交射影になります．
+Banach空間上の空間同士の直交関係は，内積の代わりに汎関数や共役対を利用して定義することができます．
+しかし，Banach空間のみで直交射影を定義し，ピタゴラスの定理まで成立する，といった証明を私は見たことがありません．
+また，「準直交射影 $\Rightarrow$ 直交射影」という証明も見たことがありません．
+その一方で，本書で利用したいのは，必ずしも直交射影である必要はなく，射影$P$の制限としてピタゴラスの定理$\| u \|_{X}^2 = \| P u \|_{X}^2 + \| (I - P) u \|_{X}^2$のみ課されていれば十分です．
+そこで，本書では直交射影は定義せずに，ピタゴラスの定理$\| u \|_{X}^2 = \| P u \|_{X}^2 + \| (I - P) u \|_{X}^2$のみを課した準直交射影を定義しています．
+Hilbert空間では「直交射影 $\Leftrightarrow$ 準直交射影」が成立する気もするので，興味がある方は証明してみてください．}
+と呼ぶようにしています．
+
+\ref{sec:linear_notation}節で定義した有限次元のベクトルの2ノルムを利用することで，$\| u \|_{X}^2 = \| P u \|_{X}^2 + \| (I - P) u \|_{X}^2$は
+	\begin{align*}
+		\| u \|_{X} = \left\| \left( \begin{array}{c}
+		 \| P u \|_{X_1} \\
+		 \| (I - P) u \|_{X_2}
+		 \end{array} \right) \right\|_2
+	\end{align*}
+とも書けることに注意してください．
+
+それでは，まず，$\| L^{-1} \|_{{\mathcal B}(X)}$の上界の評価を示します:
+
+\begin{Thm} \label{thm:inverse_norm_estimate}
+定理\ref{thm:infinite_Gauss}の記号を利用する．
+Banach空間$X$は$X_1$と$X_2$の位相的直和であるとする．
+さらに，$P$を準直交射影とし，線形作用素$T$と$S$はそれぞれ全単射であるとする．
+そのとき，
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} \le \left\| \left( \begin{array}{cc}
+		\| T^{-1} + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} & \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)} \\
+		\| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} & \| S^{-1} \|_{{\mathcal B}(X_2)}
+	\end{array} \right) \right\|_2
+	\end{align*}
+となる(行列の2ノルムは\ref{sec:linear_notation}節で定義されています)．
+\end{Thm}
+
+\begin{Proof}
+作用素ノルムの定義\eqref{def:operator_norm}から
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} = \sup_{ g \in X \setminus \{ 0 \} } \frac{ \| L^{-1} g \|_{X} }{ \| g \|_{X} }
+	\end{align*}
+となる．
+$\phi = L^{-1}g$とおき，$\phi_1 = P \phi, ~ \phi_2 = (I - P) \phi$とすると，$P$が準直交射影であることから
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} =& \sup_{ g \in X \setminus \{ 0 \} } \frac{ \| \phi \|_{X} }{ \| g \|_{X} } \\
+		=& \sup_{ g \in X \setminus \{ 0 \} } \frac{\left\| \left( \begin{array}{c}
+		 \| \phi_1 \|_{X_1} \\
+		 \| \phi_2 \|_{X_2}
+		 \end{array} \right) \right\|_2 }{ \| g \|_{X} }
+	\end{align*}
+となる．
+そのうえで，定理\ref{thm:infinite_Gauss}から
+	\begin{align*}
+		\phi_1 = ( T^{-1}  + T^{-1} B S^{-1} C T^{-1}) Pg - T^{-1} B S^{-1} (I-P)g
+	\end{align*}
+と
+	\begin{align*}
+		\phi_2 = -S^{-1} C T^{-1} Pg + S^{-1} (I-P)g
+	\end{align*}
+となるため，
+	\begin{align*}
+		\| \phi_1 \|_{X_1} \le \|  T^{-1}  + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} \| Pg \|_{X_1} + \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)} \| (I-P)g \|_{X_2}
+	\end{align*}
+と
+	\begin{align*}
+		\| \phi_2 \|_{X_2} \le \| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} \| Pg \|_{X_1} + \| S^{-1} \|_{{\mathcal B}(X_2)} \| (I-P)g \|_{X_2}
+	\end{align*}
+となる(ここで，$X$が$X_1$と$X_2$の位相的直和ではなく，代数的直和のままだと$X_1$と$X_2$がBanach空間ではない可能性がある出てくるため作用素ノルムで括り出せなくなります)．
+よって，
+	\begin{align*}
+		& \left\| \left( \begin{array}{c}
+		 \| \phi_1 \|_{X_1} \\
+		 \| \phi_2 \|_{X_2}
+		 \end{array} \right) \right\|_2  \\
+		\le& \left\| \left( \begin{array}{c}
+		 \|  T^{-1}  + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} \| Pg \|_{X_1} + \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)} \| (I-P)g \|_{X_2} \\
+		 \| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} \| Pg \|_{X_1} + \| S^{-1} \|_{{\mathcal B}(X_2)} \| (I-P)g \|_{X_2}
+		 \end{array} \right) \right\|_2  \\
+		=& \left\| \left( \begin{array}{cc}
+		 \|  T^{-1}  + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} & \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)}  \\
+		 \| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} & \| S^{-1} \|_{{\mathcal B}(X_2)} 
+		 \end{array} \right) \left( \begin{array}{c}
+		  \| Pg \|_{X_1}  \\
+		  \| (I-P)g \|_{X_2}
+		 \end{array} \right)  \right\|_2 \\
+		\le& \left\| \left( \begin{array}{cc}
+		 \|  T^{-1}  + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} & \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)}  \\
+		 \| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} & \| S^{-1} \|_{{\mathcal B}(X_2)} 
+		 \end{array} \right) \right\|_2 \left\| \ \left( \begin{array}{c}
+		  \| Pg \|_{X_1}  \\
+		  \| (I-P)g \|_{X_2}
+		 \end{array} \right)  \right\|_2 \\
+		 =& \left\| \left( \begin{array}{cc}
+		 \|  T^{-1}  + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} & \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)}  \\
+		 \| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} & \| S^{-1} \|_{{\mathcal B}(X_2)}
+		 \end{array} \right) \right\|_2 \| g \|_{X}
+	\end{align*}
+となる．
+よって，
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} \le \left\| \left( \begin{array}{cc}
+		\| T^{-1} + T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} & \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_2, X_1)} \\
+		\| S^{-1} C T^{-1} \|_{{\mathcal B}(X_1, X_2)} & \| S^{-1} \|_{{\mathcal B}(X_2)}
+	\end{array} \right) \right\|_2
+	\end{align*}
+となる．
+
+\qed
+\end{Proof}
+
+続いて，$\| L^{-1} \|_{{\mathcal B}(X)}$の下界評価を行います:
+\begin{Thm}
+定理\ref{thm:infinite_Gauss}の記号を利用する．
+Banach空間$X$は$X_1$と$X_2$の位相的直和であるとする．
+さらに，$P$を準直交射影とし，線形作用素$T$と$S$はそれぞれ全単射であるとする．
+そのとき，
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} \ge \| T^{-1} \|_{{\mathcal B}(X_1)} - \| T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} - \|  S^{-1} C T^{-1}  \|_{{\mathcal B}(X_1, X_2)}
+	\end{align*}
+となる．
+\end{Thm}
+
+\begin{Proof}
+作用素ノルムの定義より
+	\begin{align*}
+		\| T^{-1} \|_{{\mathcal B}(X_1)} = \sup_{g \in X_1} \frac{ \| T^{-1} g \|_{X_1} }{ \| g \|_{X_1} }
+	\end{align*}
+となる．
+そのうえで，$g_1 \in X_1$を上記の$\sup$を満たす元とすると
+	\begin{align*}
+		\| T^{-1} \|_{{\mathcal B}(X_1)} = \frac{ \| T^{-1} g_1 \|_{X_1} }{ \| g_1 \|_{X_1} }
+	\end{align*}
+となる．
+続いて，作用素ノルムの定義と$g_1 \in X_1 \subset X$であることに注意すると
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} =& \sup_{ g \in X \setminus \{ 0 \} } \frac{ \| L^{-1} g \|_{X} }{ \| g \|_{X} } \\
+		\ge& \frac{ \| L^{-1} g_1 \|_{X} }{ \| g_1 \|_{X} }
+	\end{align*}
+となる．
+さらに，$g_1 \in X_1 \subset X$から$Pg_1 = g_1$と$(I - P)g_1 = 0$になることに注意して定理\ref{thm:infinite_Gauss}を利用すると
+	\begin{align*}
+		L^{-1} g_1 =& (T^{-1} + T^{-1} B S^{-1} C T^{-1} - S^{-1} C T^{-1})Pg_1 \\
+		=& (T^{-1} + T^{-1} B S^{-1} C T^{-1} - S^{-1} C T^{-1}) g_1
+	\end{align*}
+となる．
+よって
+	\begin{align*}
+		\| L^{-1} \|_{{\mathcal B}(X)} \ge& \frac{ \|  (T^{-1} + T^{-1} B S^{-1} C T^{-1} - S^{-1} C T^{-1}) g_1 \|_{X} }{ \| g_1 \|_{X} } \\
+		\ge& \frac{ \|  T^{-1} g_1 \|_{X} }{ \| g_1 \|_{X} } - \frac{ \|   T^{-1} B S^{-1} C T^{-1} g_1 \|_{X} }{ \| g_1 \|_{X} } -  \frac{ \|  S^{-1} C T^{-1} g_1 \|_{X} }{ \| g_1 \|_{X} } \\
+		\ge& \frac{ \|  T^{-1} g_1 \|_{X} }{ \| g_1 \|_{X} }  - \| T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} - \|  S^{-1} C T^{-1}  \|_{{\mathcal B}(X_1, X_2)} \\
+		=&  \| T^{-1} \|_{{\mathcal B}(X_1)} - \| T^{-1} B S^{-1} C T^{-1} \|_{{\mathcal B}(X_1)} - \|  S^{-1} C T^{-1}  \|_{{\mathcal B}(X_1, X_2)}
+	\end{align*}
+を得る．
+
+\qed
+\end{Proof}
+
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%\section{松岡君用}
+%$X$をBanach空間とし，$X$の基底$\{ \phi_1, ~ \phi_2, \cdots  \}$によって，任意の$u \in X$を
+%\[
+%	u = \sum_{i = 1}^\infty c_i \phi_i
+%\]
+%と表せるとする．
+%$X_N$を$X$の有限次元部分空間
+%\[
+%	X_N := \left\{ \sum_{i = 1}^N c_i \phi_i ~ | ~ c_i \in {\mathbb R} \right\}
+%\]
+%とする．
+%$X_c$を$X$の線形部分空間とし，$X_N$と$X_c$が$X$の位相的直和であるとする．
+%さらに，上記の位相的直和から誘導される値域${\mathbb R}(P) = X_N$となる射影$P: X \rightarrow X$を準直交射影とし，線形作用素$T$と$L$はそれぞれ全単射であるとする．
+%そのとき，次の定理を証明せよ:
+%
+%\begin{Thm}
+%もし
+%\[
+%	\| B \|_{{\mathcal B}(X_c, X_N)} \rightarrow 0, ~ \| C \|_{{\mathcal B}(X_N, X_c)} \rightarrow 0, ~ \| S^{-1} \|_{{\mathcal B}(X_c)} \rightarrow 1 ~~ ( N \rightarrow \infty)
+%\]
+%ならば，
+%\[
+%	\left| \| L^{-1} \|_{{\mathcal B}(X)} - \| T^{-1} \|_{{\mathcal B}(X_N)} \right| \rightarrow 0, ~ (N \rightarrow \infty)
+%\]
+%となる．
+%\end{Thm}
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------

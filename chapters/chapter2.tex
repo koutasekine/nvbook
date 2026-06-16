@@ -1,0 +1,238 @@
+\chapter{区間ベクトル/行列の演算に対する品質保証法} \label{chap:basic_matrix}
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{記号の準備}\label{sec:linear_notation}
+本節で定義する記号は本章以降でも利用しますので，定義を忘れた場合に本節に立ち戻って見直してください．
+まずは，よく利用するベクトルおよび行列を定義したいと思います．
+$\vector{0} \in {\mathbb R}^n$, $O \in {\mathbb R}^{n \times m}$ ~ $I \in {\mathbb R}^{n \times n}$を
+\begin{align*}
+	\vector{0} := \left( \begin{array}{c}
+		0 \\
+		0 \\
+		\vdots \\
+		0
+	\end{array}\right), ~ O := \left( \begin{array}{c c c c}
+		0 & 0 & \cdots & 0 \\
+		0 & 0 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots  \\
+		0 & 0 & \cdots & 0
+	\end{array}\right), ~ I := \left( \begin{array}{c c c c}
+		1 & 0 & \cdots & 0 \\
+		0 & 1 & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots  \\
+		0 & 0 & \cdots & 1
+	\end{array}\right)
+\end{align*}
+のように，それぞれゼロベクトル，ゼロ行列，単位行列とします．
+
+
+次に，ベクトルおよび行列の半順序($\le$)を定義したいと思います．
+2つのベクトル$a = (a_i),  b = (b_i) \in {\mathbb R}^n$あるいは2つの行列$A = (A_{ij}), B = (B_{ij}) \in {\mathbb R}^{n \times m}$に対し，
+\begin{align*}
+	& a \le b ~ \mbox{はすべての} ~ i ~{について} ~ a_i \le b_i ~ \mbox{が成立} \\
+	& A \le B ~ \mbox{はすべての} ~ i, j ~{について} ~ A_{ij} \le B_{ij} ~ \mbox{が成立}
+\end{align*}
+とします．
+すなわち，本書ではベクトル・行列の順序を「各成分で比較し，すべての成分で同じ不等号が成立しているとき」を意味します．
+
+続いて，ベクトルおよび行列の絶対値を定義します．
+ベクトル$a = (a_i) \in {\mathbb R}^n$および行列$A = (A_{ij}) \in {\mathbb R}^{n \times m}$に対する絶対値は
+\begin{align*}
+	| a | := ( | a_i | ) \in {\mathbb R}^{n} , ~~ | A | := ( | A_{ij} | ) \in {\mathbb R}^{n \times m}
+\end{align*}
+とします．
+すなわち，各成分に絶対値をつけたベクトル/行列を意味しています．
+特に，$|A|$は行列式ではないのでご注意ください．
+もちろん，$| a | \ge \vector{0}$および$| A | \ge O$が成立します．
+
+
+また，ついでにノルムについても定義をしたいと思います．
+抽象的なノルムについては\ref{sec:Banach_space}節の定義\ref{def:App:norm}で記載するとし，ひとまず，記号としてベクトル$x = (x_1, x_2, \cdots x_n)^T \in {\mathbb C}^n$に対する1ノルム，2ノルム，最大値ノルムをそれぞれ
+\begin{align*}
+	\|x\|_{1} :=  \sum_{i = 1}^n |x_i |, ~~
+	\|x\|_{2}\ :=  \sqrt{ \sum_{i = 1}^n |x_i|^2 }, ~~
+	\|x\|_{\infty} :=  \mymax_{1\leq i \leq n} |x_i| 
+\end{align*}
+と定義します．
+次に，正方行列$A \in {\mathbb C}^{n \times n}$に固有値を$\lambda_i$としたとき，スペクトル半径$\rho(A)$を
+\begin{align*}
+	\rho(A) := \mymax_{i} | \lambda_i |
+\end{align*}
+とします．
+また，$A = (a_{ij}) \in {\mathbb C}^{n \times m}$に対する行列のノルムを
+\begin{align*}
+	\|A\|_{1} :=& \mymax_{1\leq j \leq m}\sum_{i=1}^n|a_{ij}| \\
+	\|A\|_{2} :=& \sqrt{ \rho(A^T A) } \\
+	\|A\|_{\infty} :=& \mymax_{1\leq i \leq m}\sum_{j=1}^n|a_{ij}|
+\end{align*}
+と定義します．
+行列のノルムについても詳細を知りたい場合，\ref{sec:DX_bounded_linear_op}項の抽象的な線形作用素ノルムに関する定理\ref{thm:set_bound_linear_operator}などを参照してください．
+
+また，区間ベクトルおよび区間行列を
+\begin{align*}
+	[a, b] :=& \{ c \in {\mathbb R}^n ~ | ~ a \le c \le b, ~ \forall a, b \in {\mathbb R}^n \} \\
+	[A, B] :=& \{ C \in {\mathbb R}^{n \times m} ~ | ~ A \le C \le B, ~ \forall A, B \in {\mathbb R}^{n \times m} \}
+\end{align*}
+とします．
+同じように中心半径型の区間ベクトルおよび区間行列も
+\begin{align*}
+	\langle  c , ~ r \rangle :=& \{ a \in {\mathbb R}^n ~ | ~  | c - a | \le r \in {\mathbb R}^n \} \\
+	\langle  C , ~ R \rangle :=& \{ A \in {\mathbb R}^{n \times m } ~ | ~  | C - A | \le R \in {\mathbb R}^{n \times m } \}
+\end{align*}
+のように定義します．
+ここで，$| c - a | \le r $や$| C - A | \le R$はベクトルや行列の絶対値や不等号であることに注意してください．
+上端下端型の区間と中心半径型の区間の関係性は，\ref{sec:midrad_op}節と変わらず，
+\begin{align*}
+	[a, b] =& \langle  (a + b)/2 , ~ (b - a)/2 \rangle,& ~ [A, B] =& \langle  (A + B)/2 , ~ (B - A)/2 \rangle \\
+	\langle c, r \rangle =& [ c -r, c + r ] ,& ~ \langle C, R \rangle =& [ C - R, C + R ]
+\end{align*}
+のようになります．
+
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{区間行列積の計算方法}
+ここでは，区間行列積の計算方法を紹介します．
+とはいっても，区間行列積の各成分の結果は，区間ベクトルの内積に帰着されるために，まずは，区間ベクトルの内積にたいする計算方法を紹介します．
+
+まずは，2つの中心半径型の2次元区間ベクトルの内積を考えてみます．
+すなわち，$a_m = (a_m^{i}), b_c = (b_m^{i}) \in {\mathbb R}^2, a_r = (a_r^{i}),  b_r = (b_r^{i}) \ge \vector{0} \in {\mathbb R}^2$とし，内積
+	\begin{align*}
+		\langle a_m, a_r \rangle \cdot \langle b_m, b_r \rangle =& \left( \begin{array}{c}
+			\langle a_m^1, a_r^1 \rangle \\
+			\langle a_m^2, a_r^2 \rangle
+		\end{array} \right) \cdot \left( \begin{array}{c}
+			\langle b_m^1, b_r^1 \rangle \\
+			\langle b_m^2, b_r^2 \rangle
+		\end{array} \right) \\
+		=& \langle a_m^1, a_r^1 \rangle \cdot \langle b_m^1, b_r^1 \rangle + \langle a_m^2, a_r^2 \rangle \cdot \langle b_m^2, b_r^2 \rangle
+	\end{align*}
+を考えます．
+中心半径型の区間の積は定理\ref{thm:midrad_mul}から
+	\begin{align*}
+		\langle a_m^1, a_r^1 \rangle \cdot \langle b_m^1, b_r^1 \rangle \subset \langle a_m^1  b_m^1, ~ |a_m^1| b_r^1 + a_r^1 | b_m^1 | + a_r^1 b_r^1 \rangle \\
+		\langle a_m^2, a_r^2 \rangle \cdot \langle b_m^2, b_r^2 \rangle \subset \langle a_m^2  b_m^2, ~ |a_m^2| b_r^2 + a_r^2 | b_m^2 | + a_r^2 b_r^2 \rangle
+	\end{align*}
+となります．
+よって，	
+	\begin{align*}
+		& \langle a_m, a_r \rangle \cdot \langle b_m, b_r \rangle \\
+	\subset&  \langle a_m^1  b_m^1, ~ |a_m^1| b_r^1 + a_r^1 | b_m^1 | + a_r^1 b_r^1 \rangle + \langle a_m^2  b_m^2, ~ |a_m^2| b_r^2 + a_r^2 | b_m^2 | + a_r^2 b_r^2 \rangle \\
+	=& \langle a_m^1  b_m^1 +  a_m^2  b_m^2, ~ ( |a_m^1| b_r^1 + |a_m^2| b_r^2  ) + ( a_r^1 | b_m^1 | + a_r^2 | b_m^2 | ) + ( a_r^1 b_r^1 + a_r^2 b_r^2) \rangle \\
+	=& \langle a_m \cdot  b_m, ~ |a_m| \cdot b_r + a_r \cdot | b_m | + a_r \cdot b_r \rangle
+	\end{align*}
+となり，定理\ref{thm:midrad_mul}の過大評価を許容すれば，「区間ベクトルの内積は，点ベクトルの内積4回および点ベクトルの足し算2回」に書き直すことができます．
+
+よって次のことの定理がいえます:
+\begin{Thm}[中心半径型の区間ベクトルの内積] \label{thm:midrad_inner}
+	$a_m,  b_m, \in {\mathbb R}^n$と非負ベクトル$a_r, b_r \in {\mathbb R}^n$とする．	  
+	そのとき，中心半径型の区間の内積は
+	\begin{align*}
+		\langle a_m, a_r \rangle \cdot \langle b_m, b_r \rangle \subset& \langle a_m \cdot b_m, ~ | a_m | \cdot b_r + a_r \cdot | b_m | + a_r \cdot b_r \rangle
+	\end{align*}
+	のように評価できる．
+\end{Thm}
+
+また，同様に区間行列積についても以下が成り立ちます:
+\begin{Thm}[中心半径型の区間行列の行列積] \label{thm:midrad_matpro}
+	$A_m \in {\mathbb R}^{l \times m},  B_m \in {\mathbb R}^{m \times n} $と非負行列$A_r \in {\mathbb R}^{l \times m},  B_r \in {\mathbb R}^{m \times n} $とする．	  
+	そのとき，中心半径型の区間行列の行列積は
+	\begin{align*}
+		\langle A_m, A_r \rangle \cdot \langle B_m, B_r \rangle \subset& \langle A_m \cdot B_m, ~ | A_m | \cdot B_r + A_r \cdot | B_m | + A_r \cdot B_r \rangle
+	\end{align*}
+	のように評価できる．
+\end{Thm}
+
+本章の最後に，浮動小数点数で値を持つ上端下端型の区間行列$[A_l, A_u], [B_l, B_u]$ ($A_l, A_u \in {\mathbb F}^{l \times m}, A_l \le A_u$および$B_l, B_u \in {\mathbb F}^{m \times n}, B_l \le B_u$)の行列積に関して，品質を保証する方法を紹介します:
+
+\begin{Thm}[浮動小数点数を両端にもつ上端下端型の区間行列積] \label{thm:interval_matmul}
+	区間行列$[A_l, A_u], [B_l, B_u]$ ($A_l, A_u \in {\mathbb F}^{l \times m}, A_l \le A_u$および$B_l, B_u \in {\mathbb F}^{m \times n}, B_l \le B_u$)とする．
+	$A_m, A_r \in  {\mathbb F}^{l \times m}, ~ B_m, B_r \in {\mathbb F}^{m \times n} $をそれぞれ
+	\begin{align*}
+		A_m :=& (A_l ~ \overline{+} ~ A_u)\overline{/}2,& A_r :=&  A_m ~ \overline{-} ~ A_l\\
+		B_m :=& (B_l ~ \overline{+} ~ B_u)\overline{/}2,& B_r :=&  B_m ~ \overline{-} ~ B_l
+	\end{align*}
+	とし，$C_r \in {\mathbb F}^{l \times n}$を
+	\begin{align*}
+		C_r := | A_m | ~ \overline{\cdot} ~ B_r ~ \overline{+} ~ A_r ~ \overline{\cdot} ~ | B_m | ~ \overline{+} ~ A_r ~ \overline{\cdot} ~ B_r
+	\end{align*}
+	とする．
+	そのとき，
+	\begin{align*}
+		[A_l, A_u] \cdot  [B_l, B_u ] \subset& [ A_m  ~ \underline{\cdot} ~ B_m  ~ \underline{-} ~ C_r, ~ A_m ~ \overline{\cdot} ~ B_m ~ \overline{+} ~ C_r ]
+	\end{align*}
+	となる．
+\end{Thm}
+
+\begin{Proof}
+	方針としては，1) 定理\ref{thm:infsup_to_midrad} を用いて中心半径型に変換，2) 定理\ref{thm:midrad_matpro}から区間行列積を浮動小数点数を値に持つ点行列の行列積と和に変換， 3) 定理\ref{thm:float_matmul}を用いて浮動小数点数を値に持つ点行列の行列積を計算する．
+	
+	まず，区間行列$[A_l, A_u], [B_l, B_u]$を定理\ref{thm:infsup_to_midrad} と$A_m, A_r \in  {\mathbb F}^{l \times m}, ~ B_m, B_r \in {\mathbb F}^{m \times n} $を用いて中心半径型に変換すると
+	\begin{align*}
+		[A_l, A_u] \cdot  [B_l, B_u ] \subset \langle A_m, A_r \rangle \cdot \langle B_m, B_r \rangle
+	\end{align*}
+	となる．
+	
+	そのうえで，定理\ref{thm:midrad_matpro}を上の式に適用すると
+		\begin{align*}
+			[A_l, A_u] \cdot  [B_l, B_u ] \subset& \langle A_m \cdot B_m, ~ | A_m | \cdot B_r + A_r \cdot | B_m | + A_r \cdot B_r \rangle
+		\end{align*}
+	となる．
+	半径$| A_m | \cdot B_m + A_r \cdot | B_m | + A_r \cdot B_r$については，大きくなればなるほど，元の集合を包含する形で集合が大きくなる．
+	そのうえで，定理\ref{thm:float_matmul}を用いて浮動小数点数を値に持つ点行列の行列積を用いると
+		\begin{align*}
+			| A_m | \cdot B_m + A_r \cdot | B_m | + A_r \cdot B_r \le C_r
+		\end{align*}
+	となるため，
+		\begin{align*}
+			[A_l, A_u] \cdot  [B_l, B_u ] \subset& \langle A_m \cdot B_m, ~ C_r \rangle
+		\end{align*}
+	となる．
+	そのうえで，右辺の中心半径型を上端下端型に変換すると
+		\begin{align*}
+			\langle A_m \cdot B_m, ~ C_r \rangle = [ A_m \cdot B_m - C_r, ~ A_m \cdot B_m + C_r ]
+		\end{align*}
+	となる．
+	さらに，再び定理\ref{thm:float_matmul}を用いて浮動小数点数を値に持つ点行列の行列積を用いると
+		\begin{align*}
+			[ A_m \cdot B_m - C_r, ~ A_m \cdot B_m + C_r ] \subset [ A_m  ~ \underline{\cdot} ~ B_m  ~ \underline{-} ~ C_r, ~ A_m ~ \overline{\cdot} ~ B_m ~ \overline{+} ~ C_r ]
+		\end{align*}
+	よって，
+		\begin{align*}
+			[A_l, A_u] \cdot  [B_l, B_u ] \subset& [ A_m  ~ \underline{\cdot} ~ B_m  ~ \underline{-} ~ C_r, ~ A_m ~ \overline{\cdot} ~ B_m ~ \overline{+} ~ C_r ]
+		\end{align*}
+	となる．
+\qed
+\end{Proof}
+
+最後に定理\ref{thm:interval_matmul}に対する疑似コードを紹介します:
+\begin{verbatim}
+	// 区間行列積 [Al, Au] * [Bl, Bu] => [Cl, Cu]を作成
+	#include <fenv.h>
+	[Cl, Cu] = interval_matmul(Al, Au, Bl, Bu)
+	  fesetround(FE_UPWARD);             //上向き丸めモードへの変更
+	    Am = (Al + Au)/2;
+	    Ar = Am - Al;
+	    Bm = (Bl + Bu)/2;
+	    Br = Bm - Bl;
+
+	    Cr = abs(Am)*Br + Ar*abs(Bm) + Ar*Br;
+	    Cu = Am*Bm + Cr;
+
+	  fesetround(FE_DOWNWARD);           //下向き丸めモードへの変更
+	    Cl = Am*Bm - Cr;
+
+	  fesetround(FE_TONEAREST);  // 最近点丸めにもどす
+	return Cl, Cu
+\end{verbatim}
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------

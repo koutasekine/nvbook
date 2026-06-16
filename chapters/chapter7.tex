@@ -1,0 +1,248 @@
+\chapter{無限次元非線形問題の解法のエッセンス～$A$が全単射の場合～}\label{sec:infinite_dimensional_nonlinear}
+本章では，$X, Y$をBanach空間とし，線形作用素$A \in {\mathcal B}(X, Y)$と非線形作用素$N: X \rightarrow Y$とし
+\begin{align*}
+	F(u) := A u - N(u)
+\end{align*}
+とした際，抽象的な非線形問題
+\begin{align*}
+	\mbox{Find} ~ u \in X ~ \mbox{s.t.} ~ F(u) = 0
+\end{align*}
+に対し，解の品質を保証する方法を紹介します．
+ここでは定理\ref{thm:infinite_Gauss}をどのように利用して基本定理の系\ref{Cor:Kantorovich}の$\eta$や$K$を計算するのか外観を紹介します．
+具体的には$A$や$N$が決定しないと計算できない部分までを導入する予定です．
+
+この章では以下の仮定や定義を利用します:
+\begin{itemize}
+	\item $A$は全単射とする．
+	\item $X_N$を$X$の有限次元部分空間とし，$X$が$X_N$と$X_c$の位相的直和となる$X_c$が存在する．
+	\item $P_N: X \rightarrow X_N$を任意の$x \in X$に対し，$x = x_1 + x_2, ~ x_1 \in X_N, ~ x_2 \in X_c$とした際の射影$P_N x = x_1, ~ (I - P_N)x = x_2$とする．
+	\item $P_N$は準直交射影とする，すなわち，$\| u \|_{X}^2 = \| P_N u \|_X^2 + \| (I - P)u \|_{X}^2 \forall u \in X$が成立する．
+	\item $u_N \in X_N$を有限次元問題
+	\begin{align*}
+		\mbox{Find} ~ u_N \in X_N ~ \mbox{s.t.} ~ P_N A^{-1} F( u_N ) = 0
+	\end{align*}
+	を満たす真の解とし，系\ref{Cor:Kantorovich}の$\hat{u} = u_N$として利用する．
+	\item 非線形作用素$N$は$u_N$でFr\'echet微分可能とし，$N'[u_N] \in {\mathcal B}(X,Y)$と表記する
+	\item $F'[u_N] := A - N'[u_N]$とする．
+\end{itemize}
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{$F'[\hat{u}]$の全単射性の確認方法}\label{sec:check_biject}
+系\ref{Cor:Kantorovich}を利用するために，まず，$F'[u_N]$が全単射であることを確かめなければいけません．
+そのために，$A$が全単射であることを利用して
+\begin{align*}
+	F'[u_N] \phi = g \Leftrightarrow A^{-1} F'[u_N] \phi = A^{-1} g
+\end{align*}
+とし，定理\ref{thm:infinite_Gauss}の$L$を
+\begin{align*}
+	L := A^{-1} F'[u_N] \in {\mathcal B}(X)
+\end{align*}
+として利用します．
+そのとき，例えば，\eqref{def:TBCD}の$B$は
+\begin{align*}
+	B := P_N (A^{-1} F'[u_N]) |_{X_c} = P_N (I_X - A^{-1} N'[u_N]) |_{X_c} = P_N |_{X_c} - P_N A^{-1} N'[u_N] |_{X_c}
+\end{align*}
+となります．
+その上，$X$は$X_N$と$X_c$の位相的直和になることから，$X_N \cap X_c = \{ 0 \}$から$P_N |_{X_c} = 0$となるため$B = -P_N A^{-1} F'[u_N] |_{X_c}$となります．
+\eqref{def:TBCD}の$T, C, D$も同様に計算すると
+\begin{align*}
+	T :=& P_N A^{-1} F'[u_N] |_{X_N} : X_N \rightarrow X_N, & B :=& - P_N A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_N \\
+	C :=& -(I - P_N) A^{-1} N'[u_N] |_{X_N}: X_N \rightarrow X_c, & D :=& I_{X_c} - (I - P_N) A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_c
+\end{align*}
+となります．
+ここで$(I - P_N)|_{X_c}$は$X_c$上の恒等作用素$I_{X_c}$となります．
+
+$T$と\eqref{def:S_operator}で定義される$S$が全単射であれば，定理\ref{thm:infinite_Gauss}から$A^{-1} F'[u_N]$が全単射となります．
+
+$T$は有限次元$X_N$から$X_N$への有限次元作用素になるため，多くの場合，$T$が全単射であることを確認する方法は，行列の正則性を確認する問題に帰着されます．
+そのために，定理\ref{thm:basic_linear_problem}や定理\ref{thm:linear_M_mat}内に記載されている行列の正則性を保証する十分条件を確認すれば良いです．
+行列の正則性の問題に帰着する方法は，具体的な問題によって変わるため，具体例で紹介します．
+
+
+
+一方で，$S$は無限次元部分$X_c$から$X_c$への無限次元部分の作用素になるために，コンピュータだけで解くことはできません．
+そこで，Neumann級数の定理\ref{thm:nuemann_ser}を利用します．
+仮定から$X$が$X_N$と$X_c$の位相的直和であるため，$X_c$はBanach空間となります．
+そのうえで，$X_c$上の作用素$S$に対してNeumann級数の定理\ref{thm:nuemann_ser}を利用すると
+\begin{align*}
+	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} < 1
+\end{align*}
+であれば，$S$は全単射となります．
+そこで，$\| I_{X_c} - S \|_{{\mathcal B}(X_c)}$の評価が重要になります．
+その上で，変形すると
+\begin{align*}
+	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} = \| I_{X_c} - (D - CT^{-1}B) \|_{{\mathcal B}(X_c)} = \| (I - P_N) A^{-1} N'[u_N] |_{X_c} + CT^{-1}B \|_{{\mathcal B}(X_c)}
+\end{align*}
+となります．
+そこで，
+\begin{align*}
+	\| (I - P_N) A^{-1} N'[u_N] \phi_c \|_{X} \le& C_1 \| \phi_c \|_{X}, ~ \forall \phi_c \in X_c \\
+	\| CT^{-1}B \phi_c \|_{X} \le& C_2 \| \phi_c \|_{X}, ~ \forall \phi_c \in X_c
+\end{align*}
+のような定数$C_1$と$C_2$を求められれば，$C_1 + C_2 < 1$を確認すれば良いです．
+$C_1$と$C_2$の具体的な計算方法は問題によって変わるため，具体例の際に紹介します．
+ここで$C_1$や$C_2$は値が小さくなるのか?という疑問がわきます．
+想定としては，有限次元部分$X_N$が十分に近似できているのであれば，$I-P_N$が小さくなる，ということを見込んでいます．
+特に，有限次元部分$X_N$の次元が上がれば，$C_1$や$C_2$という値が小さくなることを想定しています．
+
+さらに，Neumann級数の定理\ref{thm:nuemann_ser}の十分条件が確認取れれば
+\begin{align*}
+	\| S^{-1} \|_{{\mathcal B}(X_c)} \le& \frac{1}{1 - (C_1 + C_2)}
+\end{align*}
+と評価できることも利用します．
+
+
+上記$T$と$S$が共に全単射であることがいえれば，定理\ref{thm:infinite_Gauss}から$A^{-1} F'[u_N]$が全単射がいえます．
+そのうえで，$A \in {\mathcal B}(X, Y)$も全単射であるため，本節の目的であった$F'[u_N]$の全単射性もいえます(この証明は難しくないのでチャレンジしてみましょう!)．
+
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{系\ref{Cor:Kantorovich}の定数$\eta$の計算方法}
+\ref{sec:check_biject}節により系\ref{Cor:Kantorovich}の$F'[\hat{u}]$の全単射性まで確認がとれました．
+次は，いよいよ系\ref{Cor:Kantorovich}の
+\begin{align*}
+	\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{X} \le \eta
+\end{align*}
+の計算方法です．
+まず，
+\begin{align*}
+	\phi := F'[\hat{u}]^{-1} F(\hat{u})
+\end{align*}
+とおくと，$\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{X} = \| \phi \|_{X}  \le \eta$となります．
+そのとき，$A$と$F'[\hat{u}]$が全単射であることから
+\begin{align*}
+	& \mbox{Find} ~ \phi \in X ~ \mbox{s.t.} ~ F'[\hat{u}] \phi = F(\hat{u}) \\
+	\Leftrightarrow& \mbox{Find} ~ \phi \in X ~ \mbox{s.t.} ~ A^{-1}F'[\hat{u}] \phi = A^{-1} F(\hat{u})
+\end{align*}
+と書けます．
+そのうえで，$L = A^{-1}F'[\hat{u}]$とおけば，\ref{sec:check_biject}節と同じ状況になります．
+\ref{sec:check_biject}節では$T$と$S$の全単射性を既に確認しており，定理\ref{thm:infinite_Gauss}を利用していましたね．
+同様に，定理\ref{thm:infinite_Gauss}を利用すると
+\begin{align*}
+	\left( \begin{array}{c}
+		P_N \phi \\
+		(I - P_N) \phi
+	\end{array} \right) = \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		P_N A^{-1} F( u_N ) \\
+		(I-P_N) A^{-1} F( u_N )
+	\end{array} \right)
+\end{align*}
+を得ることができます．
+さらに，仮定より$P_N A^{-1} F( u_N ) = 0$となるため，
+\begin{align*}
+	\left( \begin{array}{c}
+		P_N \phi \\
+		(I - P_N) \phi
+	\end{array} \right) =& \left( \begin{array}{cc}
+		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
+		-S^{-1} C T^{-1} & S^{-1}
+	\end{array} \right) \left( \begin{array}{c}
+		0 \\
+		(I-P_N) A^{-1} F( u_N )
+	\end{array} \right) \\
+	=& \left( \begin{array}{c}
+		-T^{-1} B S^{-1} (I-P_N) A^{-1} F( u_N ) \\
+		 S^{-1} (I-P_N) A^{-1} F( u_N )
+	\end{array} \right)
+\end{align*}
+のように得られます．
+このように，ある種の無限次元の行列-ベクトル積$F'[\hat{u}]^{-1}F(\hat{u})$に対して，無限次元だからといってあきらめて$\| F'[\hat{u}]^{-1} \| \| F(\hat{u}) \|$のようにノルムをわけて過大評価する必要はなく効率的に計算できるようになることが，\ref{sec:infgauss}節で紹介した無限次元ガウスの消去法を利用するメリットの一つになります．
+以上より，
+\begin{align*}
+	\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{X}^2 =& \| \phi \|_{X}^2 =  \| P_N \phi \|_{X_N}^2 + \| (I - P_N) \phi \|_{X_c}^2 \\
+	=&  \| -T^{-1} B S^{-1} (I-P_N) A^{-1} F( u_N )  \|_{X_h}^2 + \| S^{-1} (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
+	\le& \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_c, Xh)}^2 \| (I-P_N) A^{-1} F( u_N )  \|_{X_c}^2 + \| S^{-1} \|_{{\mathcal B}(X_c)}^2 \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
+	\le& \left( 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 \right) \| S^{-1} \|_{{\mathcal B}(X_c)}^2 \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
+	\le& \left( \frac{1}{1 - (C_1 + C_2)} \right)^2 \left( 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 \right) \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2
+\end{align*}
+となることから
+\begin{align*}
+	\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{X} \le& \frac{1}{1 - (C_1 + C_2)} \sqrt{ 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 } \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}
+\end{align*}
+のように評価することができます．
+
+また，$\| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}$は$C_2$の計算に含まれているため，計算ができると思います．
+そのために，ここで新たな評価は
+\begin{align*}
+	\| (I-P_N) A^{-1} F( u_N ) \|_{X_c} \le \delta
+\end{align*}
+となる$\delta$の計算になります．
+ここで，$F( u_N )$は残差と呼びます．
+$F( u_N )$は問題によっては簡単に計算できますが，問題によっては計算が複雑になる場合もあります．
+特に，有限要素法を使う場合は$u_N$が区分的な関数になるため，領域全体では微分が計算ができない，ということさえあり得ます．
+
+残差$\delta$については，基本的には$\| (I-P_N) A^{-1} F( u_N ) \|_{X_c}$をそのまま実装します．
+しかし，$P_N A^{-1} F( u_N ) $を$0$と仮定せず，任意の$\phi_N \in V_N$について$A \phi_N \in Y$となる場合については精度を向上することができます．
+実際に$(I-P_N) \phi_N = 0$であることを利用することで
+\begin{align*}
+	\| (I-P_N) A^{-1} F( u_N ) \|_{X_c} =& \| (I-P_N) A^{-1} F( u_N ) - (I-P_N) \phi_N \|_{X_c} \\
+	=& \left\| (I-P_N) A^{-1} \left( F( u_N ) - A \phi_N \right) \right\|_{X_c} \\
+\end{align*}
+となる．
+よって，
+\begin{align*}
+	\phi_N = P_N A^{-1} F( u_N )
+\end{align*}
+とすると
+\begin{align*}
+	\| (I-P_N) A^{-1} F( u_N ) \|_{X_c} =& \left\| (I-P_N) A^{-1} \left( F( u_N ) - A P_N A^{-1} F( u_N ) \right) \right\|_{X_c}
+\end{align*}
+となる．
+この効果は
+\begin{align*}
+	\left\| (I-P_N) A^{-1} \left( F( u_N ) - A P_N A^{-1} F( u_N ) \right) \right\|_{X_c} \le \left\| (I-P_N) A^{-1} \right\|_{{\mathcal B}(Y, X)} \left\| F( u_N ) - A P_N A^{-1} F( u_N ) \right\|_{Y}
+\end{align*}
+のようにノルムを分けて計算すると，ある意味$F( u_N )$の有限次元部分$P_N A^{-1} F( u_N )$を引っこ抜いて計算することになります．
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{系\ref{Cor:Kantorovich}の定数$K$の計算方法}
+前節により系\ref{Cor:Kantorovich}の定数$\eta$の計算までできました．
+これにより，閉球$\bar{B}(0, 2\eta )=\{ v \in X ~|~ \| v \|_{X} \le 2\eta \}$を作成できました．
+続いて系\ref{Cor:Kantorovich}の
+\begin{align*}
+	\| F'[\hat{u}]^{-1} \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \le K, ~ v \in \bar{B}\left( 0, 2\eta \right)
+\end{align*}
+を満たす定数$K$の計算です．
+定数$K$の計算は基本的には$N'[u_N]$の具体的な形がわかったあとに手計算が必要になります．
+$N'[u_N]$の具体的な形がわかる前までの計算は以下の通りになります:
+\begin{align*}
+	& \| F'[\hat{u}]^{-1} \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \\
+	 =& \| F'[\hat{u}]^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \\
+	 =& \sup_{g \in X \setminus \{ 0 \} } \frac{ \| F'[\hat{u}]^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g \|_{{\mathcal B}(X)} }{\| g \|_{X}}
+\end{align*}
+とし，$\phi := F'[\hat{u}]^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g$と置くと
+\begin{align*}
+	& F'[\hat{u}] \phi = \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g \\
+	\Leftrightarrow& A^{-1}F'[\hat{u}] \phi = A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g \\
+	\Leftrightarrow& L \phi = A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g \\
+	\Leftrightarrow& \phi = L^{-1} A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) g
+\end{align*}
+となるため，
+\begin{align*}
+	\| F'[\hat{u}]^{-1} \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} =& \|  L^{-1} A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \\
+	\le& \| L^{-1} \|_{{\mathcal B}(X)}  \| A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) \|_{{\mathcal B}(X)}
+\end{align*}
+となります．
+そのうえで，$\| L^{-1} \|_{{\mathcal B}(X)}$の計算は定理\ref{thm:inverse_norm_estimate}を利用することができます．
+その一方で，$\| A^{-1} \left( N'[\hat{u}] -  N'[\hat{u} + v] \right) \|_{{\mathcal B}(X)}$は$N'[u_N]$の具体的な形が必要になります．
+
+ここでは無限次元ガウスの消去法である定理\ref{thm:infinite_Gauss}を直接的に利用せずに$\| L^{-1} \|_{{\mathcal B}(X)}$を使っています．
+もちろん無限次元ガウスの消去法を直接的に利用した評価方法を考えることも可能です．
+しかし，$K$の計算に関して言えば，$\eta$ほど直接計算するメリットは少なくなるため，多少の過大評価をして楽に計算する方法を紹介しています．
+
+
+%%
+%%----------------------------------------------------------------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------------------------------------------------------------

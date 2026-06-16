@@ -1,0 +1,31 @@
+name: Build and Release PDF
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/being24/latex-docker:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build PDF
+        run: |
+          platex -interaction=nonstopmode book.tex
+          bibtex book
+          platex -interaction=nonstopmode book.tex
+          platex -interaction=nonstopmode book.tex
+          dvipdfmx book.dvi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: book.pdf
+          name: Release ${{ github.ref_name }}
+          body: |
+            数値計算の品質保証法 ${{ github.ref_name }}

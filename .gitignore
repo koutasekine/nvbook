@@ -1,0 +1,37 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.dvi
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.synctex.gz
+*.synctex
+texput.*
+
+# Generated PDF (ビルド成果物)
+# 公開したい場合はこの行を削除
+*.pdf
+
+# Dropbox 競合コピー
+* の競合コピー*
+*(競合コピー*)*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~

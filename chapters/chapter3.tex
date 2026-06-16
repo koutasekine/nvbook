@@ -1,0 +1,501 @@
+\chapter{連立一次方程式の解の品質保証法} \label{chap:linear_eq}
+本章では，$A\in\F^{n\times n},\ b\in\F^n$における連立一次方程式
+\begin{eqnarray}
+	Ax=b \label{linear}
+\end{eqnarray}
+の近似解$\hat{x}$に対して，品質保証を行う方法を紹介します．
+前章の最初に紹介した\ref{sec:5nonlinear}節とは違い，線形問題である代わりに，$n$によっては到底，手で解けるとは思えない問題設定です．
+例えば，$n = 10$としたら，手で解くのは非常に大変ですが，コンピュータならば$n = 10000$としても近似解を求めることが可能です．
+その代わり，あくまで近似解なので，本当の解と近いかどうかはわかりません．
+そのために，近似解に対し品質保証を実施していきましょう．
+
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{標準的な品質保証法}\label{sec:basic_linear_problem}
+この節では，連立一次方程式\eqref{linear}の近似解を品質保証法する，もっとも標準的な方法を紹介したいと思います．
+次の節以降で紹介するH行列を用いた品質保証法のほうが，さらに精密になることが知られていますが，最初の一歩ということで，標準的な方法から取り掛かります．
+
+定理\ref{thm:Basic_Theorem_five_order_nonlinear}と同じで，第\ref{chap:basic_theorem}章の最終目標が，以下の定理をものすごく一般化した定理\ref{thm:Basic_Theorem}の証明ですので，ここでは証明をつけずに利用だけしたい思います．
+
+\begin{Thm}\label{thm:basic_linear_problem}
+	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
+	もし
+	\begin{align}
+		\label{cond:RAminusI}
+		\| RA - I  \|_{\infty} < 1
+	\end{align}
+	を満たすならば，$A$は逆行列を持ち，$x^* := A^{-1}b \in {\mathbb R}^n$とすると
+	\begin{align}
+		\label{linear_prpblem_err}
+		\| x^* - \hat{x} \|_{\infty} \leq \frac{ \|R(A\hat{x}-b)\|_{\infty} }{ 1-\|RA-I\|_{\infty} }
+	\end{align}
+	となる．
+\end{Thm}
+
+それでは，定理\ref{thm:basic_linear_problem}をかみ砕いて見ていきましょう．
+まず，$A \in {\mathbb R}^{n \times n} $と$b \in {\mathbb R}^n$は与えられていて，連立一次方程式
+	\begin{align*}
+		\mbox{Find} ~ x \in {\mathbb R}^n ~ \mbox{s.t.} A x = b
+	\end{align*}
+を満たす解$x^*$を探す問題を考えています．
+$\hat{x}$は定理内ではなんでも良いベクトルですが，$\hat{x}$が品質保証をかけたい対象です．
+すなわち，$Ax = b$に対し何かしらの方法で求めた近似解$\hat{x}$とします．
+また，$R$も定理内ではなんでも良い行列ですが，多くの場合，$A$に対する近似逆行列とします．
+$\hat{x}$や$R$を作成する段階は，丸め誤差を気にする必要はありません．
+そのために，区間演算を使用する必要はないです．
+
+つぎに，\eqref{cond:RAminusI}をチェックします．
+ここから，区間演算で計算する必要があります．
+すなわち，$\| RA - I  \|_{\infty}$を丸め誤差まで含めて求める必要があります．
+そのため，多くの場合は計算が簡単な最大値ノルムを選択することが多いです．
+その上で，$\| RA - I  \|_{\infty}$の丸め誤差まで含めた上界が$1$未満であれば，行列$A$が正則であることが証明され，解を$1$つ持つことが示されました．
+
+さらに，\eqref{linear_prpblem_err}の右辺
+\[
+	\frac{\|R(A\hat{x}-b)\|_{\infty}}{1-\|RA-I\|_{\infty}} \le c
+\]
+も全て丸め誤差まで考慮した区間演算で上界$c$を求めます．
+その結果，真の解$x^*$と近似解$\hat{x}$の差は
+\[
+	\| x^* - \hat{x} \|_{\infty} \le c
+\]
+となります．
+最大値ノルムの定義から，「真の解$x^*$と近似解$\hat{x}$の差の最大値は$c$よりも小さい」ということを意味します．
+$c$が許容範囲であるかどうかは，もちろん，使用したい問題やユーザーによって変わります．
+ある閾値を決めて，$c$が閾値よりも大きい場合は，「品質が悪い近似解」というようにし，再度求めなおすようにしましょう．
+
+また，定理\ref{thm:Basic_Theorem}を使うと$\| RA - I  \|_{\infty}$ではなく$\| I - RA  \|_{\infty}$であることに気が付くと思います．
+もちろん，ノルムの定義から$\| RA - I  \|_{\infty} = \| I - RA  \|_{\infty}$のためどちらでも良いのですが，区間演算を利用する際には，$\| I - RA \|_{\infty}$と$\| RA - I \|_{\infty}$のどちらのほうが計算しやすいか考えてみると良いと思います．
+もちろん，区間演算では$\| RA - I  \|_{\infty}$を計算するほうが楽だからこちらで記載しています．
+\footnote{ヒント: \ref{intval}節の問題や定理\ref{thm:interval_matmul}および，\ref{sec:linear_notation}節の$\| \cdot \|_{\infty}$の定義に立ち戻ってみてください．}
+$A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b$にしております．
+ただし，$A \hat{x} - b$はちゃんと区間で結果を得ておかないと，$R(A \hat{x} - b)$は計算できないので注意してください．
+
+
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{成分毎評価}\label{sec:element_basic_linear_problem}
+定理\ref{thm:basic_linear_problem}では「真の解$x^*$と近似解$\hat{x}$の差の絶対値最大」を見積もっていましたが，有限次元問題の場合は，簡単に成分毎の評価に切り替えることができます．
+まず，よく知られている定理であるノイマン級数の定理から準備したいと思います．
+無限次元Banach空間上の線形作用素に関するノイマン級数展開に関するについては定理\ref{thm:linear_operator_injective2}を参照してください．
+
+\begin{Thm}\label{thm:finite_Neumann}
+	$G \in {\mathbb R}^{n \times n}$としたとき，以下は同等である
+	\begin{enumerate}
+		\item $\rho(G) < 1$ (スペクトル半径が1未満)
+		\item $I - G$が正則で，$(I - G)^{-1} = I + G + G^2 + \cdots$の右辺の級数は収束する
+	\end{enumerate}
+\end{Thm}
+\begin{Proof}
+	\noindent $1 \Rightarrow 2$の証明
+
+	$\lambda$を$G$の固有値とすると$1 - \lambda$は$I - G$の固有値になる．
+	そのうえ，$\rho(G) = \max_{i} | \lambda_i | < 1$より，$1 - \lambda_i \neq 0, ~ 1 \le i \le n$となり，$I-G$はゼロ固有値を持たないため，正則である．
+	また，
+	\begin{align*}
+		G^{k + 1} =& (I + G + \cdots + G^k) - (I + G + \cdots + G^k) + G^{K + 1} \\
+		=& (I + G + \cdots + G^k + G^{K + 1}) - (I + G + \cdots + G^k) \\
+		=& (I + G(I + G + \cdots + G^k)) - (I + G + \cdots + G^k) \\
+		=& I + (G - I) (I + G + \cdots + G^k) \\
+		=& I - (I - G)(I + G + \cdots + G^k)
+	\end{align*}
+	となるため，左から$(I - G)^{-1}$をかけると
+	\begin{align*}
+		(I - G)^{-1} G^{k + 1} =&  (I - G)^{-1} - (I + G + \cdots + G^k)
+	\end{align*}
+	となる．
+	そのうえで，
+	\begin{align*}
+		\| (I - G)^{-1} - (I + G + \cdots + G^k) \| \le \| (I - G)^{-1} \| \| G^{k + 1} \|
+	\end{align*}
+	となる．
+	よく知られているOldenburgerの定理「$\rho(G) < 1 \Leftrightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」を利用\footnote{すみません，いいわけです．ここは，線形代数の範囲とも言えず，証明(特に「$\rho(G) < 1 \Rightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」)にはジョルダン標準形を使用します．しかし最初から定義して証明するにも，ここ以外では一切使用しないあまりにもコスパが悪かったために結果のみ使用しました...}すると
+	\begin{align*}
+		\| (I - G)^{-1} - (I + G + \cdots + G^k) \| \rightarrow 0 ~ (k \rightarrow \infty)
+	\end{align*}
+	となる．
+	
+	\noindent $2 \Rightarrow 1$の証明
+
+	$\lambda \in {\mathbb C}$を$G$の絶対値最大固有値に対応する固有値(すなわち$\rho(G) = | \lambda |$)とすると
+	\begin{align*}
+		G x = \lambda x
+	\end{align*}
+	となる固有ベクトルが存在する．
+	同様に，
+	\begin{align*}
+		G^2 x = G (Gx) = \lambda G x = \lambda^2 x, ~~ G^k x = \lambda^k x
+	\end{align*}
+	となることに注意すると
+	\begin{align*}
+		(I + G + G^2 + \cdots + G^k) x = (1 + \lambda + \lambda^2 + \cdots \lambda^k) x
+	\end{align*}
+	となる．
+	等比級数から
+	\begin{align*}
+		1 + \lambda + \lambda^2 + \cdots \lambda^k = \frac{ 1 - \lambda^{N+1} }{1 - \lambda}
+	\end{align*}
+	であるため，
+	\begin{align*}
+		(I + G + G^2 + \cdots + G^k) x = \frac{ 1 - \lambda^{N+1} }{1 - \lambda} x
+	\end{align*}
+	となる．
+	そのうえで，$k \rightarrow \infty$としたとき，左辺が収束するために右辺$(1 - \lambda^{N+1})/(1 - \lambda)$も収束ため，
+	等比級数の収束条件より$| \lambda | < 1$となる．
+	ゆえに，$\rho(G) < 1$となる．
+	
+	\qed
+\end{Proof}
+
+続いて，スペクトル半径と行列のノルムの関係について準備をします:
+\begin{Thm}\label{thm:spec_norm}
+	$G \in {\mathbb R}^{n \times n}$とする．
+	行列ノルム$\| \cdot \|$を
+	\begin{align*}
+		\| G \| := \sup_{x \in {\mathbb R}^n} \frac{ \| G x \| }{\| x \|}
+	\end{align*}
+	とすると，
+	\begin{align*}
+		\rho(G) \le \| G \|
+	\end{align*}	
+	となる．(※ 上の行列のノルムは，右辺のベクトルのノルムを$1, 2, \infty$と変更すれば，それぞれ行列の$1$ノルム，$2$ノルム，$\infty$ノルムと一致します．)
+\end{Thm}
+\begin{Proof}
+	$G$の絶対値最大固有値を$\lambda$とし，それに対応する固有ベクトルを$x \in {\mathbb R}^n$とする．
+	行列のノルムの定義から
+	\begin{align*}
+		\| G \| = \sup_{y \in {\mathbb R}^n}\frac{ \| G y \| }{\| y \|} \ge \frac{ \| G x \| }{\| x \|} = \frac{ \| \lambda x \| }{\| x \|} = | \lambda | = \rho(G)
+	\end{align*}	
+	となるため，題意は示せた．
+
+	\qed
+\end{Proof}
+
+次に，真の解が得られる状況における等式を紹介します:
+
+\begin{Lem}\label{lem:linear_iter}
+	$A,\ \in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．	
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - RA
+	\end{align*}
+	とする．
+	もし$R A$が逆行列を持つならば，$A$は逆行列を持ち$x^* := A^{-1}b$とすると，整数$N \ge 0$に対し，
+	\begin{align*}
+		x^* - \hat{x} =  \sum_{i = 0}^N G^i R (b - A \hat{x}) + G^{N + 1}( x^* - \hat{x} )
+	\end{align*}
+	となる．
+	但し，$G^0 = I$であることに注意する．
+\end{Lem}
+
+\begin{Proof}
+	$\mbox{rank}(A)$を行列の階数とすると，行列積の階数は$\mbox{rank}(RA) \le \mbox{rank}(R), ~\mbox{rank}(RA) \le \mbox{rank}(A)$となることが知られている(忘れてしまっている場合，線形代数の教科書で探してみましょう!)．
+	その上，$RA$が逆行列を持つことから線形代数の基本定理(あるいは次元定理とも呼ばれます．こちらも忘れている場合は，線形代数の教科書をみなおしましょう)から$\mbox{rand}(RA) = n$となるために，$\mbox{rank}(RA) = \mbox{rank}(A) = \mbox{rank}(R) = n$となり，$A$も$R$も全単射となり逆行列を持つ．
+	よって，
+	\begin{align*}
+		x^* - \hat{x} =& R(b - A \hat{x}) - R(b - A \hat{x}) + x^* - \hat{x} \\
+		=& R(b - A \hat{x}) - RA(A^{-1}b -  \hat{x}) + x^* - \hat{x} \\
+		=& R(b - A \hat{x}) - RA(x^* -  \hat{x}) + x^* - \hat{x} \\
+		=&  R(b - A \hat{x}) +(I - RA) (x^* - \hat{x} )
+	\end{align*}
+	から
+	\begin{align}\label{eq:linear_eq_iter}
+		x^* - \hat{x} =&  R(b - A \hat{x}) +G (x^* - \hat{x} )
+	\end{align}
+	を得る．
+	右辺の$x^* - \hat{x}$に上の式を代入すると
+	\begin{align*}
+		x^* - \hat{x} =&  R(b - A \hat{x}) +G \left( R(b - A \hat{x}) +G (x^* - \hat{x} ) \right) \\
+		=& (I + G) R(b - A \hat{x}) + G^2 (x^* - \hat{x} )
+	\end{align*}	
+	再度，\eqref{eq:linear_eq_iter}を上の式に代入すると
+	\begin{align*}
+		x^* - \hat{x} =&  (I + G + G^2) R(b - A \hat{x}) + G^3 (x^* - \hat{x} )
+	\end{align*}	
+	同じ手続きを繰り返すと題意が得られる．
+	
+	\qed
+\end{Proof}
+
+また，ベクトルの絶対値とノルムとの関係性として以下の補題も得られます．
+
+\begin{Lem}\label{lem:vector_abs_to_norm}
+	$\vector{e} \in {\mathbb R}^n$をすべての要素が$1$のベクトルとする．
+	そのとき，ベクトル$x \in {\mathbb R}^n$に対し，
+	\begin{align*}
+		| x | \le \| x \|_{p} \vector{e}, ~ \forall p \in \{ 1, 2, \infty \}
+	\end{align*}	
+	となる．
+\end{Lem}
+
+\begin{Proof}
+	ノルムの定義から$\| x \|_{\infty} \le \| x \|_{2} \le \| x \|_{1}$となるため，$\| \cdot \|_{\infty}$についてのみ示せばよい．
+	その上，$\| x  \|_{\infty} = \max_{1 \le i \le n} (|x_i|)$であるため，
+	\begin{align*}
+		| x | \le \left(\begin{array}{c}
+			\| x \|_{\infty} \\
+			\| x \|_{\infty} \\
+				\vdots \\
+			\| x \|_{\infty}
+		\end{array} \right) \le \| x \|_{\infty} \vector{e}
+	\end{align*}
+	となり，題意は得られた．
+	\qed
+\end{Proof}
+
+定理\ref{thm:basic_linear_problem}, 補題\ref{lem:linear_iter}，および，補題\ref{lem:vector_abs_to_norm}を用いることで，次のような成分毎評価が得られます:
+\begin{Thm}\label{thm:element_wize}
+	$\vector{e} \in {\mathbb R}^n$をすべての要素が$1$のベクトルとする．
+	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - RA
+	\end{align*}
+	とする．
+	もし
+	\begin{align}
+		\label{cond:RAminusI2}
+		\| G  \|_{\infty} < 1
+	\end{align}
+	を満たすならば，$A$は逆行列を持ち，$x^* := A^{-1}b \in {\mathbb R}^n$とすると
+	\begin{align}
+		\label{linear_prpblem_err_element}
+		| x^* - \hat{x} | \leq \left| \sum_{i = 0}^N G^i R (b - A \hat{x}) \right| + \frac{ \|R(A\hat{x}-b)\|_{\infty} }{ 1-\|RA-I\|_{\infty} } \left| G^{N + 1} \right| \vector{e} 
+	\end{align}
+	となる．
+\end{Thm}
+
+\begin{Proof}
+	\eqref{cond:RAminusI2}と定理\ref{thm:spec_norm}より$\rho(G) < 1$であることからノイマン級数の定理である定理\ref{thm:finite_Neumann}を用いると$RA$は逆行列を持つ．
+	そのうえで，補題\ref{lem:linear_iter}から
+	\begin{align*}
+		\left| x^* - \hat{x} \right| =& \left|  \sum_{i = 0}^N G^i R (b - A \hat{x}) + G^{N + 1}( x^* - \hat{x} ) \right| \\
+	\le& \left|  \sum_{i = 0}^N G^i R (b - A \hat{x}) \right| + \left| G^{N + 1}( x^* - \hat{x} ) \right| \\
+	\le& \left|  \sum_{i = 0}^N G^i R (b - A \hat{x}) \right| + \left| G^{N + 1} \right| \left| x^* - \hat{x} \right|
+	\end{align*}
+	となる．
+	さらに，補題\ref{lem:linear_iter} および定理\ref{thm:basic_linear_problem}を上式に適用すると
+	\begin{align*}
+		\left| x^* - \hat{x} \right| \le& \left|  \sum_{i = 0}^N G^i R (b - A \hat{x}) \right| + \left| G^{N + 1} \right| \left\| x^* - \hat{x} \right\|_{\infty} \vector{e} \\
+		\le& \left| \sum_{i = 0}^N G^i R (b - A \hat{x}) \right| + \frac{ \|R(A\hat{x}-b)\|_{\infty} }{ 1-\|RA-I\|_{\infty} } \left| G^{N + 1} \right| \vector{e} 
+	\end{align*}
+	となり，題意は得られた．
+\qed
+\end{Proof}
+
+定理\ref{thm:element_wize}に対して，$i = 0$のときは特に山本の定理として知られています:
+\begin{Cor}\label{cor:yamamoto}
+	$\vector{e} \in {\mathbb R}^n$をすべての要素が$1$のベクトルとする．
+	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - RA
+	\end{align*}
+	とする．
+	もし
+	\begin{align*}
+		\| G  \|_{\infty} < 1
+	\end{align*}
+	を満たすならば，$A$は逆行列を持ち，$x^* := A^{-1}b \in {\mathbb R}^n$とすると
+	\begin{align*}
+		| x^* - \hat{x} | \leq \left| R (b - A \hat{x}) \right| + \frac{ \|R(A\hat{x}-b)\|_{\infty} }{ 1-\|RA-I\|_{\infty} } \left| G \right| \vector{e} 
+	\end{align*}
+	となる．
+\end{Cor}
+
+
+
+
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{(発展)さらに評価を極めるには?}\label{sec:optional_linear_program}
+定理\ref{thm:basic_linear_problem}や定理\ref{thm:element_wize}の十分条件は$\| I - RA \|_{\infty} < 1$でした．
+もちろん，$R$が$A$の逆行列に近ければ，この十分条件は満足することが期待できます．
+しかし，$A$が悪条件と呼ばれる条件数が高い問題では十分条件が通らなくなってきてしまいます．
+そこで，現状持っている$R$で品質を保証するためには十分条件$\| I - RA \|_{\infty} < 1$をどこまで良い条件にできるのか?計算コストに見合ったものなのか?など気になってしまいます．
+
+例えば，定理\ref{thm:basic_linear_problem}や定理\ref{thm:element_wize}の十分条件を$\| I - RA \|_{2} < 1$のように$2$ノルムを用いることで，$\| I - RA \|_{2} \le \| I - RA \|_{\infty}$となるために，$\| I - RA \|_{2}$が計算量や精度の意味でリーズナブルに評価できれば，良い評価になることが期待できます．
+しかしながら，$\| I - RA \|_{2}$は定義から$\sqrt{ \lambda( (I - RA)^T (I - RA) ) }$のような計算を必要とするため，
+\begin{itemize}
+	\item 品質が保証された固有値の結果が必要(一般的には，連立一次方程式の方が簡単)
+	\item 行列積が発生しており，追加で$O(n^3)$の計算が必要(計算コスト増)
+	\item $(I - RA)^T (I - RA)$は条件数が$2$乗されるため，解きにくくなる
+\end{itemize}
+など懸念事項があり，利用されません．
+
+そこで，本節では「計算量や精度の意味でリーズナブルに評価可能な範囲における現在最強の十分条件」を紹介します．
+まず，着目する点は，まだ，ノルムを使用していない状態である補題\ref{lem:linear_iter}です．
+この補題をみてみると$RA$が正則であれば，$A$も正則で解を持ち，イコールで評価できることがわかります．
+そこで，$RA$の正則性について，何とか検証できないか?って考えてみると定理\ref{thm:finite_Neumann}があります．
+$G = I - RA$とすると，定理\ref{thm:finite_Neumann}から，「$\rho(G) < 1 \Leftrightarrow I - G (= RA)$が正則で$\sum G^i$は収束する」といえます．
+すなわち，$\rho(G) < 1$を検証できればうれしいです．
+
+しかしながら，残念なことに，まだ，$\rho(G) < 1$の「計算量や精度の意味でリーズナブルな評価法」はまだ見つかっていません．
+そこで，少しだけ，次の定理を用いて過大評価にします:
+
+\begin{Thm}\label{thm:spec_abs}
+	任意の行列$A \in {\mathbb R}^{n \times n}$について
+	\begin{align*}
+		\rho(A) \le \rho(|A|)
+	\end{align*}	
+	となる．
+\end{Thm}
+
+すなわち，$\rho(G) \le \rho(| G  |) < 1$として考えて，$\rho(| G |) < 1$を検証する方法を考えます．
+$\rho(| G |)$はどうなのか?っと疑問に思うので，関係性を示すと
+	\begin{align*}
+		\rho( G ) \le \rho(|G|) \le \| |G| \|_{\infty} = \| G \|_{\infty}
+	\end{align*}	
+となるため，定理\ref{thm:basic_linear_problem}や定理\ref{thm:element_wize}の十分条件$\| G \|_{\infty} < 1$を検証するよりかはよさそうだ!とわかると思います．
+
+つぎに，対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を次のように定義します:
+\begin{align*}
+	RA = D + E
+\end{align*}	
+そのとき，$R^{new}$を
+\begin{align*}
+	R^{new} := D^{-1} R 
+\end{align*}	
+として，定義すると，$R^{new}A$は対角成分がすべて$1$の行列になります．
+もともと，定理\ref{thm:basic_linear_problem}や定理\ref{thm:element_wize}の$R$はなんでもよいものだったため，$R^{new}$を$R$とみなして，検証を考えます．
+(ちなみに，この作業をしなくても良いのですが，対角成分についてほんの少しだけ評価が良くなります．)
+
+そのうえ，次の定理(Fiedler-Pta\'akの定理の系)がいえます:
+\begin{Thm}\label{thm:fiedler}
+	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
+	対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を:
+	\begin{align*}
+		RA = D + E
+	\end{align*}	
+	とする．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - D^{-1}RA
+	\end{align*}
+	とする．
+	行列$M \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		M := I - |G|
+	\end{align*}
+	とする．
+	そのとき，以下は同等である:
+	\begin{enumerate}
+		\item $\rho( | G | ) < 1$
+		\item $M$が正則で，$M^{-1} \ge O$
+		\item $M v > \vector{0}$となる正のベクトル$v > \vector{0}$が存在
+	\end{enumerate}
+\end{Thm}
+
+\vspace{3mm}
+
+すなわち，「$M x > \vector{0}$となる正のベクトル$x > \vector{0}$を1つ作成すれば良いです．
+そのうえ，「$M$が正則で，$M^{-1} \ge O$」と「任意の$v \in {\mathbb R}^n$に対して$Mv \ge \vector{0} \Rightarrow v \ge \vector{0} $ 」です．
+そのため，例えば，
+	\begin{align*}
+		M v = \vector{e}
+	\end{align*}	
+となる方程式を($O(n^2)$の範疇で)近似的に解くことで得られる近似解$\hat{v}$を用意し，次を丸め誤差まで含めた区間演算で検証すれば良いです:
+	\begin{align*}
+		M \hat{v} > \vector{0} ~~\mbox{かつ}~~\hat{v} > \vector{0}
+	\end{align*}	
+
+他にも，べき乗法を利用する方法もあります．
+
+
+上記を満たす$\hat{v}$が1つ見つかれば，$\rho( | G | ) < 1$であるために，$\rho( G  ) < 1$から，補題\ref{lem:linear_iter}が使用できます．
+実際に，補題\ref{lem:linear_iter}の$i = 0$とし，$D^{-1}$も加え，$G := I - D^{-1} RA$として評価すると
+	\begin{align*}
+		| x^* - \hat{x} | =&  | D^{-1} R(b - A \hat{x}) +G (x^* - \hat{x} ) | \\
+		\le&| D^{-1}R(b - A \hat{x}) | + | G (x^* - \hat{x} ) | \\
+		\le&| D^{-1}R(b - A \hat{x}) | + | G | |x^* - \hat{x}  |
+	\end{align*}	
+となり，
+	\begin{align*}
+		& (I - | G |)| x^* - \hat{x} | \le| D^{-1}R(b - A \hat{x}) |\\
+		\Leftrightarrow& M | x^* - \hat{x} | \le| D^{-1}R(b - A \hat{x}) |
+	\end{align*}	
+となります．
+そのうえ，「$M v > \vector{0}$となる正のベクトル$v > \vector{0}$が存在」していることから，「$M$が正則で，$M^{-1} \ge O$」であるために，左から$M^{-1}$をかけると
+	\begin{align*}
+		 | x^* - \hat{x} | \le M^{-1} | D^{-1} R(b - A \hat{x}) |
+	\end{align*}
+となります．
+そのために，あとは$M^{-1}$が計算量や精度の意味でリーズナブルに評価できれば，目標が達成するために，$M^{-1}$の評価について紹介します．
+
+まず，
+	\begin{align*}
+		M \hat{v} > \vector{0} ~~\mbox{かつ}~~\hat{v} > \vector{0}
+	\end{align*}	
+を満たす$\hat{v}$に対し，
+	\begin{align*}
+		u := M \hat{v} > \vector{0}
+	\end{align*}
+とベクトル$u$を定義します．
+さらに，ベクトル$w \in {\mathbb R}^n$を
+	\begin{align*}
+		w_k := \max_{1 \le i \le n} \frac{ | G |_{ik} }{u_i} ~~ \mbox{for} ~~ 1 \le k \le n
+	\end{align*}
+とします(ただし，$| G |_{ik}$は行列$G$の絶対をとったときの$(i, k)$成分を意味します．)．
+そのとき，
+	\begin{align*}
+		I - M = | G | \le u w^T
+	\end{align*}
+となるため，左から$M^{-1} (\ge O)$をかけると
+	\begin{align*}
+		M^{-1} - I \le M^{-1} u w^T = v w^{T}
+	\end{align*}
+となるため，
+	\begin{align*}
+		M^{-1} \le I + v w^{T}
+	\end{align*}
+となる．
+そのために，
+	\begin{align*}
+		 | x^* - \hat{x} | \le ( I + v w^{T} ) | D^{-1} R(b - A \hat{x}) |
+	\end{align*}
+となります．
+さらに，補題\ref{lem:linear_iter}を加えると次のような定理になります．
+
+\begin{Thm}\label{thm:linear_M_mat}
+	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
+	対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を:
+	\begin{align*}
+		RA = D + E
+	\end{align*}	
+	とする(すなわち，$RA$の対角成分が$D$，非対角成分が$E$です．)．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - D^{-1}RA
+	\end{align*}
+	とする．
+	行列$M \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		M := I - |G|
+	\end{align*}
+	とする．
+	もし，
+	\begin{align*}
+		M \hat{v} > \vector{0} ~~\mbox{かつ}~~\hat{v} > \vector{0}
+	\end{align*}	
+	となるベクトル$\hat{v}$が存在するならば，$A$は正則で，ベクトル$u, w \in{\mathbb R}^{n}$を
+	\begin{align*}
+		u :=& M \hat{v} \\
+		w_k :=& \max_{1 \le i \le n} \frac{ | G |_{ik} }{u_i} ~~ \mbox{for} ~~ 1 \le k \le n
+	\end{align*}
+	とすると真の解$x^* = A^{-1}b$と$\hat{x}$の差は
+	\begin{align*}
+		| x^* - \hat{x} | \le  \left| \sum_{i = 0}^N G^i D^{-1} R (b - A \hat{x}) \right| + \left| G^{N + 1} \right|  ( I + \hat{v} w^{T} ) | D^{-1} R(b - A \hat{x}) |
+	\end{align*}
+	となる．
+\end{Thm}
+
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------

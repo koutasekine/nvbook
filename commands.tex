@@ -1,0 +1,133 @@
+\def\diag{\mathrm{diag}}
+\def\sgn{\mathrm{sgn}}
+\def\veps{\varepsilon}
+\def\tgamma{\widetilde{\gamma}}
+\def\tdelta{\widetilde{\delta}}
+\def\median{\mathrm{median}}
+\def\Mid{\mathrm{mid}}
+\def\Rad{\mathrm{rad}}
+\def\hull{\mathrm{hull}}
+\def\circular{\mathrm{circ}}
+\def\Mag{\mathrm{mag}}
+\def\Mig{\mathrm{mig}}
+\def\ones{e}
+\def\zeros{\mathbf{0}}
+\def\cond{\kappa}
+\def\F{\mathbb{F}}
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\Rn{\mathbb{R}^{n}}
+\def\Rnn{\mathbb{R}^{n\times n}}
+\def\C{\mathbb{C}}
+\def\Cn{\mathbb{C}^{n}}
+\def\Cnn{\mathbb{C}^{n\times n}}
+\def\IC{\mathbb{IC}}
+\def\IR{\mathbb{IR}}
+\def\IF{\mathbb{IF}}
+\def\Z{\mathbb{Z}}
+\def\expmax{\mathrm{E_{max}}}
+\def\expmin{\mathrm{E_{min}}}
+\def\eps{\mathtt{u}}
+%\def\epsN{\mathbf{u}_{\mathrm{N}}}
+%\def\epsS{\mathbf{u}_{\mathrm{S}}}
+\def\Smin{\mathrm{S_{min}}}
+\def\ueps{\underline{\eps}}
+\def\realmax{\mathrm{F_{max}}}
+%\def\realmin{\eps_{\mathrm{N}}}
+\def\realmin{\mathrm{F_{min}}}
+\def\uepsn{\eps_{\mathrm{N}}}
+\def\Split{\mathtt{Split}}
+\def\TwoProd{\mathtt{TwoProd}}
+\def\TwoProdFMA{\mathtt{TwoProdFMA}}
+\def\FastTwoSum{\mathtt{FastTwoSum}}
+\def\TwoSum{\mathtt{TwoSum}}
+\def\EV{\mathtt{ExtractVector}}
+\def\ES{\mathtt{ExtractScalar}}
+\def\Transform{\mathtt{Transform}}
+\def\VS{\mathtt{VecSum}}
+\def\SumK{\mathtt{SumK}}
+\def\DotTwo{\mathtt{Dot2}}
+\def\DotTwoErr{\mathtt{Dot2Err}}
+\def\DotK{\mathtt{DotK}}
+\def\AccSum{\mathtt{AccSum}}
+\def\IFinfsup{\mathbb{IF}_{\mathrm{infsup}}}
+\def\IFmidrad{\mathbb{IF}_{\mathrm{midrad}}}
+\def\ufp{\mathtt{ufp}}
+\def\ulp{\mathtt{ulp}}
+\def\Inf{\mathtt{Inf}}
+\def\NaN{\mathtt{NaN}}
+\def\RN{\mathtt{RN}}
+\def\FMA{\mathtt{FMA}}
+\def\NextPowerTwo{\mathtt{NextPowerTwo}}
+\def\nextpowtwo{\mathtt{nextpow2}}
+\def\factor{\mathtt{factor}}
+\def\function{\mathbf{function} \ \ }
+\def\endfunction{\mathbf{end}}
+\def\zeromat{O}
+\def\ep{\varepsilon}
+\def\vector#1{\mbox{\boldmath $#1$}}
+
+
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\ap}[1]{\widehat{#1}}
+\newcommand{\ex}[1]{{#1}^{*}}
+\newcommand{\bs}[1]{\mathbf{#1}}
+%\newcommand{\compmat}[1]{\langle #1\rangle}
+\newcommand{\compmat}[1]{\mathcal{M}(#1)}
+\newcommand{\fl}[1]{\mathtt{fl}\!\left(#1\right)}
+\newcommand{\fla}[1]{\mathtt{fl}\!\left(#1\right)}
+\newcommand{\flb}[1]{\mathtt{fl}(#1)}
+\newcommand{\flnear}[1]{\mathtt{fl}_{\square}\!\left(#1\right)}
+\newcommand{\fldown}[1]{\mathtt{fl}_{\bigtriangledown}\!\left(#1\right)}
+\newcommand{\flup}[1]{\mathtt{fl}_{\bigtriangleup}\!\left(#1\right)}
+\newcommand{\flchop}[1]{\mathtt{fl}_{\Diamond}\!\left(#1\right)}
+\newcommand{\flcirc}[1]{\mathtt{fl}_{\bigcirc}\!\left(#1\right)}
+\newcommand{\float}[1]{\mathtt{float}(#1)}
+\newcommand{\intval}[1]{\boldsymbol{#1}}
+\newcommand{\midrad}[2]{\langle #1, #2 \rangle}
+\newcommand{\nnz}[1]{\mathrm{nnz}(#1)}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\normp}[1]{\|#1\|_{p}}
+\newcommand{\normone}[1]{\|#1\|_{1}}
+\newcommand{\normtwo}[1]{\|#1\|_{2}}
+\newcommand{\norminf}[1]{\|#1\|_{\infty}}
+\newcommand{\normfro}[1]{\|#1\|_{\mathrm{F}}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\q}{\hspace{1em}}
+
+\newcommand{\mthc}{\mathcal}
+\newcommand{\mthb}{\mathbb}
+\newcommand{\invnormzero}{\| L^{-1} \|}
+\newcommand{\invnorm}{\| L^{-1} \|_{{\mc L}(L^2, H^1_0)}}
+\newcommand{\invnorminv}{\| L^{-1} \|_{{\mc L}(H^{-1}, H^1_0)}}
+\newcommand{\Linf}{L^{\infty}(\Omega)}
+\newcommand{\Honezero}{H^1_0(\Omega)}
+\newcommand{\Hone}{H^1(\Omega)}
+\newcommand{\Hinv}{H^{-1}}
+\newcommand{\Ltwo}{L^{2}(\Omega)}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\sqA}{A^{\frac{1}{2}}}
+\newcommand{\sqAinv}{A^{-\frac{1}{2}}}
+\newcommand{\DA}{{\mc D}(A)}
+\newcommand{\LtwoLtwo}{{\mc L}(L^2, L^2)}
+\newcommand{\LtwoH}{{\mc L}(L^2, H^1_0)}
+\newcommand{\minner}[2]{(#1,#2)_{M_{\sigma}}}
+\newcommand{\mnorm}[1]{\| #1 \|_{M_\sigma}}
+\newcommand{\vecmc}[1]{{\vector {\mathcal #1}} }
+
+\theoremstyle{definition}
+\newtheorem{Thm}{定理}[section]
+\newtheorem{Cor}{系}[section]
+\newtheorem{Lem}{補題}[section]
+\newtheorem{Rem}{注意}[section]
+\newtheorem{Prop}{性質}[section]
+\newtheorem{axiom}{公理}[section]
+\newtheorem{defi}{定義}[section]
+
+\newtheorem{Proof}{証明}
+\renewcommand{\theProof}{}
+
+\def\qed{\hfill $\Box$}
+
+

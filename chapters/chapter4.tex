@@ -1,0 +1,348 @@
+\chapter{固有値問題の固有値に対する品質保証法}\label{chap:eigenvalue}
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{全固有値に対する一般的な品質保証法}\label{sec:standard_eigenvalue}
+本章では$A, B \in {\mathbb C}^{n \times n}$としたとき，固有値問題
+\begin{align*}
+	\mbox{Find} ~ (\lambda, x) \in {\mathbb C} \times {\mathbb C}^n ~ \mbox{s.t.} ~ A x = \lambda B x, ~ x \neq \vector{0}
+\end{align*}
+を考えます．
+定理\ref{thm:Basic_Theorem_five_order_nonlinear}や定理\ref{thm:basic_linear_problem}などでは，第\ref{chap:basic_theorem}章の最終目標である定理\ref{thm:Basic_Theorem}を利用してきました．
+線型方程式や非線形方程式と同様に固有値問題にも定理\ref{thm:Basic_Theorem}を使うことも可能ですが，重複固有値の取り扱いや全固有値と全固有ベクトルを1つの方程式としてみなす巨大な方程式を考えなければならないため，直接利用することはあまりおすすめしません．
+そのかわりに数値解析でもよく利用されるゲルシュゴリンの定理を利用します:
+
+\begin{Thm}[ゲルシュゴリンの定理]\label{thm:gerschgorin}
+	$n$次元行列$A = (a_{ij})$に対し
+	\begin{align*}
+		r_i := \sum_{j = 1, j \neq i}^n | a_{ij} |, ~ U_i := \{ z \in {\mathbb C} ~|~~ | z - a_{ii} | \le r_i  \}
+	\end{align*}
+	とすると固有値問題$A x = \lambda x$のすべての固有値は
+	\begin{align*}
+		\bigcup_{i = 1}^{n} U_i
+	\end{align*}
+	に含まれる．
+	そのうえ，特に，単連結領域$C$が$m$個の$U_i$からなる場合，重複度も含めて$m$個の固有値が$C$内に存在する．
+\end{Thm}
+
+定理\ref{thm:gerschgorin}では$B = I$としたときに，$A$の対角成分を中心に，非対角成分の絶対値の和を半径として真の固有値を含む集合を作成しています．
+しかし，$Ax = \lambda B x$に対しては，定理\ref{thm:gerschgorin}は直接的には利用できません．
+そこで，$A x = \lambda B x$を固有値を変えずに$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$および対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を式変形をします(固有ベクトルは変わるので注意してください)．
+それぞれの行列の意味合いは
+\begin{itemize}
+	\item $\tilde{X}$: 近似固有ベクトルを並べた行列
+	\item $Y \approx (B \tilde{X})^{-1}$
+	\item $\tilde{\Lambda}$: 対角行列，対角成分に近似固有値を並べた行列
+\end{itemize}
+ですが，どんな行列でもかまいません．
+
+
+\begin{Lem}\label{lem:trans_eigenvalue}
+	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
+	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$および対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を与えられている行列とする．
+	もし$Y B \tilde{X}$が正則ならば，固有値問題
+	\begin{align*}
+		\mbox{Find} ~ (\lambda, x) \in {\mathbb C} \times {\mathbb C}^n ~ \mbox{s.t.} ~ A x = \lambda B x
+	\end{align*}
+	と固有値問題
+	\begin{align*}
+		\mbox{Find} ~ (\mu, y) \in {\mathbb C} \times {\mathbb C}^n ~ \mbox{s.t.} ~ \left( \tilde{\Lambda} + (Y B \tilde{X})^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )  \right) y = \mu y
+	\end{align*}
+	のそれぞれの固有値は一致する，すなわち，$\lambda_i = \mu_i$となる．
+\end{Lem}
+
+\begin{Proof}
+	$YBX$が正則であることと，行列積によって行列の階数が上がることはないために，$Y, B, \tilde{X} \in {\mathbb R}^{n \times n}$は各々正則である．
+	そのうえ，
+	\begin{align*}
+		& A x = \lambda B x \\
+		\Leftrightarrow& A \tilde{X} \tilde{X}^{-1}x = \lambda B \tilde{X} \tilde{X}^{-1} x \\
+		\Leftrightarrow& A \tilde{X} y = \lambda B \tilde{X} y, ~~ y := \tilde{X}^{-1}x \\
+		\Leftrightarrow& Y A \tilde{X} y = \lambda Y B \tilde{X} y \\
+		\Leftrightarrow& Y B \tilde{X} \tilde{\Lambda} y - Y B \tilde{X} \tilde{\Lambda} y + Y A \tilde{X} y = \lambda Y B \tilde{X} y \\
+		\Leftrightarrow& Y B \tilde{X} \tilde{\Lambda} y + Y \left(  A \tilde{X} - B \tilde{X} \tilde{\Lambda}  \right) y  = \lambda Y B \tilde{X} y \\
+		\Leftrightarrow& \tilde{\Lambda} y + \left( Y B \tilde{X} \right)^{-1} Y \left(  A \tilde{X} - B \tilde{X} \tilde{\Lambda} \right) y  = \lambda y \\
+		\Leftrightarrow& \left( \tilde{\Lambda} + \left( Y B \tilde{X} \right)^{-1} Y \left(  A \tilde{X}  - B \tilde{X} \tilde{\Lambda} \right) \right) y  = \lambda y
+	\end{align*}	
+	
+	\qed
+\end{Proof}
+
+ゲルシュゴリンの定理(定理\ref{thm:gerschgorin})と補題\ref{lem:trans_eigenvalue}を用いると$Ax = \lambda B x$に対する全固有値に対する品質保証法を考えることができます:
+
+
+\begin{Thm} \label{thm:eig_basic}
+	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
+	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$与えられている行列とする．
+	対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を対角成分
+	\begin{align*}
+		\Lambda_{ii} := \tilde{\lambda}_i
+	\end{align*}
+	を持つ対角行列とする．
+	$Q \in {\mathbb R}^{n \times n}$を
+	\begin{align*}
+		Q := (Y B \tilde{X})^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )
+	\end{align*}
+	とする．
+	もし$Y B \tilde{X}$が正則ならば，
+	\begin{align*}
+		r := | Q | \vector{e}, ~ U_i := \{ z \in {\mathbb C} ~|~~ | z - \tilde{\lambda}_i | \le r_i  \}
+	\end{align*}
+	とすると固有値問題$A x = \lambda B x$のすべての固有値は
+	\begin{align*}
+		\bigcup_{i = 1}^{n} U_i
+	\end{align*}
+	に含まれる．
+	そのうえ，特に，単連結領域$C$が$m$個の$U_i$からなる場合，重複度も含めて$m$個の固有値が$C$内に存在する．
+\end{Thm}
+
+\begin{Proof}
+	補題\ref{lem:trans_eigenvalue}から，固有値問題
+	\begin{align*}
+		\mbox{Find} ~ (\mu, y) \in {\mathbb C} \times {\mathbb C}^n ~ \mbox{s.t.} ~ \left( \tilde{\Lambda} + Q  \right) y = \mu y
+	\end{align*}
+	を考えればよい．
+	そのうえ，上の固有値問題に対し，ゲルシュゴリンの定理を適用すると，
+	\begin{align*}
+		q_i := \sum_{j = 1, j \neq i}^{n} | Q_{ij} |, ~~ \tilde{U}_{i} := \left\{ z \in {\mathbb C} ~ | ~~ \left| z - (\tilde{\lambda}_i + Q_{ii}) \right| \le q_i \right\}
+	\end{align*}
+	としたとき，
+	\begin{align*}
+		\bigcup_{i = 1}^{n} \tilde{U}_i
+	\end{align*}
+	内に固有値問題$A x = \lambda B x$のすべての固有値が含まれており，そのうえ，特に，単連結領域$C$が$m$個の$\tilde{U}_i$からなる場合，重複度も含めて$m$個の固有値が$C$内に存在する．
+
+	また，
+	\begin{align*}	
+		\tilde{U}_{i} = \left\{ z \in {\mathbb C} ~ | ~~ \left| z - (\tilde{\lambda}_i + Q_{ii}) \right| \le q_i \right\} \subset \left\{ z \in {\mathbb C} ~ | ~~ \left| z - \tilde{\lambda}_i \right| \le | Q_{ii} | + q_i \right\}
+	\end{align*}
+	となり，
+	\begin{align*}
+		| Q_{ii} | + q_i = \sum_{j = 1}^{n} | Q_{ij} | = ( | Q | \vector{e} )_i = r_i
+	\end{align*}
+	となる．
+	よって，
+	\begin{align*}	
+		\tilde{U}_{i} \subset U_{i}
+	\end{align*}
+	となる．
+
+	\qed
+\end{Proof}
+
+この定理\ref{thm:eig_basic}に対して，ノイマン級数の定理(定理\ref{thm:finite_Neumann} や定理\ref{thm:linear_operator_injective2})を適用すると，次の宮島の定理がいえます:
+\begin{Thm} \label{thm:eig_miyajima}
+	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
+	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$与えられている行列とする．
+	対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を対角成分
+	\begin{align*}
+		\Lambda_{ii} := \tilde{\lambda}_i
+	\end{align*}
+	を持つ対角行列とする．
+	$Q \in {\mathbb R}^{n \times n}$を
+	\begin{align*}
+		Q := (Y B \tilde{X})^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )
+	\end{align*}
+	とし，行列$G \in {\mathbb R}^{n \times n}$を
+	\begin{align*}
+		G := I - Y B \tilde{X} 
+	\end{align*}
+	とする．
+	もし
+	\begin{align*}
+		\| G \|_{\infty} < 1
+	\end{align*}
+	ならば，$Y B \tilde{X} $は正則で，
+	\begin{align*}
+		r :=  | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} +  \frac{ \| Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \|_{\infty} }{1 - \| G \|_{\infty}}| G | \vector{e}, ~ U_i := \{ z \in {\mathbb C} ~|~~ | z - \tilde{\lambda}_i | \le r_i  \}
+	\end{align*}
+	とすると固有値問題$A x = \lambda B x$のすべての固有値は
+	\begin{align*}
+		\bigcup_{i = 1}^{n} U_i
+	\end{align*}
+	に含まれる．
+	そのうえ，特に，単連結領域$C$が$m$個の$U_i$からなる場合，重複度も含めて$m$個の固有値が$C$内に存在する．
+\end{Thm}
+
+\begin{Proof}
+	$\| G \|_{\infty} < 1$であるから，ノイマン級数の定理より$I - G = Y B \tilde{X}$は正則である．
+	そのうえ，
+	\begin{align*}
+		\| (I - G)^{-1} \|_{\infty} \le \frac{ 1 }{1 - \| G \|_{\infty}}
+	\end{align*}
+	となる．
+	よって，定理\ref{thm:eig_basic}の$| Q | \vector{e}$のみを検討すればよい．
+	\begin{align*}
+		| Q | \vector{e} =& | (Y B \tilde{X})^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | ( I - G )^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | (I + G + G^2 + \cdots ) Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )  +  G (I + G + G^2 + \cdots ) Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )  +  G ( I - G )^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		\le& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} + | G | | ( I - G )^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		\le& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} + | G | \left\| \left| ( I - G )^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \right\|_{\infty} \vector{e} \\
+		\le& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} + | G | \left\| ( I - G )^{-1} \right\|_{\infty} \left\| \left| Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \right\|_{\infty} \vector{e} \\
+		\le& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} + | G | \frac{ 1 }{1 - \| G \|_{\infty}} \left\| Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right\|_{\infty} \vector{e} \\
+		=& | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} + \frac{ \| Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \|_{\infty} }{1 - \| G \|_{\infty}} | G | \vector{e} 
+	\end{align*}
+	となり，題意は得られた．
+	\qed
+\end{Proof}
+
+定理\ref{thm:eig_miyajima}は形式的には，連立一次方程式の解の品質保証法であった山本の定理(系\ref{cor:yamamoto})の固有値バージョンといえます．
+著者は，固有値問題でも，このような「うまい式変形」を行うことで，近似固有値とそのエラーみたいな形式に書けることを初めて知った時には感動を覚えました．
+
+%----------------------------------------------------------------------------------------------------------------------------------------------
+\section{(発展)さらに評価を極めるには?}\label{sec:optional_eig_program}
+\ref{sec:optional_linear_program}節でも取り上げたように，今度は定理\ref{thm:eig_miyajima}の十分条件$\| G \|_{\infty} < 1$をどこまで緩められるか，定理\ref{thm:eig_basic}まで戻って考えてみたいと思います．
+まず，対角行列$D \in {\mathbb R}^{n \times n}$と非対角行列$E  \in {\mathbb R}^{n \times n}$をそれぞれ
+	\begin{align*}
+		Y B \tilde{X} = D + E
+	\end{align*}
+のように$Y B \tilde{X}$を対角成分と非対角成分に分離する行列とします．
+さらに$Y$を
+	\begin{align*}
+		Y_{\mbox{new}} := D^{-1} Y
+	\end{align*}
+としても，定理\ref{thm:eig_basic}は成立します．
+そのうえ，
+	\begin{align*}
+		G := I - D^{-1} Y B \tilde{X}
+	\end{align*}
+とすると$D^{-1} Y B \tilde{X}$の対角成分はすべて$1$となるため，$G$の対角成分は$0$となります．
+
+
+定理\ref{thm:eig_miyajima}では十分条件$\| G \|_{\infty} < 1$を利用して，ノイマン級数の定理から$Y B \tilde{X}$の正則性を検証していました．
+この条件を緩めるために，$\rho(G) < 1$と置き換えたいところですが，\ref{sec:optional_linear_program}節と同様に，まだ，リーズナブルな評価が見つかっていません．
+そのために，十分条件を変更し，
+	\begin{align*}
+		\rho(G) \le \rho( |G| ) < 1
+	\end{align*}
+を検証することとします．
+もちろん，$\rho( |G| ) \le \| |G| \|_{\infty} = \| G \|_{\infty}$であるため，$\| G \|_{\infty} < 1$よりかは良いことが期待されます．
+そのうえで，連立一次方程式の場合と同様に次の定理(Fiedler-Pta\'akの定理の系)がいえます:
+
+\begin{Thm}\label{thm:fiedler2}
+	$Y,  B,  \tilde{X} \in {\mathbb R}^{n\times n}$を与えられているとし，$I$を単位行列とする．
+	対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を:
+	\begin{align*}
+		Y B \tilde{X} = D + E
+	\end{align*}	
+	とする．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - D^{-1} Y B \tilde{X}
+	\end{align*}
+	とする．
+	行列$M \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		M := I - |G|
+	\end{align*}
+	とする．
+	そのとき，以下は同等である:
+	\begin{enumerate}
+		\item $\rho( | G | ) < 1$
+		\item $M$が正則で，$M^{-1} \ge O$
+		\item $M v > \vector{0}$となる正のベクトル$v > \vector{0}$が存在
+	\end{enumerate}
+\end{Thm}
+
+この定理を利用して，次のような定理を導出することができます:
+\begin{Thm} \label{thm:eig_new}
+	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
+	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$与えられている行列とする．
+	対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を対角成分
+	\begin{align*}
+		\Lambda_{ii} := \tilde{\lambda}_i
+	\end{align*}
+	を持つ対角行列とする．
+	$Q \in {\mathbb R}^{n \times n}$を
+	\begin{align*}
+		Q := (Y B \tilde{X})^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )
+	\end{align*}
+	とする．
+	対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を:
+	\begin{align*}
+		Y B \tilde{X} = D + E
+	\end{align*}	
+	とする．
+	行列$G \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		G := I - D^{-1} Y B \tilde{X}
+	\end{align*}
+	とする．
+	行列$M \in {\mathbb R}^{n\times n}$を
+	\begin{align*}
+		M := I - |G|
+	\end{align*}
+	とする．
+	もし
+	\begin{align*}
+		M \hat{v} > \vector{0} ~~ \mbox{かつ} ~~ \hat{v} > \vector{0}
+	\end{align*}
+	となるベクトル$\hat{v}$が存在するならば，$D^{-1} Y B \tilde{X} $は正則で，ベクトル$u, w \in{\mathbb R}^{n}$を
+	\begin{align*}
+		u :=& M \hat{v} \\
+		w_k :=& \max_{1 \le i \le n} \frac{ | G |_{ik} }{u_i} ~~ \mbox{for} ~~ 1 \le k \le n
+	\end{align*}
+	とすると，
+	\begin{align*}
+		r :=&  \left| \sum_{i = 0}^{N} G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} +  | G |^{N+1} (I + \hat{v} w^T) D^{-1} | Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e},\\
+		 U_i :=& \{ z \in {\mathbb C} ~|~~ | z - \tilde{\lambda}_i | \le r_i  \}
+	\end{align*}
+	とすると固有値問題$A x = \lambda B x$のすべての固有値は
+	\begin{align*}
+		\bigcup_{i = 1}^{n} U_i
+	\end{align*}
+	に含まれる．
+	そのうえ，特に，単連結領域$C$が$m$個の$U_i$からなる場合，重複度も含めて$m$個の固有値が$C$内に存在する．
+\end{Thm}
+
+\begin{Proof}
+	十分条件$M \hat{v} > \vector{0} ~~ \mbox{かつ} ~~ \hat{v} > \vector{0}$となる$\hat{v}$が存在することから，定理\ref{thm:fiedler2}より$\rho(| G | < 1$となる．
+	そのうえ，$\rho(G) \le \rho(| G | ) < 1$から，ノイマン級数の定理より$D^{-1} Y B \tilde{X} $は正則である．
+	さらに，\ref{sec:optional_linear_program}節の議論より
+	\begin{align*}
+		O \le M^{-1} \le I + \hat{v} w^T
+	\end{align*}
+	となる．
+	そのうえで，定理\ref{thm:eig_basic}の$| Q | \vector{e}$のみを検討すると
+	\begin{align*}
+		| Q | \vector{e} =& | (D^{-1} Y B \tilde{X})^{-1} D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | ( I - G )^{-1} D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& | (I + G + G^2 + \cdots ) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
+		=& \left| \left( \sum_{i = 0}^N G^i \right) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )  +  G^{N+1} (I + G + G^2 + \cdots ) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le& \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| \left| (I + G + G^2 + \cdots ) \right| \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right|  (I + | G | + | G |^2 + \cdots ) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
+	\end{align*}
+	となる．
+	$\rho(| G | ) < 1$からノイマン級数の定理より$I + | G | + | G |^2 + \cdots = (I - |G|)^{-1} = M^{-1}$となるため
+	\begin{align*}
+		| Q | \vector{e}　\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| M^{-1} \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le& \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| (I + \hat{v} w^T) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
+	\end{align*}
+
+
+	\qed
+\end{Proof}
+
+
+上記の定理をそのまま適用すると，$\sum_{i = 0}^{N} G^i$で$O(n^3)$の計算がたくさんかかってしまいます．
+そのために，$\rho(| G | ) < 1$であることを利用して，
+	\begin{align*}
+		| Q | \vector{e}　\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| (I + \hat{v} w^T) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le& \sum_{i = 0}^N | G^i | \left|  D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| (I + \hat{v} w^T) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le& \sum_{i = 0}^{N+1} | G |^i \left|  D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G \right|^{N+1} \hat{v} w^T \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
+	\end{align*}
+として計算することをお勧めします．
+
+
+
+
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------
