@@ -8,12 +8,15 @@
 \usepackage{cite}
 \usepackage{url}
 \usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{tikz}
 
 \usepackage{fontspec}
 \usepackage{luatexja-fontspec}
 \usepackage{unicode-math}
 
 \setmainjfont{HaranoAjiMincho}
+\setsansjfont{HaranoAjiGothic}
 \setmainfont{Libertinus Serif}
 \setmathfont{Libertinus Math}
 
@@ -21,6 +24,13 @@
 
 \usepackage{enumitem}
 \usepackage[hidelinks,unicode]{hyperref}
+\hypersetup{
+  pdftitle={数値計算の品質保証法},
+  pdfauthor={Kouta Sekine},
+  pdfsubject={Numerical Verification Methods},
+  pdfkeywords={verified numerics, numerical verification, interval arithmetic,
+               floating-point arithmetic},
+}
 
 
 
@@ -28,18 +38,45 @@
 
 \pagestyle{plain}
 
+\definecolor{coverblue}{RGB}{22, 45, 75}
+\definecolor{coveraccent}{RGB}{185, 148, 58}
 
 \makeatletter
 \def\@maketitle{%
-\begin{flushright}%
-{\large \@date}%
-\end{flushright}%
-\begin{center}%
-{\LARGE \@title \par}%
-\end{center}%
-\begin{flushright}%
-\end{flushright}%
-\par\vskip 1.5em
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture, overlay]
+    % 濃紺の背景ブロック（ページ上部 65%）
+    \fill[coverblue]
+      (current page.north west)
+      rectangle ([yshift=-136mm]current page.north east);
+    % ゴールドのアクセントライン
+    \fill[coveraccent]
+      ([yshift=-136mm]current page.north west)
+      rectangle ([yshift=-139mm]current page.north east);
+    % 日本語タイトル
+    \node[anchor=north west, text=white, align=left, inner sep=0pt]
+      at ([xshift=20mm, yshift=-38mm]current page.north west)
+      {\fontsize{26}{40}\selectfont\sffamily\bfseries
+       数値計算の\\品質保証法};
+    % 英語タイトル
+    \node[anchor=north west, text=white!60!coverblue, align=left, inner sep=0pt]
+      at ([xshift=20mm, yshift=-108mm]current page.north west)
+      {\fontsize{10}{15}\selectfont\rmfamily\itshape
+       Numerical Verification Methods};
+    % 日本語著者名
+    \node[anchor=south east, text=black, align=right, inner sep=0pt]
+      at ([xshift=-20mm, yshift=38mm]current page.south east)
+      {\fontsize{13}{18}\selectfont\sffamily\bfseries 関根\quad 晃太};
+    % 英語著者名
+    \node[anchor=south east, text=black!65, align=right, inner sep=0pt]
+      at ([xshift=-20mm, yshift=24mm]current page.south east)
+      {\fontsize{9.5}{14}\selectfont\rmfamily Kouta Sekine};
+    % 年
+    \node[anchor=south east, text=black!45, align=right, inner sep=0pt]
+      at ([xshift=-20mm, yshift=12mm]current page.south east)
+      {\fontsize{9.5}{14}\selectfont\rmfamily 2026};
+  \end{tikzpicture}%
+  \null%
 }
 \makeatother
 
@@ -56,15 +93,35 @@
 \vspace*{\fill}
 \begin{flushleft}
 {\small
-\textbf{数値計算の品質保証法}\\[0.8em]
-著者：関根 晃太\\[1.5em]
+\textbf{数値計算の品質保証法}\\[0.3em]
+\textit{Numerical Verification Methods}\\[0.8em]
+著者：関根 晃太 \quad (Kouta Sekine)\\[1.5em]
 Copyright \copyright~2026 関根 晃太\\[0.8em]
 本書は Creative Commons Attribution-NonCommercial-NoDerivatives 4.0\\
 International License (CC BY-NC-ND 4.0) のもとで公開されています．\\[0.5em]
 非営利目的であれば原文をそのまま共有することは許可されていますが，\\
 改変および商用利用は禁止されています．\\[0.8em]
-\url{https://creativecommons.org/licenses/by-nc-nd/4.0/}
+\url{https://creativecommons.org/licenses/by-nc-nd/4.0/}\\[1.5em]
+\textbf{GitHub リポジトリ}\\[0.4em]
+\url{https://github.com/koutasekine/nvbook}\\[1.5em]
+\textbf{引用方法}\\[0.4em]
+本書を引用する際は以下の形式を使用してください．\\[0.6em]
+K.~Sekine.
+\textit{数値計算の品質保証法 (Numerical Verification Methods)}.
+Zenodo, 2026.\\
+DOI:~\texttt{10.5281/zenodo.XXXXXXX}\\[0.6em]
+BibTeX:
+}%
+\begin{verbatim}
+@book{sekine2026nvbook,
+  author    = {Sekine, Kouta},
+  title     = {{数値計算の品質保証法}},
+  note      = {Numerical Verification Methods},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.XXXXXXX},
 }
+\end{verbatim}
 \end{flushleft}
 \newpage
 

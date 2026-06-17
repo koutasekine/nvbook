@@ -38,3 +38,5 @@ texput.*
 
 # 不要なスクリプト
 tete.sh
+proofreading_report_claude.md
+proofreading_report_codex.md

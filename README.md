@@ -1,6 +1,7 @@
 # 数値計算の品質保証法
+*Numerical Verification Methods*
 
-著者：関根 晃太
+著者：関根 晃太（Kouta Sekine）
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
@@ -46,15 +47,17 @@ lualatex book.tex
 Zenodo の DOI が付与されている場合は、下記の形式で引用してください（DOI は公開後に更新します）。
 
 ```
-関根 晃太. 数値計算の品質保証法. Zenodo, 2026. https://doi.org/10.5281/zenodo.XXXXXXX
+Kouta Sekine. 数値計算の品質保証法 (Numerical Verification Methods). Zenodo, 2026.
+https://doi.org/10.5281/zenodo.XXXXXXX
 ```
 
 BibTeX:
 
 ```bibtex
-@book{sekine2026verified,
-  author    = {関根 晃太},
+@book{sekine2026numericalverification,
+  author    = {Sekine, Kouta},
   title     = {数値計算の品質保証法},
+  subtitle  = {Numerical Verification Methods},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.XXXXXXX},
