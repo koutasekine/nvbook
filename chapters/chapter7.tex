@@ -65,13 +65,13 @@ $T$は有限次元$X_N$から$X_N$への有限次元作用素になるため，�
 一方で，$S$は無限次元部分$X_c$から$X_c$への無限次元部分の作用素になるために，コンピュータだけで解くことはできません．
 そこで，Neumann級数の定理\ref{thm:nuemann_ser}を利用します．
 仮定から$X$が$X_N$と$X_c$の位相的直和であるため，$X_c$はBanach空間となります．
-そのうえで，$X_c$上の作用素$S$に対してNeumann級数の定理\ref{thm:nuemann_ser}を利用すると
+$X_c$上の作用素$S$に対してNeumann級数の定理\ref{thm:nuemann_ser}を利用すると
 \begin{align*}
 	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} < 1
 \end{align*}
 であれば，$S$は全単射となります．
 そこで，$\| I_{X_c} - S \|_{{\mathcal B}(X_c)}$の評価が重要になります．
-そのうえで，変形すると
+これを変形すると
 \begin{align*}
 	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} = \| I_{X_c} - (D - CT^{-1}B) \|_{{\mathcal B}(X_c)} = \| (I - P_N) A^{-1} N'[u_N] |_{X_c} + CT^{-1}B \|_{{\mathcal B}(X_c)}
 \end{align*}
