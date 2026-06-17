@@ -102,7 +102,7 @@ u_n \rightarrow u, ~ (n\rightarrow \infty)
 \end{align*}
 と
 \begin{align*}
-	\forall \varepsilon > 0, ~ \exists N_1 \in {\mathbb N}, ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \varepsilon
+	\forall \varepsilon > 0, ~ \exists N_2 \in {\mathbb N}, ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \varepsilon
 \end{align*}
 が成立する．
 そのうえで，$\epsilon$は任意であることから，
@@ -116,7 +116,7 @@ u_n \rightarrow u, ~ (n\rightarrow \infty)
 \end{align*}
 と
 \begin{align*}
-	\exists N_1 \in {\mathbb N} ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \frac{ \| v - w \|  }{2}
+	\exists N_2 \in {\mathbb N} ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \frac{ \| v - w \|  }{2}
 \end{align*}
 となる．
 そのうえで，$N_{\max} = \max (N_1, N_2)$とすると，
@@ -333,12 +333,12 @@ Banach空間の線形部分空間はBanach空間にはならず，完備性が�
 
 集合と位相で習った講義で習った一般的な位相空間$X$の部分集合$M$の閉集合の定義は補集合
 \begin{align*}
-	X^{c} := \{ x \in X ~ | ~ x \not\in M \}
+	M^{c} := \{ x \in X ~ | ~ x \not\in M \}
 \end{align*}
-としたとき，$X^{c}$が開集合になることでしたね．
-ノルム空間の場合は，「$X^{c}$が開集合」と「定義\ref{def:App:CloseSet}」は同値になります．
+としたとき，$M^{c}$が開集合になることでしたね．
+ノルム空間の場合は，「$M^{c}$が開集合」と「定義\ref{def:App:CloseSet}」は同値になります．
 そのため，本書では，良く使う定義\ref{def:App:CloseSet}を閉集合の定義としました．
-もちろん，「$X^{c}$が開集合」を閉集合の定義として，定理として定義\ref{def:App:CloseSet}と同値であることを導く方針もあります．
+もちろん，「$M^{c}$が開集合」を閉集合の定義として，定理として定義\ref{def:App:CloseSet}と同値であることを導く方針もあります．
 
 
 それでは本節の目標である「Banach空間の線形部分空間がBanach空間になるための条件」を考えていきます．

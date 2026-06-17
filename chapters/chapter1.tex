@@ -534,9 +534,9 @@ $a_l, a_u, b_l, b_u \in {\mathbb F}$としたとき，以下として機械区�
 	\item 減算：$[a_l,\ a_u]-[b_l,\ b_u] = [a_l ~ \underline{-} ~ b_u,\ a_u ~ \overline{-} ~ b_l]$
 	
 	\item 乗算：$ [a_l,\ a_u]\times[b_l,\ b_u] = $\\
-	$ ~~~~~~~~~ [\min \{ a_l ~ \underline{\cdot} ~ b_l, a_u ~ \underline{\cdot} ~ b_l, a_l ~ \underline{\cdot} ~ b_u,\ a_u ~ \underline{\cdot} ~ b_u \}, \max \{ a_l ~ \overline{\cdot} ~ b_l, a_u ~ \overline{\cdot} ~ b_l, a_l ~ \overline{\cdot} ~ b_u, a_u ~ \overline{\cdot} ~ b_u \}$
+	$ ~~~~~~~~~ [\min \{ a_l ~ \underline{\cdot} ~ b_l, a_u ~ \underline{\cdot} ~ b_l, a_l ~ \underline{\cdot} ~ b_u,\ a_u ~ \underline{\cdot} ~ b_u \}, \max \{ a_l ~ \overline{\cdot} ~ b_l, a_u ~ \overline{\cdot} ~ b_l, a_l ~ \overline{\cdot} ~ b_u, a_u ~ \overline{\cdot} ~ b_u \}]$
 	\item 除算：$ [a_l,\ a_u]/[b_l,\ b_u]= $\\
-	$ ~~~~~~~~~ [\min \{ a_l ~ \underline{/} ~ b_l, a_u ~ \underline{/} ~ b_l, a_l ~ \underline{/} ~ b_u,\ a_u ~ \underline{/} ~ b_u \}, \max \{ a_l ~ \overline{/} ~ b_l, a_u ~ \overline{/} ~ b_l, a_l ~ \overline{/} ~ b_u, a_u ~ \overline{/} ~ b_u \}$\\
+	$ ~~~~~~~~~ [\min \{ a_l ~ \underline{/} ~ b_l, a_u ~ \underline{/} ~ b_l, a_l ~ \underline{/} ~ b_u,\ a_u ~ \underline{/} ~ b_u \}, \max \{ a_l ~ \overline{/} ~ b_l, a_u ~ \overline{/} ~ b_l, a_l ~ \overline{/} ~ b_u, a_u ~ \overline{/} ~ b_u \}]$\\
 	$ ~~~~~~~~~ $ただし$0 \notin [b_l,\ b_u]$
 \end{itemize}
 \end{defi}
@@ -682,9 +682,9 @@ $a, b, c, c_l, c_u \in {\mathbb F}$とする．
        res_upper = a*b + cu;
 \end{verbatim}
 のように$a \cdot b$の結果を保持せずに区間を作成できる．
-この結果から浮動小数点数のn次元ベクトル$a \in {\mathbb F}^n$と$b \in {\mathbb F}^n$の内積$a \cdot b$は区間
+この結果から浮動小数点数の$n$次元ベクトル$a \in {\mathbb F}^n$と$b \in {\mathbb F}^n$の内積$a \cdot b$は区間
 \begin{align}\label{eq:inner_def}
-	[ a_1 \underline{\cdot} a_2 \underline{+} a_1 \underline{\cdot} a_2 \underline{+} \cdots \underline{+}  a_n \underline{\cdot} a_n, ~~ a_1 \overline{\cdot} a_2 \overline{+} a_1 \overline{\cdot} a_2 \overline{+} \cdots \overline{+}  a_n \overline{\cdot} a_n ]
+	[ a_1 \underline{\cdot} b_1 \underline{+} a_2 \underline{\cdot} b_2 \underline{+} \cdots \underline{+}  a_n \underline{\cdot} b_n, ~~ a_1 \overline{\cdot} b_1 \overline{+} a_2 \overline{\cdot} b_2 \overline{+} \cdots \overline{+}  a_n \overline{\cdot} b_n ]
 \end{align}
 として得られるため，
 \begin{verbatim}

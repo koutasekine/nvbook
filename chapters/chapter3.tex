@@ -95,8 +95,8 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 	そのうえ，$\rho(G) = \max_{i} | \lambda_i | < 1$より，$1 - \lambda_i \neq 0, ~ 1 \le i \le n$となり，$I-G$はゼロ固有値を持たないため，正則である．
 	また，
 	\begin{align*}
-		G^{k + 1} =& (I + G + \cdots + G^k) - (I + G + \cdots + G^k) + G^{K + 1} \\
-		=& (I + G + \cdots + G^k + G^{K + 1}) - (I + G + \cdots + G^k) \\
+		G^{k + 1} =& (I + G + \cdots + G^k) - (I + G + \cdots + G^k) + G^{k + 1} \\
+		=& (I + G + \cdots + G^k + G^{k + 1}) - (I + G + \cdots + G^k) \\
 		=& (I + G(I + G + \cdots + G^k)) - (I + G + \cdots + G^k) \\
 		=& I + (G - I) (I + G + \cdots + G^k) \\
 		=& I - (I - G)(I + G + \cdots + G^k)
@@ -176,7 +176,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 次に，真の解が得られる状況における等式を紹介します:
 
 \begin{Lem}\label{lem:linear_iter}
-	$A,\ \in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．	
+	$A,\ R \in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．	
 	行列$G \in {\mathbb R}^{n\times n}$を
 	\begin{align*}
 		G := I - RA
@@ -192,7 +192,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 
 \begin{Proof}
 	$\mbox{rank}(A)$を行列の階数とすると，行列積の階数は$\mbox{rank}(RA) \le \mbox{rank}(R), ~\mbox{rank}(RA) \le \mbox{rank}(A)$となることが知られている(忘れてしまっている場合，線形代数の教科書で探してみましょう!)．
-	その上，$RA$が逆行列を持つことから線形代数の基本定理(あるいは次元定理とも呼ばれます．こちらも忘れている場合は，線形代数の教科書をみなおしましょう)から$\mbox{rand}(RA) = n$となるために，$\mbox{rank}(RA) = \mbox{rank}(A) = \mbox{rank}(R) = n$となり，$A$も$R$も全単射となり逆行列を持つ．
+	その上，$RA$が逆行列を持つことから線形代数の基本定理(あるいは次元定理とも呼ばれます．こちらも忘れている場合は，線形代数の教科書をみなおしましょう)から$\mbox{rank}(RA) = n$となるために，$\mbox{rank}(RA) = \mbox{rank}(A) = \mbox{rank}(R) = n$となり，$A$も$R$も全単射となり逆行列を持つ．
 	よって，
 	\begin{align*}
 		x^* - \hat{x} =& R(b - A \hat{x}) - R(b - A \hat{x}) + x^* - \hat{x} \\
