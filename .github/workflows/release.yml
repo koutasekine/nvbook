@@ -18,22 +18,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare Libertinus fonts for user tree
+      - name: Check fonts
         run: |
-          tlmgr init-usertree
-          if ! tlmgr --usermode install libertinus; then
-            tlmgr --usermode install libertinus-fonts
-          fi
+          lualatex --version
+          kpsewhich HaranoAjiMincho-Regular.otf || true
+          kpsewhich LibertinusSerif-Regular.otf || true
+          kpsewhich LibertinusMath-Regular.otf || true
+          luaotfload-tool --find="Libertinus Serif" || true
+          luaotfload-tool --find="Libertinus Math" || true
 
       - name: Build PDF
         run: |
-          lualatex -interaction=nonstopmode book.tex
+          luaotfload-tool --force --update
+          lualatex -interaction=nonstopmode -halt-on-error book.tex
           if grep -q '\\citation' book.aux; then
             bibtex book
-            lualatex -interaction=nonstopmode book.tex
-            lualatex -interaction=nonstopmode book.tex
+            lualatex -interaction=nonstopmode -halt-on-error book.tex
+            lualatex -interaction=nonstopmode -halt-on-error book.tex
           else
-            lualatex -interaction=nonstopmode book.tex
+            lualatex -interaction=nonstopmode -halt-on-error book.tex
           fi
 
       - name: Upload PDF artifact
