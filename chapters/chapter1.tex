@@ -266,11 +266,11 @@ $e_{\max}$     & 127   &    1023 \\   \hline
  \label{3:fig_float}
 \end{figure}
 
-\noindent 問題\\
+\Mondai
 	10進数$7.25$を浮動小数点数に変換せよ．
 	ただし，$p$は($d_0$も含め)$6$ bitとし，$e$は$3$ bitとする．\\
 
-\noindent 解答\\	
+\Kaitou
 	\begin{align*}
 	7.25 &= (111.01)_2 \\
 	&= (-1)^0 \times 2^2 \times (1.1101)_2
@@ -301,7 +301,7 @@ ${\mathbb{F}}$をIEEE 754 規格で定義された浮動小数点数の集合と
 そのために最適化の抑制として，C言語で定められているvolatile属性を変数に付加することで最適化を抑制したり，浮動小数点数に関する最適化オプション(-fp-modelなど)がコンパイラオプションとしてある場合は最も厳格に準拠(strict)するような設定する必要があります．\\
 
 
-\noindent 問題\\
+\Mondai
 次のプログラムについて問に答えよ:\\
 1) 誤差が発生する行を答えよ．\\
 2) 丸めモードの変更により動作が保証されている行を答えよ．
@@ -321,7 +321,7 @@ ${\mathbb{F}}$をIEEE 754 規格で定義された浮動小数点数の集合と
 12  }
 \end{verbatim}
 
-\noindent 解答\\	
+\Kaitou
 	(1) 5, 6, 9, 11行目\\
 	(2) 9行目(四則演算と平方根のみ丸めモードの変更による動作が保証されている)
 
@@ -399,7 +399,7 @@ IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモ
 \end{align*}
 のように2つの浮動小数点数の丸めモードを用いて真の結果を含む区間を得ることができます．
 
-\noindent 問題\\
+\Mondai
 プログラム
 \begin{verbatim}
    #include <stdio.h>
@@ -428,7 +428,7 @@ IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモ
 
 \vspace{5mm}
 
-\noindent 解答例\\
+\Kaitourei
 $0.1$と書いてしまうと誤差が発生するために，$1.0/10.0$のように倍精度浮動小数点数で誤差なく記述できる値の計算に変形してから，丸めモードを用いて上端と下端を計算すればよい ($1.1$についても同様である)．
 具体的には以下のようなプログラムになる．
 \begin{verbatim}
@@ -547,7 +547,7 @@ $a_l, a_u, b_l, b_u \in {\mathbb F}$としたとき，以下として機械区�
 \end{itemize}
 \end{defi}
 
-\noindent 問題\\
+\Mondai
 プログラム
 \begin{verbatim}
    #include <stdio.h>
@@ -575,7 +575,7 @@ $a_l, a_u, b_l, b_u \in {\mathbb F}$としたとき，以下として機械区�
 
 \vspace{5mm}
 
-\noindent 解答例\\
+\Kaitourei
 $a$と$b$の保証については前節に取り上げてあることに注意し解答を示す:
 \begin{verbatim}
    #include <stdio.h>
@@ -618,7 +618,7 @@ $a$と$b$の保証については前節に取り上げてあることに注意�
 
 \vspace{5mm}
 
-\noindent 問題\\
+\Mondai
 $a, b, c, c_l, c_u \in {\mathbb F}$とする．
 そのとき，以下の結果を包含する両端点に浮動小数点数を持つ区間を，丸めモード変更付きの四則演算を用いて作成せよ:
 \begin{align*}
@@ -629,8 +629,8 @@ $a, b, c, c_l, c_u \in {\mathbb F}$とする．
 
 \vspace{5mm}
 
-\noindent 解答例\\
-問(1): 
+\Kaitourei
+\noindent\textbf{(1)}:
 \begin{align*}
 	a \cdot b - c \subset& [ a ~ \underline{\cdot} ~ b, ~ a ~ \overline{\cdot} ~ b  ] - c \\
 	=& [ a ~ \underline{\cdot} ~ b, ~ a ~ \overline{\cdot} ~ b  ] - [c, c] \\
@@ -646,7 +646,7 @@ $a, b, c, c_l, c_u \in {\mathbb F}$とする．
 \end{verbatim}
 のように途中結果を区間として保持せずに区間を作成できる．
 
-\noindent 問(2): 
+\medskip\noindent\textbf{(2)}:
 \begin{align*}
 	c - a \cdot b \subset& c - [ a ~ \underline{\cdot} ~ b, ~ a ~ \overline{\cdot} ~ b  ]  \\
         \subset& [c, c] - [ a ~ \underline{\cdot} ~ b, ~ a ~ \overline{\cdot} ~ b  ]  \\
@@ -675,7 +675,7 @@ $a, b, c, c_l, c_u \in {\mathbb F}$とする．
 としてしまいます．
 これでは，数学的に正しくない結果を返しているので注意してください．
 
-\noindent 問(3): 
+\medskip\noindent\textbf{(3)}:
 \begin{align*}
 	a \cdot b + [ c_l, c_u ] \subset& [ a ~ \underline{\cdot} ~ b, ~ a ~ \overline{\cdot} ~ b  ] + [ c_l, c_u ] \\
 	\subset& [ a ~ \underline{\cdot} ~ b ~ \underline{+} ~ c_l , ~ a ~ \overline{\cdot} ~ b ~ \overline{+} ~ c_u  ]
