@@ -18,8 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install missing fonts
-        run: tlmgr install libertinus-fonts
+      - name: Prepare Libertinus fonts for user tree
+        run: |
+          tlmgr init-usertree
+          if ! tlmgr --usermode install libertinus; then
+            tlmgr --usermode install libertinus-fonts
+          fi
 
       - name: Build PDF
         run: |
