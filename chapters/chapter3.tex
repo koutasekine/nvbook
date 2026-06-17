@@ -49,7 +49,7 @@ $\hat{x}$や$R$を作成する段階は，丸め誤差を気にする必要は�
 ここから，区間演算で計算する必要があります．
 すなわち，$\| RA - I  \|_{\infty}$を丸め誤差まで含めて求める必要があります．
 そのため，多くの場合は計算が簡単な最大値ノルムを選択することが多いです．
-そのうえで，$\| RA - I  \|_{\infty}$の丸め誤差まで含めた上界が$1$未満であれば，行列$A$が正則であることが証明され，解を$1$つ持つことが示されました．
+そのうえで，$\| RA - I  \|_{\infty}$の丸め誤差まで含めた上界が$1$未満ならば，行列$A$の正則性が証明され，解を$1$つ持つことが示されました．
 
 さらに，\eqref{linear_prpblem_err}の右辺
 \[
@@ -78,7 +78,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 %----------------------------------------------------------------------------------------------------------------------------------------------
 \section{成分毎評価}\label{sec:element_basic_linear_problem}
 定理\ref{thm:basic_linear_problem}では「真の解$x^*$と近似解$\hat{x}$の差の絶対値最大」を見積もっていましたが，有限次元問題の場合は，簡単に成分毎の評価に切り替えることができます．
-まず，よく知られている定理であるNeumann級数の定理から準備したいと思います．
+まず，よく知られているNeumann級数の定理から準備したいと思います．
 無限次元Banach空間上の線形作用素に関するNeumann級数展開については定理\ref{thm:linear_operator_injective2}を参照してください．
 
 \begin{Thm}\label{thm:finite_Neumann}
@@ -111,7 +111,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 		\| (I - G)^{-1} - (I + G + \cdots + G^k) \| \le \| (I - G)^{-1} \| \| G^{k + 1} \|
 	\end{align*}
 	となる．
-	よく知られているOldenburgerの定理「$\rho(G) < 1 \Leftrightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」を利用\footnote{すみません，いいわけです．ここは，線形代数の範囲とも言えず，証明(特に「$\rho(G) < 1 \Rightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」)にはジョルダン標準形を使用します．しかし最初から定義して証明するにも，ここ以外では一切使用しないあまりにもコスパが悪かったために結果のみ使用しました...}すると
+	よく知られているOldenburgerの定理「$\rho(G) < 1 \Leftrightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」を利用\footnote{すみません，いいわけです．ここは，線形代数の範囲とも言えず，証明(特に「$\rho(G) < 1 \Rightarrow G^k \rightarrow O, ~ (k \rightarrow \infty)$」)にはジョルダン標準形を使用します．しかし，最初から定義して証明するには，ここ以外では一切使用しない内容が多く，あまりにもコスパが悪かったため，結果のみ使用しました...}すると
 	\begin{align*}
 		\| (I - G)^{-1} - (I + G + \cdots + G^k) \| \rightarrow 0 ~ (k \rightarrow \infty)
 	\end{align*}
@@ -361,7 +361,8 @@ $\rho(| G |)$はどうなのか?っと疑問に思うので，関係性を示す
 もともと，定理\ref{thm:basic_linear_problem}や定理\ref{thm:element_wize}の$R$はなんでもよいものだったため，$R^{new}$を$R$とみなして，検証を考えます．
 (ちなみに，この作業をしなくても良いのですが，対角成分についてほんの少しだけ評価が良くなります．)
 
-そのうえ，次の定理(Fiedler-Pta\'akの定理の系)がいえます:
+そのうえ，次の定理(Fiedler-Pta\'akの定理の系)がいえます．
+
 \begin{Thm}\label{thm:fiedler}
 	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．
 	対角行列$D \in {\mathbb R}^{n \times n} $(対角成分以外はすべてゼロ)と非対角行列$E \in {\mathbb R}^{n \times n}$(対角成分はすべてゼロ)を:
@@ -416,7 +417,7 @@ $\rho(| G |)$はどうなのか?っと疑問に思うので，関係性を示す
 		\Leftrightarrow& M | x^* - \hat{x} | \le| D^{-1}R(b - A \hat{x}) |
 	\end{align*}	
 となります．
-そのうえ，「$M v > \vector{0}$となる正のベクトル$v > \vector{0}$が存在」していることから，「$M$が正則で，$M^{-1} \ge O$」であるために，左から$M^{-1}$をかけると
+そのうえ，「$M v > \vector{0}$となる正のベクトル$v > \vector{0}$が存在」していることから，「$M$が正則で，$M^{-1} \ge O$」が成り立つために，左から$M^{-1}$をかけると
 	\begin{align*}
 		 | x^* - \hat{x} | \le M^{-1} | D^{-1} R(b - A \hat{x}) |
 	\end{align*}
