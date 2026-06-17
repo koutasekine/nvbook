@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install missing fonts
+        run: tlmgr install libertinus-fonts
+
       - name: Build PDF
         run: |
           lualatex -interaction=nonstopmode book.tex
