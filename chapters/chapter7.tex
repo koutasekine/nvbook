@@ -1,4 +1,4 @@
-\chapter{無限次元非線形問題の解法のエッセンス～$A$が全単射の場合～}\label{sec:infinite_dimensional_nonlinear}
+\chapter{無限次元非線形問題の解法のエッセンス～\texorpdfstring{$A$}{A}が全単射の場合～}\label{sec:infinite_dimensional_nonlinear}
 本章では，$X, Y$をBanach空間とし，線形作用素$A \in {\mathcal B}(X, Y)$と非線形作用素$N: X \rightarrow Y$とし
 \begin{align*}
 	F(u) := A u - N(u)
@@ -29,7 +29,7 @@
 
 %
 %----------------------------------------------------------------------------------------------------------------------------------------------
-\section{$F'[\hat{u}]$の全単射性の確認方法}\label{sec:check_biject}
+\section{\texorpdfstring{$F'[\hat{u}]$}{F'[u-hat]}の全単射性の確認方法}\label{sec:check_biject}
 系\ref{Cor:Kantorovich}を利用するために，まず，$F'[u_N]$が全単射であることを確かめなければいけません．
 そのために，$A$が全単射であることを利用して
 \begin{align*}
@@ -102,7 +102,7 @@ $C_1$と$C_2$の具体的な計算方法は問題によって変わるため，�
 
 %
 %----------------------------------------------------------------------------------------------------------------------------------------------
-\section{系\ref{Cor:Kantorovich}の定数$\eta$の計算方法}
+\section{系\ref{Cor:Kantorovich}の定数\texorpdfstring{$\eta$}{eta}の計算方法}
 \ref{sec:check_biject}節により系\ref{Cor:Kantorovich}の$F'[\hat{u}]$の全単射性まで確認がとれました．
 次は，いよいよ系\ref{Cor:Kantorovich}の
 \begin{align*}
@@ -159,9 +159,11 @@ $C_1$と$C_2$の具体的な計算方法は問題によって変わるため，�
 \begin{align*}
 	\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{X}^2 =& \| \phi \|_{X}^2 =  \| P_N \phi \|_{X_N}^2 + \| (I - P_N) \phi \|_{X_c}^2 \\
 	=&  \| -T^{-1} B S^{-1} (I-P_N) A^{-1} F( u_N )  \|_{X_h}^2 + \| S^{-1} (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
-	\le& \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_c, Xh)}^2 \| (I-P_N) A^{-1} F( u_N )  \|_{X_c}^2 + \| S^{-1} \|_{{\mathcal B}(X_c)}^2 \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
+	\le& \| T^{-1} B S^{-1} \|_{{\mathcal B}(X_c, Xh)}^2 \| (I-P_N) A^{-1} F( u_N )  \|_{X_c}^2 \\
+	&\quad + \| S^{-1} \|_{{\mathcal B}(X_c)}^2 \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
 	\le& \left( 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 \right) \| S^{-1} \|_{{\mathcal B}(X_c)}^2 \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2 \\
-	\le& \left( \frac{1}{1 - (C_1 + C_2)} \right)^2 \left( 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 \right) \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2
+	\le& \left( \frac{1}{1 - (C_1 + C_2)} \right)^2 \left( 1 + \| T^{-1} B \|_{{\mathcal B}(X_c, X_N)}^2 \right) \\
+	&\quad \times \| (I-P_N) A^{-1} F( u_N ) \|_{X_c}^2
 \end{align*}
 となることから
 \begin{align*}
@@ -198,14 +200,15 @@ $F( u_N )$は問題によっては簡単に計算できますが，問題によ�
 となる．
 この効果は
 \begin{align*}
-	\left\| (I-P_N) A^{-1} \left( F( u_N ) - A P_N A^{-1} F( u_N ) \right) \right\|_{X_c} \le \left\| (I-P_N) A^{-1} \right\|_{{\mathcal B}(Y, X)} \left\| F( u_N ) - A P_N A^{-1} F( u_N ) \right\|_{Y}
+	&\left\| (I-P_N) A^{-1} \left( F( u_N ) - A P_N A^{-1} F( u_N ) \right) \right\|_{X_c} \\
+	&\le \left\| (I-P_N) A^{-1} \right\|_{{\mathcal B}(Y, X)} \left\| F( u_N ) - A P_N A^{-1} F( u_N ) \right\|_{Y}
 \end{align*}
 のようにノルムを分けて計算すると，ある意味$F( u_N )$の有限次元部分$P_N A^{-1} F( u_N )$を引っこ抜いて計算することになります．
 
 
 %
 %----------------------------------------------------------------------------------------------------------------------------------------------
-\section{系\ref{Cor:Kantorovich}の定数$K$の計算方法}
+\section{系\ref{Cor:Kantorovich}の定数\texorpdfstring{$K$}{K}の計算方法}
 前節により系\ref{Cor:Kantorovich}の定数$\eta$の計算までできました．
 これにより，閉球$\bar{B}(0, 2\eta )=\{ v \in X ~|~ \| v \|_{X} \le 2\eta \}$を作成できました．
 続いて系\ref{Cor:Kantorovich}の
