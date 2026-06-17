@@ -331,7 +331,7 @@ Banach空間の線形部分空間はBanach空間にはならず，完備性が�
 	であるとき，$M$は閉集合であるという．
 \end{defi}
 
-集合と位相で習った講義で習った一般的な位相空間$X$の部分集合$M$の閉集合の定義は補集合
+集合と位相の講義で習った一般的な位相空間$X$の部分集合$M$の閉集合の定義は補集合
 \begin{align*}
 	M^{c} := \{ x \in X ~ | ~ x \not\in M \}
 \end{align*}
@@ -365,7 +365,7 @@ $X$をBanach空間とし，$M$を$X$の線形部分空間とする．
 
 点列$(u_n)$を$M$の任意のCauchy列とする．
 $M$はBanach空間$X$の部分集合であることから，Banach空間$X$の完備性(定義\ref{def:App:Comp}と定義\ref{def:App:Banach})より，$M$の任意のCauchy列$(u_n)$の極限$u$が$X$内に存在する．
-さらに，$M$が$X$の閉部分空間であることから，閉集合の定義\ref{def:App:CloseSet}より任意の点列の極限は$M$に属することから，Cauchy列$(u_n)$の極限$u$は$M$にも属する．
+さらに，$M$が$X$の閉部分空間であることから，閉集合の定義\ref{def:App:CloseSet}より任意の点列の極限は$M$に属するため，Cauchy列$(u_n)$の極限$u$は$M$にも属する．
 よって，ノルム空間$M$の任意のCauchy列$(u_n)$の極限$u$が$M$に属するため，$M$はBanach空間となる．\\
 
 \noindent 「$M\mbox{が}X\mbox{の閉部分空間} ~ \Leftarrow ~ M\mbox{が}X\mbox{のノルムでBanach空間}$の証明」
@@ -806,7 +806,7 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 
 本節の主役である集合${\mathcal B}(X, Y)$に着目する理由は，${\mathcal B}(X, Y)$に適切なノルムを入れるとBanach空間になるからです．
 ここでは，まず，${\mathcal B}(X, Y)$に適切なノルムを入れ，ノルム空間になることを示した上で，Banach空間になることを証明します．
-\ref{sec:Banach_space}章の山場であるため，最初は証明を追うことができないかもしれません．
+\ref{sec:Banach_space}節の山場であるため，最初は証明を追うことができないかもしれません．
 証明を飛ばして結果だけ見る場合でも，証明後に掲載しているNeumann級数に関する定理は数値計算の品質保証で度々でてくるため，必ず把握しておいて下さい．
 
 \begin{Thm}[${\mathcal B}(X, Y)$はBanach空間]\label{thm:set_bound_linear_operator}
@@ -884,7 +884,7 @@ Banach空間であることを証明するには${\mathcal B}(X, Y)$の任意の
 
 続いて，定義した極限の候補$\tilde{A}$が${\mathcal B}(X, Y)$に属しているか確認する．
 $\tilde{A}$が有界な線形作用素であり，かつ${\mathcal D}(\tilde{A}) = X$であることを示せばよい．
-${\mathcal B}(X, Y)$の任意のCauchy列Cauchy列$( A_n )$の元$A_n$は線形作用素であるため，線形作用素の定義\ref{def:linearoperator}より任意の$\alpha, \beta \in {\mathbb K}$と$u, v \in X$について
+${\mathcal B}(X, Y)$の任意のCauchy列$( A_n )$の元$A_n$は線形作用素であるため，線形作用素の定義\ref{def:linearoperator}より任意の$\alpha, \beta \in {\mathbb K}$と$u, v \in X$について
 \begin{align*}
 A_n (\alpha u + \beta v) = \alpha A_n u + \beta A_n v
 \end{align*}
@@ -942,7 +942,7 @@ A_n u \rightarrow \tilde{A} u, ~ (n \rightarrow \infty)
 \qed
 \end{Proof}
 
-これで，\ref{sec:Banach_space}章の山場は越えました．
+これで，\ref{sec:Banach_space}節の山場は越えました．
 続いて，Banach空間${\mathcal B}(X,Y)$のノルムに関するよく使われる性質を2つほど紹介しておきます．
 紹介する2つの性質はほぼ当たり前なので，証明は冗長に感じるかもしれません．
 
