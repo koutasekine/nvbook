@@ -1317,7 +1317,7 @@ g'[v] = \alpha f_1'[v] + \beta f_2'[v]
 \begin{Thm}[Fr\'echet微分の連鎖律]\label{thm:frechet_chain}
 $X, Y, Z$をBanach空間とする．
 開部分集合を$U_1 \subset X$とし，定義域を${\mathcal D}(f_1) = U_1$とする$U_1$から$Y$への作用素$f_1$が，$v \in U_1$でFr\'echet微分可能とする．
-また，と$U_2 \subset {\mathcal R}(f_1) \subset Y$とし，定義域を${\mathcal D}(f_2) = U_2$とする$U_2$から$Z$への作用素$f_2$が，$f_1(v) \in U_2 \subset {\mathcal R}(f_1)$でFr\'echet微分可能とする．
+また，$U_2 \subset {\mathcal R}(f_1) \subset Y$とし，定義域を${\mathcal D}(f_2) = U_2$とする$U_2$から$Z$への作用素$f_2$が，$f_1(v) \in U_2 \subset {\mathcal R}(f_1)$でFr\'echet微分可能とする．
 各々のFr\'echet微分を$f_1'[v]$と$f_2'[f_1(v)]$と表記する．
 ${\mathcal D}(g)  = U_1$とする$U_1$から$Z$への作用素$g$を
 \begin{align*}
@@ -1434,7 +1434,7 @@ A_i \cap A_j, ~ i \neq j ~~  ~ \mbox{が空集合}
 S = \bigcup_{i = 1}^{ \infty } A_i
 \end{align*}
 とする．
-$X$をBanach空間とし，$f$を定義域が$S$となる$S$から$X$への作用素が各$A_i$上でBanach空間$X$としての定数をとるとき，$f$を単純関数と呼ぶ．
+$X$をBanach空間とし，定義域が$S$である$S$から$X$への作用素$f$が各$A_i$上でBanach空間$X$としての定数をとるとき，$f$を単純関数と呼ぶ．
 \end{defi}
 
 続いて，単純関数のBochner積分を定義します．
@@ -1475,7 +1475,7 @@ $\mu(A_i)$は集合$A_i$の測度です．
 を満たします．
 (上式の右辺になればLebesgue積分で十分ですね．)
 
-つづいては一般的な関数のBochner積分の定義を定義します:
+つづいては一般的な関数のBochner積分を定義します:
 
 \begin{defi}[Bochner積分]\label{def:bochner_integral}
 $(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
@@ -1497,7 +1497,7 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 \end{defi}
 
 これでBochner積分が定義できました．
-続いて，Bochner積分の線形性や有界作用素との関係など本書で使う性質を証明を付けずに紹介します．
+続いて，Bochner積分の線形性や有界作用素との関係など本書で使う性質を証明なしで紹介します．
 
 \begin{Thm}[Bochner積分のノルム評価]
 	$(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
@@ -1627,7 +1627,7 @@ $f'[v] \in {\mathcal B}(X, Y)$が$h \in Y$で連続とは
 \end{Thm}
 
 \begin{Proof}
-	$f'$が$[a, b]$から${\mathcal B}({\mathbb R},X)$で連続であるため定理\ref{thm:Bochnerable}から$f'[s], ~ s \in [a, b]$でBochner可積分ある．
+	$f'$が$[a, b]$から${\mathcal B}({\mathbb R},X)$で連続であるため定理\ref{thm:Bochnerable}から$f'[s], ~ s \in [a, b]$でBochner可積分である．
 	その上，$g$を
 	\begin{align*}
 		g(t) = \int_{a}^{t} f'[s] ds
@@ -1663,7 +1663,7 @@ $f'[v] \in {\mathcal B}(X, Y)$が$h \in Y$で連続とは
 	が成り立つ．
 	ゆえに$t = b$とすると
 	\begin{align*}
-		\int_{a}^{b} f'[s] ds = f(a) - f(b)
+		\int_{a}^{b} f'[s] ds = f(b) - f(a)
 	\end{align*}	
 	となる．
 
@@ -1741,7 +1741,7 @@ $W \subset U$から作用素$F:U \rightarrow Y$が任意の$v \in W$において
 $X$を係数体が${\mathbb K}$のBanach空間とする．
 $M$は空でない閉集合で$M \subset X$を満たすとする．
 $A$を$M$から$M$への写像とする．
-$x \in M$がAの不動点であるとは，$x$が
+$x \in M$が$A$の不動点であるとは，$x$が
 \begin{align*}
 x = Ax
 \end{align*}
