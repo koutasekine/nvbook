@@ -48,8 +48,10 @@
 そのうえ，$X$は$X_N$と$X_c$の位相的直和になることから，$X_N \cap X_c = \{ 0 \}$から$P_N |_{X_c} = 0$となるため$B = -P_N A^{-1} F'[u_N] |_{X_c}$となります．
 \eqref{def:TBCD}の$T, C, D$も同様に計算すると
 \begin{align*}
-	T :=& P_N A^{-1} F'[u_N] |_{X_N} : X_N \rightarrow X_N, & B :=& - P_N A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_N \\
-	C :=& -(I - P_N) A^{-1} N'[u_N] |_{X_N}: X_N \rightarrow X_c, & D :=& I_{X_c} - (I - P_N) A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_c
+	T :=& P_N A^{-1} F'[u_N] |_{X_N} : X_N \rightarrow X_N, \\
+	B :=& - P_N A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_N, \\
+	C :=& -(I - P_N) A^{-1} N'[u_N] |_{X_N}: X_N \rightarrow X_c, \\
+	D :=& I_{X_c} - (I - P_N) A^{-1} N'[u_N] |_{X_c} : X_c \rightarrow X_c
 \end{align*}
 となります．
 ここで$(I - P_N)|_{X_c}$は$X_c$上の恒等作用素$I_{X_c}$となります．
@@ -73,7 +75,8 @@ $X_c$上の作用素$S$に対してNeumann級数の定理\ref{thm:nuemann_ser}�
 そこで，$\| I_{X_c} - S \|_{{\mathcal B}(X_c)}$の評価が重要になります．
 これを変形すると
 \begin{align*}
-	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} = \| I_{X_c} - (D - CT^{-1}B) \|_{{\mathcal B}(X_c)} = \| (I - P_N) A^{-1} N'[u_N] |_{X_c} + CT^{-1}B \|_{{\mathcal B}(X_c)}
+	\| I_{X_c} - S \|_{{\mathcal B}(X_c)} =& \| I_{X_c} - (D - CT^{-1}B) \|_{{\mathcal B}(X_c)} \\
+	=& \| (I - P_N) A^{-1} N'[u_N] |_{X_c} + CT^{-1}B \|_{{\mathcal B}(X_c)}
 \end{align*}
 となります．
 そこで，
@@ -124,6 +127,7 @@ $C_1$と$C_2$の具体的な計算方法は問題によって変わるため，�
 \ref{sec:check_biject}節では$T$と$S$の全単射性を既に確認しており，定理\ref{thm:infinite_Gauss}を利用していましたね．
 同様に，定理\ref{thm:infinite_Gauss}を利用すると
 \begin{align*}
+	\scalebox{0.93}{$\displaystyle
 	\left( \begin{array}{c}
 		P_N \phi \\
 		(I - P_N) \phi
@@ -134,20 +138,22 @@ $C_1$と$C_2$の具体的な計算方法は問題によって変わるため，�
 		P_N A^{-1} F( u_N ) \\
 		(I-P_N) A^{-1} F( u_N )
 	\end{array} \right)
+	$}
 \end{align*}
 を得ることができます．
 さらに，仮定より$P_N A^{-1} F( u_N ) = 0$となるため，
 \begin{align*}
+	\scalebox{0.93}{$\displaystyle
 	\left( \begin{array}{c}
 		P_N \phi \\
 		(I - P_N) \phi
-	\end{array} \right) =& \left( \begin{array}{cc}
+	\end{array} \right)$} =& \scalebox{0.93}{$\displaystyle\left( \begin{array}{cc}
 		T^{-1} + T^{-1} B S^{-1} C T^{-1} & -T^{-1} B S^{-1} \\
 		-S^{-1} C T^{-1} & S^{-1}
 	\end{array} \right) \left( \begin{array}{c}
 		0 \\
 		(I-P_N) A^{-1} F( u_N )
-	\end{array} \right) \\
+	\end{array} \right)$} \\
 	=& \left( \begin{array}{c}
 		-T^{-1} B S^{-1} (I-P_N) A^{-1} F( u_N ) \\
 		 S^{-1} (I-P_N) A^{-1} F( u_N )

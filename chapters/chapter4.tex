@@ -312,9 +312,12 @@ Gershgorinの定理(定理\ref{thm:gerschgorin})と補題\ref{lem:trans_eigenval
 		| Q | \vector{e} =& | (D^{-1} Y B \tilde{X})^{-1} D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
 		=& | ( I - G )^{-1} D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
 		=& | (I + G + G^2 + \cdots ) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) | \vector{e} \\
-		=& \left| \left( \sum_{i = 0}^N G^i \right) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} )  +  G^{N+1} (I + G + G^2 + \cdots ) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
-		\le& \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| \left| (I + G + G^2 + \cdots ) \right| \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
-		\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right|  (I + | G | + | G |^2 + \cdots ) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
+		=& \left| \left( \sum_{i = 0}^N G^i \right) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right. \\
+		&\qquad \left. + G^{N+1} (I + G + G^2 + \cdots ) D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le& \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		&\quad + \left|  G^{N+1} \right| \left| (I + G + G^2 + \cdots ) \right| \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
+		&\quad + \left|  G^{N+1} \right|  (I + | G | + | G |^2 + \cdots ) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
 	\end{align*}
 	となる．
 	$\rho(| G | ) < 1$からNeumann級数の定理より$I + | G | + | G |^2 + \cdots = (I - |G|)^{-1} = M^{-1}$となるため

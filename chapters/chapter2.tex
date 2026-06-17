@@ -215,7 +215,7 @@ $\vector{0} \in {\mathbb R}^n$, $O \in {\mathbb R}^{n \times m}$ ~ $I \in {\math
 	// 区間行列積 [Al, Au] * [Bl, Bu] => [Cl, Cu]を作成
 	#include <fenv.h>
 	[Cl, Cu] = interval_matmul(Al, Au, Bl, Bu)
-	  fesetround(FE_UPWARD);             //上向き丸めモードへの変更
+	  fesetround(FE_UPWARD);   //上向き丸めモードへ変更
 	    Am = (Al + Au)/2;
 	    Ar = Am - Al;
 	    Bm = (Bl + Bu)/2;
@@ -224,7 +224,7 @@ $\vector{0} \in {\mathbb R}^n$, $O \in {\mathbb R}^{n \times m}$ ~ $I \in {\math
 	    Cr = abs(Am)*Br + Ar*abs(Bm) + Ar*Br;
 	    Cu = Am*Bm + Cr;
 
-	  fesetround(FE_DOWNWARD);           //下向き丸めモードへの変更
+	  fesetround(FE_DOWNWARD); //下向き丸めモードへ変更
 	    Cl = Am*Bm - Cr;
 
 	  fesetround(FE_TONEAREST);  // 最近点丸めにもどす

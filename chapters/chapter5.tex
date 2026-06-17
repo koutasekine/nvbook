@@ -987,7 +987,8 @@ $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．
 となる．
 そのうえ，$A$も$B$も線形作用素であることから，任意の$u, v \in X$と任意の$\alpha, \beta \in {\mathbb K}$に対して
 \begin{align*}
-AB ( \alpha u + \beta v ) = A ( B \alpha u + B \beta v ) = A ( \alpha B u + \beta B v ) = A \alpha B u + A \beta B v = \alpha A B u + \beta A B v
+AB ( \alpha u + \beta v ) =& A ( B \alpha u + B \beta v ) = A ( \alpha B u + \beta B v ) \\
+=& A \alpha B u + A \beta B v = \alpha A B u + \beta A B v
 \end{align*}
 となるため，合成作用素$AB$は定義域が$X$全体となる線形作用素である．
 また，$A \in {\mathcal B}(Y, Z)$, $B \in {\mathcal B}(X, Y)$であるため，任意の$u \in X$について，定理\ref{thm:linear_operator_norm_prop1}から
@@ -1608,14 +1609,14 @@ $X$をBanach空間とする．
 $f$を閉区間$[a, b]$から$X$への$[a,b]$上で連続な関数とし，そのうえ，任意の$s \in (a, b) $においてFr\'echet微分可能とする．
 $f$の$s \in (a, b)$におけるFr\'echet微分を$f'[s]$とし，$f': [a, b] \rightarrow {\mathcal B}({\mathbb R},X)$で連続
 \footnote{ 
-$f'[v] \in {\mathcal B}(X, Y)$が$h \in Y$で連続とは
+$f'[v] \in {\mathcal B}(X, Y)$が$h \in X$で連続とは
 \[
-	\forall \varepsilon > 0, ~ \exists > 0, ~ \| h_n - h \|_X < \delta ~ \mbox{となる} ~ \forall h_n \in X ~ \mbox{に対して} ~ \| f'[v] h_n - f'[v] h \|_{Y} < \varepsilon
+	\forall \varepsilon > 0, ~ \exists \delta > 0, ~ \| h_n - h \|_X < \delta ~ \mbox{となる} ~ \forall h_n \in X ~ \mbox{に対して} ~ \| f'[v] h_n - f'[v] h \|_{Y} < \varepsilon
 \]
 が成立することです．
 その一方で，$f' : [a, b] \rightarrow {\mathcal B}(X, Y)$が$h \in [a,b]$で連続とは
 \[
-	\forall \varepsilon > 0, ~ \exists > 0, ~ | h_n - h | < \delta ~ \mbox{となる} ~ \forall h_n \in {\mathbb R} ~ \mbox{に対して} ~ \| f'[h_n] - f'[h]  \|_{{\mathcal B}(X,Y)} < \varepsilon
+	\forall \varepsilon > 0, ~ \exists \delta > 0, ~ | h_n - h | < \delta ~ \mbox{となる} ~ \forall h_n \in [a,b] ~ \mbox{に対して} ~ \| f'[h_n] - f'[h]  \|_{{\mathcal B}(X,Y)} < \varepsilon
 \]
 が成立することです．
 }
@@ -2074,7 +2075,8 @@ $X, Y$をBanach空間とし，非線形方程式
 	\left\| {\mathcal T}(w_1) - {\mathcal T}(w_2) \right\|_{X} =& \left\| w_1 - w_2 - R \left( F(\hat{u} + w_1) - F(\hat{u} + w_2) \right) \right\|_{X} \\
 		=& \left\| (w_1 - w_2) - R  \int_0^1  F'[\hat{u} + (1-t)w_2 + t w_1] (w_1 - w_2)dt \right\|_{X} \\
 		\le& \int_0^1 \left\| I - R F'[\hat{u} + (1-t)w_2 + t w_1] \right\|_{{\mathcal B}(X)} dt \| w_1 - w_2 \|_{X} \\
-		\le& \int_0^1 \left( \left\| R \left( F'[\hat{u}] -  F'[\hat{u} + (1-t)w_2 + t w_1] \right) \right\|_{{\mathcal B}(X)} + \delta \right) dt \| w_1 - w_2 \|_{X}
+		\le& \int_0^1 \left( \left\| R \left( F'[\hat{u}] -  F'[\hat{u} + (1-t)w_2 + t w_1] \right) \right\|_{{\mathcal B}(X)} + \delta \right) dt \\
+		&\quad \cdot \| w_1 - w_2 \|_{X}
 	\end{align*}
 	となる．
 	任意の$w_1, w_2 \in \bar{B}(0, 2\eta/(1 - \delta) )$と$0 \le t \le 1$に対し，$\| (1-t)w_2 + t w_1 \|_{X} \le (1-t) \| w_2 \|_{X} + t \| w_1 \|_{X} \le 2\eta/(1-\delta)$となるため，

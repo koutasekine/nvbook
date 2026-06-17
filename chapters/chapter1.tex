@@ -223,7 +223,9 @@ IEEE 754 標準には，singleとdoubleというフォーマットがありま�
 singleは32 bitの長さで近似して保持し，doubleは64 bitの長さで近似して保持します．
 詳細は以下の規格書をみてください:
 
-{\begin{center} \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4610935} \end{center}}
+\begin{center}
+{\small\url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4610935}}
+\end{center}
 
 本章では，IEEE 754 規格の簡単な紹介と，品質保証に必要となる丸め変更について説明します．
 前述したとおりIEEE 754 規格では\textit{single}と\textit{double}という$2$進数の浮動小数点数のフォーマット
@@ -233,9 +235,11 @@ singleは32 bitの長さで近似して保持し，doubleは64 bitの長さで�
 が規格化されています．
 ここで，$s, e, m$はそれぞれ
 
-\noindent \hspace{10mm} a) 符号ビット $s$ : $1$ bit ($0$ あるいは $1$) \\
-\noindent \hspace{10mm} b) 指数部$e$ : $e_{\min} \le e \le e_{\max}$となる整数 \\
-\noindent \hspace{10mm} c) 仮数部$m$ : 正規化された形式 $d_0.d_1 d_2 \cdots d_{p-1}$で表現される．ただし，$d_i$は$0$ or $1$.\\
+\begin{enumerate}[label=\alph*), leftmargin=15mm, topsep=2pt, itemsep=0pt, parsep=0pt]
+\item 符号ビット $s$ : $1$ bit ($0$ あるいは $1$)
+\item 指数部$e$ : $e_{\min} \le e \le e_{\max}$となる整数
+\item 仮数部$m$ : 正規化された形式 $d_0.d_1 d_2 \cdots d_{p-1}$で表現される．ただし，$d_i$は$0$ or $1$.
+\end{enumerate}
 \noindent です．
 $e_{\max}, e_{\min}, p$は\textit{single}と\textit{double}で変化し，表\ref{3:table_val}のように定められています(ただし，$e_{\min} := 1 - e_{\max}$です)．
 
@@ -256,7 +260,7 @@ $e_{\max}$     & 127   &    1023 \\   \hline
 
 \begin{figure}[htb]
  \begin{center}
-  \includegraphics[width=150mm]{figs/3_fig_float.eps}
+  \includegraphics[width=\linewidth]{figs/3_fig_float.eps}
  \end{center}
   \caption{\textit{Single}の場合の表現方法}
  \label{3:fig_float}
@@ -286,9 +290,11 @@ ${\mathbb{F}}$をIEEE 754 規格で定義された浮動小数点数の集合と
 ここで注意点として，入力や出力，初等関数$\sin$などの丸めに関しては定義されていないので注意してください．
 実際に，$\circ \in \{ +, -, \times, /  \}$としたとき，以下の例えば3つの丸めモードがあります(ちなみに，2008年に制定されたIEEE 754 規格では全部で5つの丸めモードがあります．):
 
-\noindent \hspace{10mm} a) 最近点丸め: ~ $\tilde{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，最も近い浮動小数点数に丸める\\
-\noindent \hspace{10mm} b) 上向き丸め: ~ $\overline{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，inf$\{x\ \in \ \F\ |\ x \geq a \circ b \}$ \\
-\noindent \hspace{10mm} c) 下向き丸め: ~ $\underline{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，sup$\{x\ \in \ \F\ |\ x \leq a \circ b\}$ \\
+\begin{enumerate}[label=\alph*), leftmargin=8mm, topsep=2pt, itemsep=0pt, parsep=0pt]
+\item 最近点丸め: ~ $\tilde{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，最も近い浮動小数点数に丸める
+\item 上向き丸め: ~ $\overline{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，inf$\{x\ \in \ \F\ |\ x \geq a \circ b \}$
+\item 下向き丸め: ~ $\underline{\circ} : {\mathbb F} \times {\mathbb F} \rightarrow {\mathbb F}$とし，sup$\{x\ \in \ \F\ |\ x \leq a \circ b\}$
+\end{enumerate}
 
 例えば，C99準拠のC言語コンパイラではfenv.hを使用することで，丸めモードの変更を行うfesetround関数が利用できます．
 ただし，コンパイラの最適化により計算順序が変更されたり，IEEE 754 標準に準拠しない演算を行われ，意図せずに精度保証付き数値計算として成立しなくなる場合があります．
@@ -415,10 +421,10 @@ IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモ
 	#include <fenv.h>
 	#include <math.h>
 
-	fesetround(FE_UPWARD);       //　これ以降の四則演算を上向き丸めモードへの変更	
-	fesetround(FE_DOWNWARD);     // これ以降の四則演算を下向き丸めモードへの変更
-	fesetround(FE_TONEAREST);    // これ以降の四則演算を最近点丸めモードへの変更
-\end{verbatim} 
+	fesetround(FE_UPWARD);    // 上向き丸めモードへ変更
+	fesetround(FE_DOWNWARD);  // 下向き丸めモードへ変更
+	fesetround(FE_TONEAREST); // 最近点丸めモードへ変更
+\end{verbatim}
 
 \vspace{5mm}
 
@@ -562,10 +568,10 @@ $a_l, a_u, b_l, b_u \in {\mathbb F}$としたとき，以下として機械区�
 \begin{verbatim}
 	#include <fenv.h>
 
-	fesetround(FE_UPWARD);       //　これ以降の四則演算を上向き丸めモードへの変更	
-	fesetround(FE_DOWNWARD);     // これ以降の四則演算を下向き丸めモードへの変更
-	fesetround(FE_TONEAREST);    // これ以降の四則演算を最近点丸めモードへの変更
-\end{verbatim} 
+	fesetround(FE_UPWARD);    // 上向き丸めモードへ変更
+	fesetround(FE_DOWNWARD);  // 下向き丸めモードへ変更
+	fesetround(FE_TONEAREST); // 最近点丸めモードへ変更
+\end{verbatim}
 
 \vspace{5mm}
 
@@ -729,10 +735,10 @@ $a, b, c, c_l, c_u \in {\mathbb F}$とする．
 
 \begin{verbatim}
 	#include <fenv.h>
-	fesetround(FE_UPWARD);             //上向き丸めモードへの変更
-	C_u=A*B;                           //上向き丸めで行列積の計算
-	fesetround(FE_DOWNWARD);           //下向き丸めモードへの変更
-	C_d=A*B;                           //下向き丸めで行列積の計算
+	fesetround(FE_UPWARD);   //上向き丸めモードへ変更
+	C_u=A*B;                 //上向き丸めで行列積
+	fesetround(FE_DOWNWARD); //下向き丸めモードへ変更
+	C_d=A*B;                 //下向き丸めで行列積
 \end{verbatim}
 
 行列積$A*B$に最適化されたBLAS(例えばdgemmなど)を用いることで非常に高速に点行列同士の積の包含を得ることができます．
@@ -1021,16 +1027,19 @@ A\left( \frac{\pi}{4} \right) \left( A\left( \frac{\pi}{4} \right)x \right) = \l
 	の最小値と最大値がわかればよい．
 	そのうえで，
 	\begin{align*}
-		a_m b_m - | a_m | b_r - a_r | b_m | - a_r b_r \le \begin{array}{c}
+		&a_m b_m - | a_m | b_r - a_r | b_m | - a_r b_r \\
+		&\le \begin{array}[t]{@{}c@{}}
 			a_m b_m - a_m b_r - a_r b_m + a_r b_r \\
 			a_m b_m + a_m b_r - a_r b_m - a_r b_r \\
 			a_m b_m - a_m b_r + a_r b_m - a_r b_r \\
 			a_m b_m + a_m b_r + a_r b_m + a_r b_r
-		\end{array} \le a_m b_m + | a_m | b_r + a_r | b_m | + a_r b_r
+		\end{array} \\
+		&\le a_m b_m + | a_m | b_r + a_r | b_m | + a_r b_r
 	\end{align*}
 	となるため，
 	\begin{align*}
-		\langle a_m, a_r \rangle \cdot \langle b_m, b_r \rangle \subset& [ a_m b_m - | a_m | b_r - a_r | b_m | - a_r b_r, ~ a_m b_m + | a_m | b_r + a_r | b_m | + a_r b_r ] \\
+		\langle a_m, a_r \rangle \cdot \langle b_m, b_r \rangle \subset& [ a_m b_m - | a_m | b_r - a_r | b_m | - a_r b_r, \\
+		& \quad a_m b_m + | a_m | b_r + a_r | b_m | + a_r b_r ] \\
 		=& \langle a_m b_m, ~ | a_m | b_r + a_r | b_m | + a_r b_r \rangle
 	\end{align*}	
 
