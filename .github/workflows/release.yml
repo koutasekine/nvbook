@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
@@ -28,11 +29,11 @@ jobs:
             tlmgr update --self
             tlmgr install libertinus libertinus-fonts
             luaotfload-tool --force --update
-            kpsewhich HaranoAjiMincho-Regular.otf || true
-            kpsewhich LibertinusSerif-Regular.otf || true
-            kpsewhich LibertinusMath-Regular.otf || true
-            luaotfload-tool --find="Libertinus Serif" || true
-            luaotfload-tool --find="Libertinus Math" || true
+            kpsewhich HaranoAjiMincho-Regular.otf
+            kpsewhich LibertinusSerif-Regular.otf
+            kpsewhich LibertinusMath-Regular.otf
+            luaotfload-tool --find="Libertinus Serif"
+            luaotfload-tool --find="Libertinus Math"
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
