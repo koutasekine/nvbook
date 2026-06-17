@@ -21,12 +21,13 @@ jobs:
         with:
           root_file: book.tex
           latexmk_use_lualatex: true
-          texlive_version: 2026
           os: debian
-          extra_system_packages: "fonts-libertinus"
           pre_compile: |
+            tlmgr install libertinus libertinus-fonts || tlmgr install libertinus-fonts
             luaotfload-tool --force --update
             kpsewhich HaranoAjiMincho-Regular.otf || true
+            kpsewhich LibertinusSerif-Regular.otf || true
+            kpsewhich LibertinusMath-Regular.otf || true
             luaotfload-tool --find="Libertinus Serif" || true
             luaotfload-tool --find="Libertinus Math" || true
 
