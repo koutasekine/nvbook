@@ -163,8 +163,8 @@ u_n - u_m \rightarrow 0, ~ (n,m \rightarrow \infty)
 もちろん，ノルム空間$X$の収束する点列$(u_n)$ならば，収束しそうな点列であるCauchy列になることは簡単にいえます．
 実際に，収束する点列$(u_n) \subset X$は極限$u \in X$を持ちます．その上，
 \begin{align*}
-& &\| u_n - u_m \| = \| u_n - u + u - u_m \| \\
-&\le& \| u_n - u \| + \| u - u_m \| \rightarrow 0, ~ (n, m \rightarrow \infty).
+&\| u_n - u_m \| = \| u_n - u + u - u_m \| \\
+&\le \| u_n - u \| + \| u - u_m \| \rightarrow 0, ~ (n, m \rightarrow \infty).
 \end{align*}
 から，収束する点列$(u_n) \subset X$ならば，Cauchy列になります．
 
@@ -207,14 +207,14 @@ $X$をノルム空間とする．
 \begin{Proof}
 任意の$u, v \in X$について
 \begin{align*}
- \| u \| &=& \| u - v + v \| \le \| u - v \| + \| v \| \\
- \| v \| &=& \| v - u + u \| \le \| v - u \| + \| u \| = \| u - v \| + \| u \| 
+ \| u \| &= \| u - v + v \| \le \| u - v \| + \| v \| \\
+ \| v \| &= \| v - u + u \| \le \| v - u \| + \| u \| = \| u - v \| + \| u \| 
 \end{align*}
 となる．
 よって
 \begin{align*}
- \| u \| - \| v \| &\le& \| u - v \| \\
- \| v \| - \| u \|  &\le&  \| u - v \| 
+ \| u \| - \| v \| &\le \| u - v \| \\
+ \| v \| - \| u \|  &\le  \| u - v \| 
 \end{align*}
 となるため，
 \begin{align*}
@@ -851,10 +851,10 @@ $\| A \|_{{\mathcal B}(X,Y)}$がノルムの定義\ref{def:App:norm}を満たす
 
 最後に任意の$A, B \in {\mathcal B}(X, Y)$について
 \begin{align*}
-\|  A + B \|_{{\mathcal B}(X,Y)} &=& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| (A + B) u \|_{Y} }{ \| u \|_{X} } = \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au + Bu \|_{Y} }{ \| u \|_{X} } \\
-&\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} + \| Bu \|_{Y} }{ \| u \|_{X} } \\
-&\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} } + \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Bu \|_{Y} }{ \| u \|_{X} } \\
-&=& \|  A \|_{{\mathcal B}(X,Y)} + \|  B \|_{{\mathcal B}(X,Y)}
+\|  A + B \|_{{\mathcal B}(X,Y)} &= \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| (A + B) u \|_{Y} }{ \| u \|_{X} } = \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au + Bu \|_{Y} }{ \| u \|_{X} } \\
+&\le \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} + \| Bu \|_{Y} }{ \| u \|_{X} } \\
+&\le \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} } + \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Bu \|_{Y} }{ \| u \|_{X} } \\
+&= \|  A \|_{{\mathcal B}(X,Y)} + \|  B \|_{{\mathcal B}(X,Y)}
 \end{align*}
 となり，ノルムの定義\ref{def:App:norm} (iv)も示されたため，${\mathcal B}(X, Y)$はノルム空間である．\\
 
@@ -873,9 +873,9 @@ Banach空間であることを証明するには${\mathcal B}(X, Y)$の任意の
 となる．
 任意の$u \in X \setminus\{ 0 \}$に対して，点列$(A_n u) \subset Y$は
 \begin{align*}
-\|  A_n u  - A_m u \|_{Y} &=& \frac{ \|  (A_n  - A_m) u \|_{Y} }{ \| u \|_{X} } \| u \|_{X} \\
-&\le& \sup_{\phi \in X \setminus \{ 0 \}} \frac{ \|  (A_n  - A_m) \phi \|_{Y} }{ \| \phi \|_{X} } \| u \|_X  \\
-&=& \| A_n - A_m \|_{{\mathcal B}(X,Y)} \| u \|_{X} \rightarrow 0, ~ (n, m \rightarrow \infty)
+\|  A_n u  - A_m u \|_{Y} &= \frac{ \|  (A_n  - A_m) u \|_{Y} }{ \| u \|_{X} } \| u \|_{X} \\
+&\le \sup_{\phi \in X \setminus \{ 0 \}} \frac{ \|  (A_n  - A_m) \phi \|_{Y} }{ \| \phi \|_{X} } \| u \|_X  \\
+&= \| A_n - A_m \|_{{\mathcal B}(X,Y)} \| u \|_{X} \rightarrow 0, ~ (n, m \rightarrow \infty)
 \end{align*}
 を持つため，点列$(A_n u) \subset Y$はCauchy列になる．
 その上，$Y$はBanach空間であるため，$Y$の任意のCauchy列は収束し，$Y$内に極限$\tilde{A} u$となるような$X$から$Y$への作用素$\tilde{A}$が存在する．
@@ -998,9 +998,9 @@ AB ( \alpha u + \beta v ) = A ( B \alpha u + B \beta v ) = A ( \alpha B u + \bet
 よって$AB$は${\mathcal B}(X, Z)$に属する．
 その上，
 \begin{align*}
-\| A B \|_{{\mathcal B}(X, Z)} &=& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A B u \|_{Z} }{ \| u \|_{X} } \\
-&\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)} \| u \|_{X} }{ \| u \|_{X} } \\
-&=& \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)}
+\| A B \|_{{\mathcal B}(X, Z)} &= \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A B u \|_{Z} }{ \| u \|_{X} } \\
+&\le \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)} \| u \|_{X} }{ \| u \|_{X} } \\
+&= \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)}
 \end{align*}
 
 \qed
@@ -1094,9 +1094,9 @@ $X$はBanach空間であり，$B, S_n \in {\mathcal B}(X)$であるため，定�
 となるため，極限$B S$を${\mathcal B}(X)$内にもつ．
 一方で，
 \begin{align*}
-  B S_n &=& \left( I - ( I - B ) \right) S_n = S_n - (I - B) S_n \\
-  &=& \sum_{i=0}^n ( I - B)^i - \sum_{i=1}^{n+1} ( I - B)^i  \\
-  &=& I - ( I - B)^{n + 1}
+  B S_n &= \left( I - ( I - B ) \right) S_n = S_n - (I - B) S_n \\
+  &= \sum_{i=0}^n ( I - B)^i - \sum_{i=1}^{n+1} ( I - B)^i  \\
+  &= I - ( I - B)^{n + 1}
 \end{align*}
 となり，定理の仮定より$\| I - B \|_{{\mathcal B}(X)} < 1$を持つため
 \begin{align*}
@@ -1293,10 +1293,10 @@ g'[v] = \alpha f_1'[v] + \beta f_2'[v]
 を持つ．
 
 \begin{align*}
-g(v + h) &=& \alpha f_1(v + h) + \beta f_2( v + h ) \\
-&=& \alpha \left( f_1(v) + f_1'[v] h + o_{f_1}( h ) \right) + \beta \left(  f_2(v) + f_2'[v] h + o_{f_2}( h ) \right) \\
-&=& \left( \alpha f_1(v) + \beta f_2(v) \right) + \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right) \\
-&=& g(v) +  \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right)
+g(v + h) &= \alpha f_1(v + h) + \beta f_2( v + h ) \\
+&= \alpha \left( f_1(v) + f_1'[v] h + o_{f_1}( h ) \right) + \beta \left(  f_2(v) + f_2'[v] h + o_{f_2}( h ) \right) \\
+&= \left( \alpha f_1(v) + \beta f_2(v) \right) + \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right) \\
+&= g(v) +  \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right)
 \end{align*}
 となる．
 その上，
@@ -1357,28 +1357,28 @@ g'[v] = f_2'[ f_1( v ) ] f_1'[ v ]
 となる．
 $h_2 =  f_1'[v] h_1 + o_1( h_1 )$とおくと
 \begin{align*}
-  f_2( f_1( v + h_1 ) ) &=& f_2( f_1(v) + f_1'[v] h_1 + o_1( h_1 ) ) \\
-&=& f_2( f_1(v) + h_2) \\
-&=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] h_2 + o_2( h_2 ) \\
-&=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] ( f_1'[v] h_1 + o_1( h_1 ) ) + o_2( h_2 ) \\
-&=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] f_1'[v] h_1 + \left( f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \right)
+  f_2( f_1( v + h_1 ) ) &= f_2( f_1(v) + f_1'[v] h_1 + o_1( h_1 ) ) \\
+&= f_2( f_1(v) + h_2) \\
+&=  f_2( f_1(v) ) + f_2'[ f_1(v) ] h_2 + o_2( h_2 ) \\
+&=  f_2( f_1(v) ) + f_2'[ f_1(v) ] ( f_1'[v] h_1 + o_1( h_1 ) ) + o_2( h_2 ) \\
+&=  f_2( f_1(v) ) + f_2'[ f_1(v) ] f_1'[v] h_1 + \left( f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \right)
 \end{align*}
 となる．
 その上，Fr\'echet微分の定義より$f_2'[ f_1(v) ] \in {\mathcal B}(Y, Z)$であるため，$\| f_2'[ f_1(v) ] \|_{{\mathcal B}(Y, Z)} \le M$となる定数$M > 0$が存在する．
 また，
 \begin{align*}
-\frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } &\le& \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) \|_{Z} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{X} } \\
-&\le& M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} }
+\frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } &\le \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) \|_{Z} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{X} } \\
+&\le M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} }
 \end{align*}
 となり，
 \begin{align*}
-\frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} } &=& \frac{ \|  f_1'[v] h_1 + o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } \\
-&\le& M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } 
+\frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} } &= \frac{ \|  f_1'[v] h_1 + o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } \\
+&\le M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } 
 \end{align*}
 から
 \begin{align*}
 && \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } \\
-&\le& M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \left( M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} }  \right) \rightarrow 0, ~ h_1, h_2 \rightarrow 0
+&\le M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \left( M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} }  \right) \rightarrow 0, ~ h_1, h_2 \rightarrow 0
 \end{align*}
 となるため，作用素$g$は$v \in U_1$においてFr\'echet微分可能で，$g$のFr\'echet微分$g'[v]$は
 \begin{align*}
@@ -1584,12 +1584,12 @@ $f$は任意の$t \in [a, b]$において連続であるため，
 が成立する．
 その上，$g$の$t$のFr\'echet微分可能か定義にあてはめると
 \begin{align*}
-	\frac{ \left\| g(t + h) - g(t) - f(t)h \right\|_{X} }{ |h| } &=& \frac{ \left\| \int_{a}^{t+h} f(s) ds - \int_{a}^{t} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
-	&=& \frac{ \left\| \int_{t}^{t+h} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
-	&=& \frac{ \left\| \int_{t}^{t+h} f(s) ds - \left( f(t)( t+h) - f(t)t \right) \right\|_{X} }{ |h| } \\
-	&=& \frac{ \left\| \int_{t}^{t+h} f(s) ds - \int_{t}^{t+h} f(t) ds \right\|_{X} }{ |h| } \\
-	&=& \frac{ \left\| \int_{t}^{t+h} \left( f(s)  - f(t) \right) ds \right\|_{X} }{ |h| } \\
-	&\le& \frac{ \int_{t}^{t+h} \left\| f(s)  - f(t) \right\|_{X} ds }{ |h| } \\
+	\frac{ \left\| g(t + h) - g(t) - f(t)h \right\|_{X} }{ |h| } &= \frac{ \left\| \int_{a}^{t+h} f(s) ds - \int_{a}^{t} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
+	&= \frac{ \left\| \int_{t}^{t+h} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
+	&= \frac{ \left\| \int_{t}^{t+h} f(s) ds - \left( f(t)( t+h) - f(t)t \right) \right\|_{X} }{ |h| } \\
+	&= \frac{ \left\| \int_{t}^{t+h} f(s) ds - \int_{t}^{t+h} f(t) ds \right\|_{X} }{ |h| } \\
+	&= \frac{ \left\| \int_{t}^{t+h} \left( f(s)  - f(t) \right) ds \right\|_{X} }{ |h| } \\
+	&\le \frac{ \int_{t}^{t+h} \left\| f(s)  - f(t) \right\|_{X} ds }{ |h| } \\
 	&<& \frac{ \varepsilon   \int_{t}^{t+h}  ds }{ |h| } = \varepsilon 
 \end{align*}
 となる．
@@ -1915,30 +1915,30 @@ $u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとす�
 (\ref{Ine:Apri})の証明\\
 (\ref{prof:4})について$m \rightarrow \infty$とすると$k^m \rightarrow 0$より
 \begin{align*}
-\| u_n - u \| &\le& \frac{k^n}{1-k}  \| u_1 - u_0 \|
+\| u_n - u \| &\le \frac{k^n}{1-k}  \| u_1 - u_0 \|
 \end{align*}
 
 (\ref{Ine:Apos})の証明\\
 (\ref{prof:3})より
 \begin{align*}
-\| u_{n+1} - u_m \| &\le& \| u_{n+1} - u_{n+2} \| + \| u_{n+2} - u_{n+3} \| + \cdots + \| u_{m-1} - u_m \|\\
-&\le& k \| u_n - u_{n+1} \| + k^2 \| u_n - u_{n+1} \| + \cdots + k^{m-n-1} \| u_n - u_{n+1} \| \\
-&=& k (1 + k + \cdots + k^{m-n-1}) \| u_n - u_{n+1} \|
+\| u_{n+1} - u_m \| &\le \| u_{n+1} - u_{n+2} \| + \| u_{n+2} - u_{n+3} \| + \cdots + \| u_{m-1} - u_m \|\\
+&\le k \| u_n - u_{n+1} \| + k^2 \| u_n - u_{n+1} \| + \cdots + k^{m-n-1} \| u_n - u_{n+1} \| \\
+&= k (1 + k + \cdots + k^{m-n-1}) \| u_n - u_{n+1} \|
 \end{align*}
 を得る．
 ここで$1 + k + \cdots + k^{m-n-1} \le 1 + k + \cdots + k^{m-1}$より，
 \begin{align*}
-\| u_{n+1} - u_m \| &\le& k  (1 + k + \cdots + k^{m-1}) \| u_n - u_{n+1} \|
+\| u_{n+1} - u_m \| &\le k  (1 + k + \cdots + k^{m-1}) \| u_n - u_{n+1} \|
 \end{align*}
 となる．
 よって(\ref{prof:5})より
 \begin{align*}
-\| u_{n+1} - u_m \| &\le&  k \frac{1-k^m}{1-k} \| u_n - u_{n+1} \|
+\| u_{n+1} - u_m \| &\le  k \frac{1-k^m}{1-k} \| u_n - u_{n+1} \|
 \end{align*}
 となる．
 よって$m \rightarrow \infty$とすると
 \begin{align*}
-\| u_{n+1} - u \| &\le&  \frac{k}{1-k} \| u_{n+1} - u_n  \|
+\| u_{n+1} - u \| &\le  \frac{k}{1-k} \| u_{n+1} - u_n  \|
 \end{align*}
 
 (\ref{Ine:rate})の証明\\
