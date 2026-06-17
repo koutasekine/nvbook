@@ -44,12 +44,12 @@ ${\mathbb R}^{N}$もBanach空間であるため，連立一次方程式の解の
 この際に，自然と絶対値記号を使っていたと思います．
 しかし，一般的な線形空間には絶対値記号はありません．
 例えば，${\mathbb C}^2$の元
-\begin{eqnarray*}
+\begin{align*}
 	\left( \begin{array}{c}
 		2 + 2 i \\
 		-1 + 3 i
 	\end{array} \right)
-\end{eqnarray*}
+\end{align*}
 に対する「絶対値に相当するもの」は何でしょうか?
 ここで重要なのは，あくまで一般的な線形空間$X$の点列に対して$\varepsilon - N$論法を使って収束を定義したいことに着目すると「絶対値に相当するもの」を${\mathbb C}^2$の元につけた結果が${\mathbb C}^2$では$\varepsilon - N$論法の$\varepsilon$がよくわからない状態になってしまいますよね．
 そのために，どんな線形空間$X$の元でも「絶対値に相当するもの」をつけた結果は実数${\mathbb R}$になるように定義します．
@@ -75,18 +75,18 @@ $X$で定義された関数$\|\cdot\|: X \rightarrow {\mathbb R} $が$X$のノ�
 \begin{defi}[ノルム空間の収束と極限]\label{def:App:Con}
 $X$をノルム空間とする．
 $X$の点列$(u_n) \subset X$は
-\begin{eqnarray*}
+\begin{align*}
 	\forall \varepsilon > 0, ~ \exists N \in {\mathbb N}, ~ \forall n \ge N ~ \mbox{に対して} ~ \| u_n - u \| < \varepsilon
-\end{eqnarray*}
+\end{align*}
 のとき，点$u \in X$に収束するといい，
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u \| \rightarrow 0, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 と表す．
 このとき，$u$を$u_n$の極限といい
-\begin{eqnarray*}
+\begin{align*}
 u_n \rightarrow u, ~ (n\rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 と表す．
 \end{defi}
 
@@ -97,37 +97,37 @@ u_n \rightarrow u, ~ (n\rightarrow \infty)
 \begin{Proof}
 極限を$v$と$w$の2つ持つと仮定して矛盾を示す．
 つまり，$v$と$w$が極限であることから，
-\begin{eqnarray*}
+\begin{align*}
 	\forall \varepsilon > 0, ~ \exists N_1 \in {\mathbb N}, ~ \forall n \ge N_1 ~ \mbox{に対して} ~ \| u_n - v \| < \varepsilon
-\end{eqnarray*}
+\end{align*}
 と
-\begin{eqnarray*}
+\begin{align*}
 	\forall \varepsilon > 0, ~ \exists N_1 \in {\mathbb N}, ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \varepsilon
-\end{eqnarray*}
+\end{align*}
 が成立する．
 そのうえで，$\epsilon$は任意であることから，
-\begin{eqnarray*}
+\begin{align*}
 	\epsilon = \frac{ \| v - w \|  }{2}
-\end{eqnarray*}
+\end{align*}
 としたとき，上の論理式を満たす$N_1$と$N_2$がそれぞれ存在する．
 すなわち，
-\begin{eqnarray*}
+\begin{align*}
 	\exists N_1 \in {\mathbb N} ~ \forall n \ge N_1 ~ \mbox{に対して} ~ \| u_n - v \| < \frac{ \| v - w \|  }{2}
-\end{eqnarray*}
+\end{align*}
 と
-\begin{eqnarray*}
+\begin{align*}
 	\exists N_1 \in {\mathbb N} ~ \forall n \ge N_2 ~ \mbox{に対して} ~ \| u_n - w \| < \frac{ \| v - w \|  }{2}
-\end{eqnarray*}
+\end{align*}
 となる．
 そのうえで，$N_{\max} = \max (N_1, N_2)$とすると，
-\begin{eqnarray*}
+\begin{align*}
 	\forall n \ge N_{\max} ~ \mbox{に対して} ~ \| u_n - v \| < \frac{ \| v - w \|  }{2} ~~ \mbox{および} ~~ \| u_n - w \| < \frac{ \| v - w \|  }{2}
-\end{eqnarray*}
+\end{align*}
 となる．
 よって，任意の$n \ge N_{\max}$に対して，
-\begin{eqnarray*}
+\begin{align*}
 	\| v - w \| \le \| v - u_n \| + \| u_n - w \| < \frac{ \| v - w \|  }{2} + \frac{ \| v - w \|  }{2} = \| v - w \|
-\end{eqnarray*}
+\end{align*}
 となり，$\| v - w \|  <  \| v - w \|$から，矛盾する．
 
 	\qed
@@ -139,21 +139,21 @@ u_n \rightarrow u, ~ (n\rightarrow \infty)
 \begin{defi}[Cauchy列]\label{def:App:Cau}
 $X$をノルム空間とする．
 そのとき$X$の点列$(u_n)$がCauchy列であるとは
-\begin{eqnarray*}
+\begin{align*}
 u_n - u_m \rightarrow 0, ~ (n,m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 が成立することである．
 即ち
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u_m \| \ \rightarrow 0, ~  (n,m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 が成立することである．
 \end{defi}
 
 ちなみに$\varepsilon - N$論法を用いてちゃんと書くと，$X$の点列$(u_n)$が
-\begin{eqnarray*}
+\begin{align*}
   \forall \varepsilon > 0, ~ \exists N \in {\mathbb N}, ~ \forall n, m \ge N ~ \mbox{に対して} ~ \| u_n - u_m \| < \varepsilon
-\end{eqnarray*}
+\end{align*}
 を満たすときに点列$(u_n)$がCauchy列であるといいます．
 
 点列の収束とCauchy列は一見すると似ているように見えますが，明確に意図の違いがあります．
@@ -162,10 +162,10 @@ u_n - u_m \rightarrow 0, ~ (n,m \rightarrow \infty)
 そのために，極限を使わずに収束してそうな点列としてCauchy列が定義されたと思っておいてください．
 もちろん，ノルム空間$X$の収束する点列$(u_n)$ならば，収束しそうな点列であるCauchy列になることは簡単にいえます．
 実際に，収束する点列$(u_n) \subset X$は極限$u \in X$を持ちます．その上，
-\begin{eqnarray*}
+\begin{align*}
 & &\| u_n - u_m \| = \| u_n - u + u - u_m \| \\
 &\le& \| u_n - u \| + \| u - u_m \| \rightarrow 0, ~ (n, m \rightarrow \infty).
-\end{eqnarray*}
+\end{align*}
 から，収束する点列$(u_n) \subset X$ならば，Cauchy列になります．
 
 %もちろんノルム空間$X$上のCauchy列だが，極限を$X$に持たない例もあります．
@@ -178,9 +178,9 @@ Cauchy列が収束しそうな点列であることを踏まえたうえで，�
 $X$をノルム空間とする．
 $X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限を持つことである．
 すなわち，任意のCauchy列$(u_n) \subset X$が
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u \| \rightarrow 0, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 となる極限$u$を$X$内に持つことである．
 \end{defi}
 
@@ -199,27 +199,27 @@ $X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限を�
 \begin{Thm}[逆三角不等式]\label{thm:inv_triangle_inq}
 $X$をノルム空間とする．
 任意の$u, v \in X$について次の不等式を満たす:
-\begin{eqnarray*}
+\begin{align*}
 | \| u \| - \| v \| | \le \| u - v \|
-\end{eqnarray*}
+\end{align*}
 \end{Thm}
 
 \begin{Proof}
 任意の$u, v \in X$について
-\begin{eqnarray*}
+\begin{align*}
  \| u \| &=& \| u - v + v \| \le \| u - v \| + \| v \| \\
  \| v \| &=& \| v - u + u \| \le \| v - u \| + \| u \| = \| u - v \| + \| u \| 
-\end{eqnarray*}
+\end{align*}
 となる．
 よって
-\begin{eqnarray*}
+\begin{align*}
  \| u \| - \| v \| &\le& \| u - v \| \\
  \| v \| - \| u \|  &\le&  \| u - v \| 
-\end{eqnarray*}
+\end{align*}
 となるため，
-\begin{eqnarray*}
+\begin{align*}
 | \| u \| - \| v \| | \le \| u - v \|
-\end{eqnarray*}
+\end{align*}
 を持つ．
 
 \qed
@@ -230,9 +230,9 @@ $X$をノルム空間とする．
 \begin{defi}[有界列]\label{def:bounded_seq}
 $X$をノルム空間とする．
 そのとき$X$の点列$(u_n)$が有界列とは任意の$n \in {\mathbb N}$に対して
-\begin{eqnarray*}
+\begin{align*}
 \| u_n \| \le M
-\end{eqnarray*}
+\end{align*}
 となる定数$M > 0$が存在することである．
 \end{defi}
 
@@ -246,35 +246,35 @@ $X$をノルム空間とする．
 
 \begin{Proof}
 $X$の点列$(u_n)$がCauchy列であるため，$\varepsilon - N$論法を用いた表記で
-\begin{eqnarray*}
+\begin{align*}
   \forall \varepsilon > 0, ~ \exists N \in {\mathbb N}, ~ \forall n, m \ge N ~ \mbox{に対して} ~ \| u_n - u_m \| < \varepsilon
-\end{eqnarray*}
+\end{align*}
 を満たす．
 $\varepsilon = 1$としても，それに対応した$N$が存在し，任意の$n \ge N$に対して
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u_N \| < 1
-\end{eqnarray*}
+\end{align*}
 を満たす．(ここで$m$を$N$に固定したことに注意．)
 
 任意の$n \ge N$に対して$\| u_n \|$が$\| u_N \|$で評価できることを示す．
 逆三角不等式である定理\ref{thm:inv_triangle_inq}を用いると
-\begin{eqnarray*}
+\begin{align*}
 | \| u_n \| - \| u_N \| | \le  \| u_n - u_N \| < 1
-\end{eqnarray*}
+\end{align*}
 となる．
 絶対値の性質より$| \| u_n \| - \| u_N \| | < 1$は
-\begin{eqnarray*}
+\begin{align*}
 \| u_N \| - 1 < \| u_n \| < \| u_N \| + 1
-\end{eqnarray*}
+\end{align*}
 となる．
 よって
-\begin{eqnarray*}
+\begin{align*}
 M = \max \{ \| u_1 \|, ~ \| u_2 \|, ~ \cdots, ~ \| u_{N -1} \|, ~ \| u_N \| + 1 \}
-\end{eqnarray*}
+\end{align*}
 とすると，任意の$n \in {\mathbb N}$について
-\begin{eqnarray*}
+\begin{align*}
 \| u_n \| \le M
-\end{eqnarray*}
+\end{align*}
 が成り立つため，点列$(u_n)$は有界列である．
 
 
@@ -289,10 +289,10 @@ M = \max \{ \| u_1 \|, ~ \| u_2 \|, ~ \cdots, ~ \| u_{N -1} \|, ~ \| u_N \| + 1 
 
 \begin{defi}[線形部分空間]\label{def:linearsubspace}
 	線形空間$X$の空ではない集合$M$が任意の元$u,v \in M$と任意の係数体$\alpha \in {\mathbb K}$に対して
-	\begin{eqnarray*}
+	\begin{align*}
 	u + v \in M \\
 	\alpha u \in M
-	\end{eqnarray*}
+	\end{align*}
 	を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
 \end{defi}
 
@@ -398,14 +398,14 @@ $M$の任意の点列を$(u_n)$とすると，$u_n \rightarrow u, (n \rightarrow
 
 \begin{defi}[作用素]\label{def:operator}
 ある線形空間$X$から別の線形空間$Y$への作用素$A$とは，
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal D}(A):=\{ u \in X ~ | ~ Au \in Y \}
-\end{eqnarray*}
+\end{align*}
 としたとき，${\mathcal D}(A)$のどんな元に対しても，それぞれ集合$Y$のただ一つの元を指定する規則のことである．
 また，${\mathcal D}(A)$は$A$の定義域と呼ばれ
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal R}(A):=\{ Au \in Y ~ | ~ u \in {\mathcal D}(A) \}
-\end{eqnarray*}
+\end{align*}
 を値域と呼ぶ．
 \end{defi}
 
@@ -421,17 +421,17 @@ $M$の任意の点列を$(u_n)$とすると，$u_n \rightarrow u, (n \rightarrow
 
 \begin{defi}[単射]\label{def:inj_operator}
 線形空間$X$から線形空間$Y$への作用素$A$が
-\begin{eqnarray*}
+\begin{align*}
 u_1 \neq u_2, ~ \forall u_1, u_2 \in {\mathcal D}(A) \Rightarrow A( u_1 ) \neq A( u_2 )
-\end{eqnarray*}
+\end{align*}
 を満たすときに作用素$A$は単射であるという．
 \end{defi}
 
 \begin{defi}[全射]\label{def:sur_operator}
 線形空間$X$から線形空間$Y$への作用素$A$が
-\begin{eqnarray*}
+\begin{align*}
 Y = {\mathcal R}(A)
-\end{eqnarray*}
+\end{align*}
 を満たすときに作用素$A$は全射であるという．
 \end{defi}
 
@@ -441,15 +441,15 @@ Y = {\mathcal R}(A)
 \begin{defi}[逆作用素]\label{def:inv_operator}
 線形空間$X$から線形空間$Y$への作用素$A$とし，その定義域を${\mathcal D}(A) \subset X$，値域を${\mathcal R}(A) \subset Y$とする．
 そのとき，
-\begin{eqnarray*}
+\begin{align*}
 A^{-1} (A (u)) = u , ~ u \in {\mathcal D}( A ) \\
 A (A^{-1}  (v)) = v , ~ v \in {\mathcal R}( A )
-\end{eqnarray*}
+\end{align*}
 かつ
-\begin{eqnarray*}
+\begin{align*}
   {\mathcal D}(A^{-1}) = {\mathcal R}(A) \\
   {\mathcal R}(A^{-1}) = {\mathcal D}(A)
-\end{eqnarray*}
+\end{align*}
 となる$Y$から$X$への作用素$A^{-1}$を$A$の逆作用素と呼ぶ．
 \end{defi}
 
@@ -457,45 +457,45 @@ A (A^{-1}  (v)) = v , ~ v \in {\mathcal R}( A )
 
 \begin{Thm}[単射と逆作用素の関係]\label{thm:inj_inve}
   線形空間$X$から線形空間$Y$への作用素$A$とすると，
-\begin{eqnarray*}
+\begin{align*}
   A\mbox{が逆作用素を持つ} ~ \Leftrightarrow ~ A\mbox{が単射である}
-\end{eqnarray*}
+\end{align*}
 \end{Thm}
 
 \begin{Proof}
 「$A$が逆作用素を持つ $\Rightarrow$ $A$が単射である」の証明\\
 単射の定義\ref{def:inj_operator}の対偶「任意の$u_1, u_2 \in {\mathcal D}(A)$に対し$A (u_1) = A (u_2) \Rightarrow u_1 = u_2$」を満たすことを確かめる．
 $A$の逆作用素を$A^{-1}$とすると，任意の$u_1, u_2 \in {\mathcal D}(A)$に対し
-\begin{eqnarray*}
+\begin{align*}
  && A (u_1) = A (u_2) \\
  &\Rightarrow& A^{-1} (A ( u_1 ) ) = A^{-1} (A (u_2)) \\
  &\Rightarrow& u_1 = u_2
-\end{eqnarray*}
+\end{align*}
 となる．
 最後の変形は逆作用素$A^{-1}$の定義に由来する．\\
 
 
 \noindent 「$A$が単射である $\Rightarrow$ $A$が逆作用素$A^{-1}$を持つ」の証明\\
 $A$の値域の定義${\mathcal R}(A)=\{ A(u) \in Y ~ | ~ u \in {\mathcal D}(A) \}$より，任意の$v \in {\mathcal R}(A)$に対し
-\begin{eqnarray*}
+\begin{align*}
   A(u) = v
-\end{eqnarray*}
+\end{align*}
 となる$u \in {\mathcal D}(A)$が存在する．
 その上，$A$が単射であるため，単射の定義\ref{def:inj_operator}の対偶「任意の$u_1, u_2 \in {\mathcal D}(A)$に対し$A (u_1) = A (u_2) \Rightarrow u_1 = u_2$」より，$u \in {\mathcal D}(A)$はどんな$v \in {\mathcal R}(A)$に対してもただ一つの元である．
 そのため，作用素の定義\ref{def:operator}より，上記の$v \in {\mathcal R}(A)$に対してただ一つの元$u \in {\mathcal D}(A)$を指定する規則として
-\begin{eqnarray*}
+\begin{align*}
   B(v) = u
-\end{eqnarray*}
+\end{align*}
 となる定義域${\mathcal D}(B) = {\mathcal R}(A)$と値域${\mathcal R}(B)={\mathcal D}(A)$となる$Y$から$X$への作用素$B$が定義できる．
 その上，$B(v) = u$の$v$に$v = A(u)$を代入すると
-\begin{eqnarray*}
+\begin{align*}
   B(A(u)) = u
-\end{eqnarray*}
+\end{align*}
 となる．
 同様に，$A(u) = v$の$u$に$u = B(v)$を代入すると
-\begin{eqnarray*}
+\begin{align*}
   A( B(v) ) = v
-\end{eqnarray*}
+\end{align*}
 となる．
 よって，定義域${\mathcal D}(B) = {\mathcal R}(A)$と値域${\mathcal R}(B)={\mathcal D}(A)$となる$Y$から$X$への作用素$B$は$A$の逆作用素であるため，$A$は逆作用素を持つ．
 
@@ -526,17 +526,17 @@ $X=Y$を連続関数全体にし，${\mathcal D}(A)$のみ2階微分可能な関
 
 \begin{defi}[作用素の等号]\label{def:operator_equal}
 線形空間$X$から線形空間$Y$への作用素$A$と$B$が等しいとは
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal D}(A) = {\mathcal D}(B)
-\end{eqnarray*}
+\end{align*}
 かつ
-\begin{eqnarray*}
+\begin{align*}
 A u = B u, ~ \forall u \in {\mathcal D}(A) = {\mathcal D}(B)
-\end{eqnarray*}
+\end{align*}
 が成立することであり，
-\begin{eqnarray*}
+\begin{align*}
 A = B
-\end{eqnarray*}
+\end{align*}
 と表記する．
 \end{defi}
 
@@ -547,21 +547,21 @@ A = B
 
 \begin{defi}[作用素の連続]\label{def:operator_continue}
 ノルム空間$X$からノルム空間$Y$への作用素$A$が$u \in {\mathcal D}(A)$で連続であるとは
-\begin{eqnarray*}
+\begin{align*}
 	u_n \rightarrow u, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 となる任意の$u_n \in {\mathcal D}(A) \subset X$に対して
-\begin{eqnarray*}
+\begin{align*}
 	A u_n \rightarrow A u, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 を満たすときである．
 さらに，$A$が任意の$u \in {\mathcal D}(A)$において連続であるとき，$A$は連続であるという．
 \end{defi}
 
 上記の作用素$A$の$u \in {\mathcal D}(A)$における連続と同値になる$\varepsilon - \delta$論法を用いた定義は次のようになります:
-\begin{eqnarray*}
+\begin{align*}
 \forall \varepsilon > 0, ~ \exists \delta > 0, ~ \| u_n - u \|_{X} < \delta ~ \mbox{となる} ~ \forall u_n \in {\mathcal D}(A) ~ \mbox{に対して} ~ \| A u_n - A u \|_{Y} < \varepsilon
-\end{eqnarray*}
+\end{align*}
 
 「作用素$A$は$u \in {\mathcal D}(A)$で連続」と「作用素$A$は連続」は連続である点が，$u \in {\mathcal D}(A)$のただ1点における連続と，定義域${\mathcal D}(A)$の任意の元で連続という大きな違いがあるので注意して下さい．
 
@@ -577,11 +577,11 @@ A = B
 
 \begin{defi}[線形作用素]\label{def:linearoperator}
 線形空間$X$から線形空間$Y$への作用素$A$が，任意の$u, v \in {\mathcal D}(A) \subset X$と$\alpha \in \mathbb{K}$に対し，
-\begin{eqnarray*}
+\begin{align*}
 && {\mathcal D}(A) ~ \mbox{が} X \mbox{の線形部分空間}\\
 && A(u + v) = A u + A v \\
 && A(\alpha u) = \alpha A u
-\end{eqnarray*}
+\end{align*}
 を満たすとき，$A$を線形作用素と呼ぶ．
 \end{defi}
 
@@ -592,28 +592,28 @@ A = B
 
 \begin{defi}[線形作用素の加法]\label{def:add_operator}
 	線形空間$X$から線形空間$Y$への線形作用素$A$と$B$の和を
-	\begin{eqnarray*}
+	\begin{align*}
 	(A + B) u := A u + B u, ~ u \in {\mathcal D}(A) \cap {\mathcal D}(B)
-	\end{eqnarray*}
+	\end{align*}
 	と定義する．
 	このとき，$X$から$Y$への作用素$A+B$の定義域は
-	\begin{eqnarray*}
+	\begin{align*}
 	{\mathcal D}(A+B) =  {\mathcal D}(A) \cap {\mathcal D}(B)
-	\end{eqnarray*}
+	\end{align*}
 	とする．
 \end{defi}
 
 
 \begin{defi}[線形作用素のスカラー乗法]\label{def:scalar_operator}
 	線形空間$X$から線形空間$Y$への線形作用素$A$の$\alpha \in {\mathbb K}$によるスカラー倍を
-	\begin{eqnarray*}
+	\begin{align*}
 	(\alpha A) u := \alpha (Au), ~ u \in {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	と定義する．
 	このとき，$X$から$Y$への作用素$\alpha A$の定義域は
-	\begin{eqnarray*}
+	\begin{align*}
 	{\mathcal D}(\alpha A) :=  {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	とする．
 \end{defi}
 
@@ -622,14 +622,14 @@ A = B
 	$X,Y,Z$を線形空間とする．
 	$A$を$Y$から$Z$への線形作用素とし，$B$を$X$から$Y$への線形作用素とする．
 	そのとき，$A$と$B$の合成作用素$AB$は
-	\begin{eqnarray*}
+	\begin{align*}
 	(A B) u := A( B u), ~ u \in \{ v \in {\mathcal D}(B) ~ | ~ Bv \in {\mathcal D}(A)  \}
-	\end{eqnarray*}
+	\end{align*}
 	と定義する．
 	このとき，$X$から$Z$への合成作用素$AB$の定義域は
-	\begin{eqnarray*}
+	\begin{align*}
 	{\mathcal D}(AB) := \{ v \in  {\mathcal D}(B) ~ | ~ Bv \in {\mathcal D}(A)  \}
-	\end{eqnarray*}
+	\end{align*}
 	とする．
 \end{defi}
 
@@ -649,14 +649,14 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 
 \begin{Proof}
 	単射の定義の対偶は
-	\begin{eqnarray*}
+	\begin{align*}
 	A u_1  = A u_2 , ~ \forall u_1, u_2 \in {\mathcal D}(A) \Rightarrow  u_1 = u_2
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	その上，$A$は線形作用素であるため
-	\begin{eqnarray*}
+	\begin{align*}
 	A u_1  = A u_2 ~ \Leftrightarrow ~ A (u_1 - u_2) = 0
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	$u_1 - u_2 \in {\mathcal D}(A)$を$u \in {\mathcal D}(A)$とおきなおせば，(i) $\Rightarrow$ (ii)は証明された．
 	また，証明を逆に追うことで，(ii) $\Rightarrow$ (i) も示せる．
@@ -667,37 +667,37 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 \begin{Thm}[線形作用素に対する単射性(2)]\label{thm:linear_operator_injective2}
 	ノルム空間$X$からノルム空間$Y$への線形作用素$A$とする．
 	不等式
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| u \|_{X} \le K \| A u \|_{Y}, ~ u \in {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	を満たす定数$K > 0$が存在するならば，線形作用素$A$は単射である．
 \end{Thm}
 
 \begin{Proof}
 	$A$が線形作用素であるため，定理\ref{thm:linear_operator_injective11} ii)を使って証明する．
 	ノルムの定義より
-	\begin{eqnarray*}
+	\begin{align*}
 	 A u = 0, ~ \forall u \in {\mathcal D}(A) \Leftrightarrow \| A u \|_{Y} = 0
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	さらに，$A u = 0$ならば，
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| u \|_{X} \le K \| A u \|_{Y} = 0, ~ u \in {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	より$\| u \|_{X} = 0$となる．
 	よって，再びノルムの定義より
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| u \|_{X} = 0, ~ \forall u \in {\mathcal D}(A) \Leftrightarrow u  = 0
-	\end{eqnarray*}
+	\end{align*}
 	より，$A u = 0$ならば$u = 0$となる．
 
 \qed
 \end{Proof}
 
 定理\ref{thm:linear_operator_injective2}と逆作用素の定義より，線形作用素$A$に対して不等式
-\begin{eqnarray*}
+\begin{align*}
  \| u \|_{X} \le K \| A u \|_{Y}, ~ u \in {\mathcal D}(A)
-\end{eqnarray*}
+\end{align*}
 を満たす定数$K > 0$が存在するならば，線形作用素$A$は$Y$から$X$への逆作用素$A^{-1}$を持ちます．
 但し，$A^{-1}$の定義域${\mathcal D}(A^{-1}) = {\mathcal R}(A)$は$Y$と一致するかどうかはわかりません．
 もし，$A$が全射でもあるならば，もちろん$A^{-1}$の定義域${\mathcal D}(A^{-1}) = {\mathcal R}(A)$と$Y$は一致します．
@@ -713,9 +713,9 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 
 \begin{defi}[有界な線形作用素]\label{def:bounded_operator}
 	ノルム空間$X$から$Y$への線形作用素$A$に対し，
-	\begin{eqnarray*}
+	\begin{align*}
 	\| A u \|_{Y} \le K \| u \|_{X}, ~ u \in {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	を満たす正の定数$K$が存在するとき，線形作用素$A$を有界な作用素と呼ぶ．
 \end{defi}
 
@@ -725,9 +725,9 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 
 \begin{Thm}[有界な線形作用素と連続な線形作用素]\label{thm:bounded_continus_operator}
 	ノルム空間$X$からノルム空間$Y$への線形作用素$A$に対し，
-	\begin{eqnarray*}
+	\begin{align*}
 	A \mbox{が有界} ~ \Leftrightarrow ~ A \mbox{が連続}
-	\end{eqnarray*}
+	\end{align*}
 \end{Thm}
 
 \begin{Proof}
@@ -735,42 +735,42 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 	連続性の定義より，$u_n \rightarrow u$となる任意の$u_n \in {\mathcal D}(A)$に対して$A u_n \rightarrow A u$となることを確かめる．
 	$u_n \rightarrow u$となる任意の$u_n \in {\mathcal D}(A)$から$\| u_n - u \|_{X} \rightarrow 0, ~ (n \rightarrow \infty)$を持つ．
 	その上，$A$は有界であることから
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| A u_n - A u \|_{Y} \le M \| u_n - u \|_{X} \rightarrow 0, ~ (n \rightarrow \infty)
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	よって，$u_n \rightarrow u, ~ (n \rightarrow \infty)$ならば，$A u_n \rightarrow A u$であるため，$A$は連続である．\\
 	
 	\noindent 「$A$が連続$\Rightarrow A$が有界」の証明\\
 	背理法によって証明する．
 	すなわち，$A$が連続ならば，任意の$M_2 > 0$に対して
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| A u \|_{Y} > M_2 \| u \|_{X} 
-	\end{eqnarray*}
+	\end{align*}
 	を満たす$u \in {\mathcal D}(A)$が存在すると仮定して矛盾をみつける．
 	この仮定より自然数$n$に対して，
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| A u_n \|_{Y} > n \| u_n \|_{X} 
-	\end{eqnarray*}
+	\end{align*}
 	を満たす$u_n \in {\mathcal D}(A)$が存在する．
 	このとき，$\| u_n \|_X \neq 0$であることに注意する．
 	ノルム空間$X$はノルム空間の定義より線形空間であるため，ゼロ元$0 \in X$を持つ．
 	その上，線形作用素の定義より${\mathcal D}(A)$は$X$の部分空間であるため，ゼロ元$0 \in {\mathcal D}(A) \subset X$を持つ．
 	その上，$A$が連続であるため，$A$は$0 \in {\mathcal D}(A)$でも連続である．
 	$\varepsilon - \delta$論法による$A$の$0 \in {\mathcal D}(A) \subset X$における連続の定義を記述すると
-	\begin{eqnarray*}
+	\begin{align*}
 	\forall \varepsilon > 0, ~ \exists \delta > 0, ~ \| u_n \|_{X} < \delta ~ \mbox{となる} ~ \forall u_n \in X ~ \mbox{に対して} ~ \| A u_n \|_{Y} < \varepsilon
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	その上，$\varepsilon$を$n \| u_n \|_{X} $とすると，$\delta_n > 0$が存在し，$\| u_n \|_{X} < \delta$となる任意の$u_n \in {\mathcal D}(A)$に対して，
-	\begin{eqnarray*}
+	\begin{align*}
 	 \| A u_n \|_{Y} < n \| u_n \|_{X}
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 	有界ではないという仮定と組み合わせると
-	\begin{eqnarray*}
+	\begin{align*}
 	n \| u_n \|_{X} < \| A u_n \|_{Y} < n \| u_n \|_{X}
-	\end{eqnarray*}
+	\end{align*}
 	となるため矛盾する．
 
 \qed
@@ -787,13 +787,13 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 
 \begin{defi}[定義域が$X$の全体となる有界な線形作用素全体の集合${\mathcal B}(X, Y)$]\label{def:set_bound_linear_operator}
 	Banach空間$X$からBanach空間$Y$の有界な線形作用素$A$の定義域が$X$，すなわち
-	\begin{eqnarray*}
+	\begin{align*}
 	 X = {\mathcal D}(A)
-	\end{eqnarray*}
+	\end{align*}
 	となるもの全体の集合を
-	\begin{eqnarray*}
+	\begin{align*}
 	 {\mathcal B}(X, Y)
-	\end{eqnarray*}
+	\end{align*}
 	と書く．
 	また，$X = Y$の場合は省略して${\mathcal B}(X)$と記述する．
 \end{defi}
@@ -812,9 +812,9 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 \begin{Thm}[${\mathcal B}(X, Y)$はBanach空間]\label{thm:set_bound_linear_operator}
 	$X$をノルム空間とし，$Y$をBanach空間とする．
 	定義域が$X$全体となる$X$から$Y$への有界な線形作用素全体の集合${\mathcal B}(X, Y)$のノルムを
-	\begin{eqnarray}
+	\begin{equation}
 		\| A \|_{{\mathcal B}(X,Y)} := \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} }, ~ A \in {\mathcal B}(X, Y) \label{def:operator_norm}
-	\end{eqnarray}
+	\end{equation}
 	とすると${\mathcal B}(X, Y)$はBanach空間となる．
 \end{Thm}
 
@@ -826,36 +826,36 @@ ${\mathcal D}(AB)$が$X$の線形部分空間であれば，合成作用素$AB$�
 \noindent 「ノルム空間」\\
 $\| A \|_{{\mathcal B}(X,Y)}$がノルムの定義\ref{def:App:norm}を満たすことを示せばよい．
 ノルム空間$X$とBanach空間$Y$であるため$\| \cdot \|_{X} \ge 0$と$\| \cdot \|_{Y} \ge 0$であることから
-\begin{eqnarray*}
+\begin{align*}
  \frac{ \| Au \|_{Y} }{ \| u \|_{X} } \ge 0
-\end{eqnarray*}
+\end{align*}
 となるため，$\| A \|_{{\mathcal B}(X,Y)} \ge 0$となり，ノルムの定義\ref{def:App:norm} (i)はいえる．
 
 次に，$A = 0$ならば$\| A u \|_{Y} = 0$であるため，
-\begin{eqnarray*}
+\begin{align*}
 \| A \|_{{\mathcal B}(X,Y)} = \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} } = \sup_{ u \in X \setminus \{ 0 \}} \frac{ 0 }{ \| u \|_{X} } =  0
-\end{eqnarray*}
+\end{align*}
 である．さらに，
 任意の$u \in X \setminus \{ 0 \}$について
-\begin{eqnarray*}
+\begin{align*}
 \frac{ \| Au \|_{Y} }{ \| u \|_{X} } = 0 \Leftrightarrow \| Au \|_{Y} = 0 \Leftrightarrow Au = 0
-\end{eqnarray*}
+\end{align*}
 任意の$u \in X \setminus \{ 0 \}$を$0 \in Y$へ写す作用素は${\mathcal B}(X, Y)$が線形空間より一意に存在し，$A = 0$である．
 よって，ノルムの定義\ref{def:App:norm} (ii)も示された．
 
 続いて，$\alpha \in {\mathbb K}$としたとき，$Y$はBanach空間であるため$\| \cdot \|_Y$はノルムの定義を満たすため，
-\begin{eqnarray*}
+\begin{align*}
 \|  \alpha A \|_{{\mathcal B}(X,Y)} = \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| \alpha Au \|_{Y} }{ \| u \|_{X} } = | \alpha | \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} } = | \alpha | \|   A \|_{{\mathcal B}(X,Y)}
-\end{eqnarray*}
+\end{align*}
 となるため，ノルムの定義\ref{def:App:norm} (iii)も示された．
 
 最後に任意の$A, B \in {\mathcal B}(X, Y)$について
-\begin{eqnarray*}
+\begin{align*}
 \|  A + B \|_{{\mathcal B}(X,Y)} &=& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| (A + B) u \|_{Y} }{ \| u \|_{X} } = \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au + Bu \|_{Y} }{ \| u \|_{X} } \\
 &\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} + \| Bu \|_{Y} }{ \| u \|_{X} } \\
 &\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Au \|_{Y} }{ \| u \|_{X} } + \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| Bu \|_{Y} }{ \| u \|_{X} } \\
 &=& \|  A \|_{{\mathcal B}(X,Y)} + \|  B \|_{{\mathcal B}(X,Y)}
-\end{eqnarray*}
+\end{align*}
 となり，ノルムの定義\ref{def:App:norm} (iv)も示されたため，${\mathcal B}(X, Y)$はノルム空間である．\\
 
 \noindent 「Banach空間」\\
@@ -867,16 +867,16 @@ Banach空間であることを証明するには${\mathcal B}(X, Y)$の任意の
 
 まず，極限の候補$\tilde{A}$が定義に取り掛かる．
 任意のCauchy列$( A_n ) \subset {\mathcal B}(X, Y)$はCauchy列の定義\ref{def:App:Cau}より
-\begin{eqnarray*}
+\begin{align*}
 \|  A_n  - A_m  \|_{{\mathcal B}(X,Y)} \rightarrow 0, ~ (n, m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 となる．
 任意の$u \in X \setminus\{ 0 \}$に対して，点列$(A_n u) \subset Y$は
-\begin{eqnarray*}
+\begin{align*}
 \|  A_n u  - A_m u \|_{Y} &=& \frac{ \|  (A_n  - A_m) u \|_{Y} }{ \| u \|_{X} } \| u \|_{X} \\
 &\le& \sup_{\phi \in X \setminus \{ 0 \}} \frac{ \|  (A_n  - A_m) \phi \|_{Y} }{ \| \phi \|_{X} } \| u \|_X  \\
 &=& \| A_n - A_m \|_{{\mathcal B}(X,Y)} \| u \|_{X} \rightarrow 0, ~ (n, m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 を持つため，点列$(A_n u) \subset Y$はCauchy列になる．
 その上，$Y$はBanach空間であるため，$Y$の任意のCauchy列は収束し，$Y$内に極限$\tilde{A} u$となるような$X$から$Y$への作用素$\tilde{A}$が存在する．
 ここで，任意の$u \in X$に対して極限$\tilde{A} u$が定義されることから，$\tilde{A}$の定義域は${\mathcal D}(\tilde{A}) = X$である．
@@ -885,57 +885,57 @@ Banach空間であることを証明するには${\mathcal B}(X, Y)$の任意の
 続いて，定義した極限の候補$\tilde{A}$が${\mathcal B}(X, Y)$に属しているか確認する．
 $\tilde{A}$が有界な線形作用素であり，かつ${\mathcal D}(\tilde{A}) = X$であることを示せばよい．
 ${\mathcal B}(X, Y)$の任意のCauchy列Cauchy列$( A_n )$の元$A_n$は線形作用素であるため，線形作用素の定義\ref{def:linearoperator}より任意の$\alpha, \beta \in {\mathbb K}$と$u, v \in X$について
-\begin{eqnarray*}
+\begin{align*}
 A_n (\alpha u + \beta v) = \alpha A_n u + \beta A_n v
-\end{eqnarray*}
+\end{align*}
 を持つ．よって$n \rightarrow \infty$とすると
-\begin{eqnarray*}
+\begin{align*}
 \tilde{A} (\alpha u + \beta v) = \alpha \tilde{A} u + \beta \tilde{A} v
-\end{eqnarray*}
+\end{align*}
 となり，極限の候補$\tilde{A}$は線形作用素である．
 次に極限の候補$\tilde{A}$が有界作用素であることを示す．
 点列$( A_n )$はCauchy列であるため定理\ref{def:if_cauchy_then_bounded}より有界列でもある．
 すなわち，どんな$n \in {\mathbb N}$に対しても
-\begin{eqnarray*}
+\begin{align*}
 \| A_n \|_{{\mathcal B}(X,Y)} \le M
-\end{eqnarray*}
+\end{align*}
 となる$n \in {\mathbb N}$に依存しない定数$M$が存在する．
 この$n \in {\mathbb N}$に依存しない定数$M$は，任意の$u \in X$について
-\begin{eqnarray*}
+\begin{align*}
 \| A_n u \|_{Y} \le M \| u \|_{X}
-\end{eqnarray*}
+\end{align*}
 も満たす．
 $A_n u \rightarrow \tilde{A} u, ~ (n \rightarrow \infty)$であるため，上の不等式に対して$n \rightarrow \infty$とすると$M$が$n$に依存しないため
-\begin{eqnarray*}
+\begin{align*}
 \| \tilde{A} u \|_{Y} \le M \| u \|_{X}
-\end{eqnarray*}
+\end{align*}
 を得る．
 よって，点列$(A_n)$の極限の候補$\tilde{A}$は${\mathcal B}(X, Y)$に属する．
 
 最後に，点列$(A_n)$の極限が$\tilde{A}$であることを示す．
 任意の$u \in X$に対して，点列$(A_n u) \subset Y$は$Y$内に極限$\tilde{A} u$を持つこと，すなわち
-\begin{eqnarray*}
+\begin{align*}
 A_n u \rightarrow \tilde{A} u, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 を持つことから
-\begin{eqnarray*}
+\begin{align*}
  \| A_n u - A_m u \|_{Y} \rightarrow \| A_n u - \tilde{A} u \|_{Y}, ~ (m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 となる．
 その上，${\mathcal B}(X,Y)$のノルムの定義と$\tilde{A} \in {\mathcal B}(X, Y)$から
-\begin{eqnarray*}
+\begin{align*}
 \| A_n - A_m \|_{{\mathcal B}(X,Y)}  \rightarrow \| A_n - \tilde{A} \|_{{\mathcal B}(X,Y)}, ~ (m \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 を得る．
 点列$(A_n)$がCauchy列であるため
-\begin{eqnarray*}
+\begin{align*}
   \forall \varepsilon > 0, ~ \exists N \in {\mathbb N}, ~ \forall n, m \ge N ~ \mbox{に対して} ~ \| A_n - A_m \|_{{\mathcal B}(X,Y)} < \varepsilon
-\end{eqnarray*}
+\end{align*}
 を満たす．
 その上，$m \rightarrow \infty$とすると
-\begin{eqnarray*}
+\begin{align*}
   \forall \varepsilon > 0, ~ \exists N \in {\mathbb N}, ~ \forall n \ge N ~ \mbox{に対して} ~ \| A_n - \tilde{A} \|_{{\mathcal B}(X,Y)} < \varepsilon
-\end{eqnarray*}
+\end{align*}
 となり，$\tilde{A} \in {\mathcal B}(X,Y)$はCauchy列$(A_n)$の極限である．
 よって，任意のCauchy列は${\mathcal B}(X,Y)$内に極限を持つため，ノルム空間${\mathcal B}(X,Y)$はBanach空間である．
 
@@ -949,17 +949,17 @@ A_n u \rightarrow \tilde{A} u, ~ (n \rightarrow \infty)
 \begin{Thm}[${\mathcal B}(X, Y)$のノルムの性質(1)]\label{thm:linear_operator_norm_prop1}
 $X$をノルム空間とし，$Y$をBanach空間とする．
 そのとき，任意の$u \in X$と任意の$A \in {\mathcal B}(X, Y)$について以下の不等式が成り立つ:
-\begin{eqnarray*}
+\begin{align*}
 \| A u \|_{Y} \le \| A \|_{{\mathcal B}(X,Y)} \| u \|_{X}
-\end{eqnarray*}
+\end{align*}
 \end{Thm}
 
 \begin{Proof}
 $u = 0$の場合は明らかに成り立つため，$u \in X \setminus \{ 0 \}$について考える．
 $u \in X \setminus \{ 0 \}$について
-\begin{eqnarray*}
+\begin{align*}
 \| A u \|_{Y} = \frac{ \| A u \|_{Y} }{ \| u \|_{X} } \| u \|_{X} \le \sup_{\phi \in X \setminus \{ 0 \}} \frac{ \| A \phi \|_{Y} }{ \| \phi \|_{X} } \| u \|_{X} = \| A \|_{{\mathcal B}(X,Y)} \| u \|_{X}
-\end{eqnarray*}
+\end{align*}
 となるため，題意は示された．
 
 \qed
@@ -969,39 +969,39 @@ $u \in X \setminus \{ 0 \}$について
 $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．
 そのとき，任意の$B \in {\mathcal B}(X, Y)$と$A \in {\mathcal B}(Y, Z)$の合成作用素$AB$は${\mathcal B}(X, Z)$に属する．
 その上，
-\begin{eqnarray*}
+\begin{align*}
 \| A B \|_{{\mathcal B}(X, Z)} \le \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X,Y)}
-\end{eqnarray*}
+\end{align*}
 \end{Thm}
 
 \begin{Proof}
 合成作用素の定義\ref{def:mul_operator}から
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal D}(AB) = \{ v \in {\mathcal D}(B) = X ~ | ~ Bv \in {\mathcal D}(A) = Y \}
-\end{eqnarray*}
+\end{align*}
 となるが，$B \in {\mathcal B}(X, Y)$であるため，任意の$v \in X$に対して$B v$は$Y$に属する．
 よって，
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal D}(AB) = {\mathcal D}(B) = X
-\end{eqnarray*}
+\end{align*}
 となる．
 その上，$A$も$B$も線形作用素であることから，任意の$u, v \in X$と任意の$\alpha, \beta \in {\mathbb K}$に対して
-\begin{eqnarray*}
+\begin{align*}
 AB ( \alpha u + \beta v ) = A ( B \alpha u + B \beta v ) = A ( \alpha B u + \beta B v ) = A \alpha B u + A \beta B v = \alpha A B u + \beta A B v
-\end{eqnarray*}
+\end{align*}
 となるため，合成作用素$AB$は定義域が$X$全体となる線形作用素である．
 また，$A \in {\mathcal B}(Y, Z)$, $B \in {\mathcal B}(X, Y)$であるため，任意の$u \in X$について，定理\ref{thm:linear_operator_norm_prop1}から
-\begin{eqnarray*}
+\begin{align*}
  \| A B u \|_{Z} \le \| A \|_{{\mathcal B}(Y, Z)} \| B u \|_{Y} \le  \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)} \| u \|_{X}
-\end{eqnarray*}
+\end{align*}
 となり，定義域が$X$全体となる線形作用素$AB$は有界な線形作用素でもある．
 よって$AB$は${\mathcal B}(X, Z)$に属する．
 その上，
-\begin{eqnarray*}
+\begin{align*}
 \| A B \|_{{\mathcal B}(X, Z)} &=& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A B u \|_{Z} }{ \| u \|_{X} } \\
 &\le& \sup_{ u \in X \setminus \{ 0 \}} \frac{ \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)} \| u \|_{X} }{ \| u \|_{X} } \\
 &=& \| A \|_{{\mathcal B}(Y, Z)} \| B \|_{{\mathcal B}(X, Y)}
-\end{eqnarray*}
+\end{align*}
 
 \qed
 \end{Proof}
@@ -1012,21 +1012,21 @@ Neumann級数に関する定理を紹介にあたり，まず，恒等作用素�
 \begin{defi}[$X$上の恒等作用素]\label{def:identity_operator_on_X}
 $X$をBanach空間とする．
 任意の$u \in X$に対して
-\begin{eqnarray*}
+\begin{align*}
  I u = u
-\end{eqnarray*}
+\end{align*}
 となる$I \in {\mathcal B}(X)$を$X$上の恒等作用素と呼ぶ．
 \end{defi}
 
 もちろん，$X$上の恒等作用素$I \in {\mathcal B}(X)$は，任意の$A \in {\mathcal B}(X)$に対して
-\begin{eqnarray*}
+\begin{align*}
  A I  = I A = A
-\end{eqnarray*}
+\end{align*}
 となります．
 また，もちろん，
-\begin{eqnarray*}
+\begin{align*}
  {\mathcal R}(I) = X
-\end{eqnarray*}
+\end{align*}
 です．
 
 では，Neumann級数に関する定理を紹介します．
@@ -1036,115 +1036,115 @@ Neumann級数に関する定理は数値計算の品質保証で重要になる�
 $X$をBanach空間とする．
 $B \in {\mathcal B}(X)$とし，$I \in {\mathcal B}(X)$を$X$上の恒等作用素とする．
 もし
-\begin{eqnarray*}
+\begin{align*}
  \| I - B \|_{{\mathcal B}(X)} < 1
-\end{eqnarray*}
+\end{align*}
 ならば，$B$は逆作用素をもち$B^{-1} \in {\mathcal B}(X)$(すなわち，$B$は全単射)となる．
 そのうえ，
-\begin{eqnarray*}
+\begin{align*}
   B^{-1} = I + (I - B) + (I - B)^2 + \cdots = \sum_{i = 0}^\infty (I - B)^i
-\end{eqnarray*}
+\end{align*}
 で，かつ
-\begin{eqnarray*}
+\begin{align*}
   \| B^{-1} \|_{{\mathcal B}(X)} \le \frac{ 1 }{ 1 - \| I - B \|_{{\mathcal B}(X)} }
-\end{eqnarray*}
+\end{align*}
 
 \end{Thm}
 
 \begin{Proof}
-\begin{eqnarray*}
+\begin{align*}
   S_n = I + ( I - B) + ( I - B )^2 + \cdots + ( I - B )^n
-\end{eqnarray*}
+\end{align*}
 とすると，$B$と$I$はともに${\mathcal B}(X)$に属するため，加法$I - B$や合成作用素$(I - B)(I - B)$なども${\mathcal B}(X)$に属する．
 よって$S_n$も${\mathcal B}(X)$に属する．
 
 続いて，点列$(S_n) \subset {\mathcal B}(X)$が極限$S$を${\mathcal B}(X)$内に持つか確認する．
 定理\ref{thm:linear_operator_norm_prop2}より
-\begin{eqnarray*}
+\begin{align*}
   \| (I - B)^i \|_{{\mathcal B}(X)} \le \| I - B \|_{{\mathcal B}(X)}^i, ~ i = 0, 1, \cdots
-\end{eqnarray*}
+\end{align*}
 となるため，$n > m > 0$となる整数に対して
-\begin{eqnarray*}
+\begin{align*}
   \| S_n - S_m \|_{{\mathcal B}(X)} = \left\| \sum_{i = m + 1}^n  ( I - B )^i \right\|_{{\mathcal B}(X)} \le \sum_{i = m + 1}^n \| I - B \|_{{\mathcal B}(X)}^i
-\end{eqnarray*}
+\end{align*}
 となる．
 定理の仮定より$ \| I - B \|_{{\mathcal B}(X)} < 1$であるため，
-\begin{eqnarray*}
+\begin{align*}
   \sum_{i = m + 1}^n \| I - B \|_{{\mathcal B}(X)}^i \rightarrow 0, ~ (n, ~ m \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となる．
 よって，
-\begin{eqnarray*}
+\begin{align*}
   \| S_n - S_m \|_{{\mathcal B}(X)} \rightarrow 0, ~ (n, ~ m \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となるため，点列$(S_n)$はCauchy列である．
 その上，${\mathcal B}(X)$はBanach空間であるため，任意のCauchy列は極限を${\mathcal B}(X)$に持つため，点列$(S_n)$は
-\begin{eqnarray*}
+\begin{align*}
   \| S_n - S \|_{{\mathcal B}(X)} \rightarrow 0, ~ (n, ~ m \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となる極限$S \in {\mathcal B}(X)$を持つ．
 
 次に$S$が$B^{-1}$になることを示す．
 合成作用素の定義\ref{def:mul_operator}に従って合成作用素$BS_n$を考える．
 $X$はBanach空間であり，$B, S_n \in {\mathcal B}(X)$であるため，定理\ref{thm:linear_operator_norm_prop2}合成作用素$BS_n$は${\mathcal B}(X)$に属する．
 その上，点列$(B S_n) \subset {\mathcal B}(X)$は
-\begin{eqnarray*}
+\begin{align*}
   \| B S_n - B S \|_{{\mathcal B}(X)} \le \| B \|_{{\mathcal B}(X)}  \| S_n - S \|_{{\mathcal B}(X)} \rightarrow 0, ~ (n \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となるため，極限$B S$を${\mathcal B}(X)$内にもつ．
 一方で，
-\begin{eqnarray*}
+\begin{align*}
   B S_n &=& \left( I - ( I - B ) \right) S_n = S_n - (I - B) S_n \\
   &=& \sum_{i=0}^n ( I - B)^i - \sum_{i=1}^{n+1} ( I - B)^i  \\
   &=& I - ( I - B)^{n + 1}
-\end{eqnarray*}
+\end{align*}
 となり，定理の仮定より$\| I - B \|_{{\mathcal B}(X)} < 1$を持つため
-\begin{eqnarray*}
+\begin{align*}
   \| B S_n - I \|_{{\mathcal B}(X)} = \| ( I - B)^{n + 1} \|_{{\mathcal B}(X)} \le \| I - B \|_{{\mathcal B}(X)}^{n + 1} \rightarrow 0, ~ (n \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となるため，点列$(B S_n)$は極限$I$も${\mathcal B}(X)$内に持つ．
 よって，極限の一意性より
-\begin{eqnarray*}
+\begin{align*}
   B S = I
-\end{eqnarray*}
+\end{align*}
 を得る．
 ${\mathcal R} ( I ) = X$であるため，${\mathcal R}(B S)=X$である．
 その上，$X = {\mathcal R}(B S) \subset {\mathcal R}(B)$と${\mathcal R}(B) \subset X$となるため，${\mathcal R}(B) = X$となる．
 さらに，$S \in {\mathcal B}(X)$であることから，
-\begin{eqnarray*}
+\begin{align*}
   {\mathcal D}(S) = {\mathcal R}(B) = X
-\end{eqnarray*}
+\end{align*}
 となる．
 
 同様の議論を$S_n B \in {\mathcal B}(X)$について行うと
-\begin{eqnarray*}
+\begin{align*}
   S B = I
-\end{eqnarray*}
+\end{align*}
 と
-\begin{eqnarray*}
+\begin{align*}
 {\mathcal D}(B) = {\mathcal R}(S) = X
-\end{eqnarray*}
+\end{align*}
 が得られる．
 そのため，$B$は逆作用素を持ち，逆作用素$B^{-1} = S \in {\mathcal B}(X)$である．
 
 また，
-\begin{eqnarray*}
+\begin{align*}
 S_n = I + ( I - B) + ( I - B )^2 + \cdots + ( I - B )^n \rightarrow B^{-1}, ~ (n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 より
-\begin{eqnarray*}
+\begin{align*}
 B^{-1} = I + (I - B) + (I - B)^2 + \cdots = \sum_{i = 0}^\infty (I - B)^i
-\end{eqnarray*}
+\end{align*}
 となる．
 
 最後に
-\begin{eqnarray*}
+\begin{align*}
 \left\| B^{-1} \right\|_{{\mathcal B}(X)} = \left\|  \sum_{i = 0}^\infty (I - B)^i \right\|_{{\mathcal B}(X)} \le \sum_{i=0}^\infty \| I - B \|^i
-\end{eqnarray*}
+\end{align*}
 となり，初項$1$，公比$\| I - B \|_{{\mathcal B}(X)} < 1$の総和より
-\begin{eqnarray*}
+\begin{align*}
 \left\| B^{-1} \right\|_{{\mathcal B}(X)} \le \frac{1}{ 1 - \| I - B \|_{{\mathcal B}(X)} }
-\end{eqnarray*}
+\end{align*}
 
 \qed
 \end{Proof}
@@ -1163,21 +1163,21 @@ $A \in {\mathcal B}(X, Y)$, $R \in {\mathcal B}(Y, X)$とする．
 「$A$が単射」の証明\\
 定理\ref{thm:linear_operator_injective11} (線形作用素に対する単射性(1))のii)を用いて証明する．
 $u \in X$とし，$RA$が単射であることに注意すると
-\begin{eqnarray*}
+\begin{align*}
 A u = 0 \Rightarrow RAu = 0 \Rightarrow u = 0
-\end{eqnarray*}
+\end{align*}
 よって，$A$は単射である．
 
 「$R$が全射」の証明\\
 $RA$が全射であるため任意の$g \in X$に対して，
-\begin{eqnarray*}
+\begin{align*}
 RA u = g
-\end{eqnarray*}
+\end{align*}
 となる$u \in X$が存在する．
 その上，$v = Au$とすると任意の$g \in X$に対して
-\begin{eqnarray*}
+\begin{align*}
 R v = g
-\end{eqnarray*}
+\end{align*}
 となる$v \in Y$が存在するため，$R$は全射である．
 
 \qed
@@ -1188,15 +1188,15 @@ Neumannの定理\ref{thm:nuemann_ser}と定理\ref{thm:injective_surjective}，�
 そのうえで，定理\ref{thm:injective_surjective}から$R \in {\mathbb R}^n$は全射となり，$A \in {\mathbb R}^n$は単射になります．
 さらに，線形代数の次元定理を利用することで，$R$と$A$がそれぞれ全単射となることもいえます．
 よって，
-\begin{eqnarray*}
+\begin{align*}
 	A x^* = b \Leftrightarrow& A (x^* - \hat{x}) = b - A \hat{x} \\
 	 \Leftrightarrow& RA (x^* - \hat{x}) = R(b - A \hat{x}) \\
 	 \Leftrightarrow& x^* - \hat{x}  = (RA)^{-1} R(b - A \hat{x})
-\end{eqnarray*}
+\end{align*}
 となるため
-\begin{eqnarray*}
+\begin{align*}
 	\| x^* - \hat{x} \|_{\infty}  = \| (RA)^{-1} R(b - A \hat{x}) \|_{\infty} \le \| (RA)^{-1} \|_{\infty} \| R(b - A \hat{x}) \|_{\infty} \le \frac{ \| R(b - A \hat{x}) \|_{\infty} }{1 - \| I - RA \|_{\infty}} 
-\end{eqnarray*}
+\end{align*}
 が成立します．
 
 %
@@ -1223,20 +1223,20 @@ Fr\'echet微分は全微分の拡張にあたります．
 $X, Y$をBanach空間とし，開部分集合$U \subset X$とする．
 定義域を${\mathcal D}(f) = U$とする$U$から$Y$への作用素$f$は$U$上で連続とする．
 ある点$v \in U$に対し，$v + h \in U$となる任意の$h \in X$について
-\begin{eqnarray*}
+\begin{align*}
 \frac{ \| f(v + h) - f(v) - f'[v] h \|_{Y} }{\| h \|_{X}} \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 を満たす線形作用素$f'[v] \in {\mathcal B}(X, Y)$が存在するとき，作用素$f$は点$v$においてFr\'echet微分可能といい，$f'[v] \in {\mathcal B}(X, Y)$を$f$の点$v$におけるFr\'echet微分と呼ぶ.
 \end{defi}
 
 Fr\'echet微分の定義\ref{def:frechet_diff}はランダウの記号$o$を用いると
-\begin{eqnarray*}
+\begin{align*}
   f(v + h) - f(v) =  f'[v] h + o( h )
-\end{eqnarray*}
+\end{align*}
 となる$o(h)$が
-\begin{eqnarray*}
+\begin{align*}
   \frac{\| o( h ) \|_{Y}  }{ \| h \|_{X} } \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 を満たすときです．
 
 開部分集合$U$の任意の元でFr\'echet微分可能なとき，$f'$を$U$から${\mathcal B}(X, Y)$への作用素，すなわち，$f': U \rightarrow {\mathcal B}(X, Y)$と見ることもできます．
@@ -1262,51 +1262,51 @@ $X, Y$をBanach空間とし，開部分集合$U \subset X$とする．
 定義域を${\mathcal D}(f_1) = {\mathcal D}(f_2)  = U$とする$U$から$Y$への作用素$f_1$と$f_2$が，各々$v \in U$でFr\'echet微分可能とし，
 各々のFr\'echet微分を$f_1'[v]$と$f_2'[v]$と表記する．
 ${\mathcal D}(g)  = U$とする$U$から$Y$への作用素$g$を
-\begin{eqnarray*}
+\begin{align*}
 g(u) = \alpha f_1(u) + \beta f_2(u), ~ u \in U, ~ \alpha, \beta \in {\mathbb K}
-\end{eqnarray*}
+\end{align*}
 とすると，作用素$g$も$v \in U$にてFr\'echet微分可能である．
 その上，$g$の$v \in U$におけるFr\'echet微分を$g'[v]$と表記すると
-\begin{eqnarray*}
+\begin{align*}
 g'[v] = \alpha f_1'[v] + \beta f_2'[v]
-\end{eqnarray*}
+\end{align*}
 が成立する．
 \end{Thm}
 
 \begin{Proof}
 作用素$f_1$と$f_2$が$v$においてFr\'echet微分可能であるため，ランダウの記号を用いた表記
-\begin{eqnarray*}
+\begin{align*}
   \frac{\| o_1( h ) \|_{Y}  }{ \| h \|_{X} } \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となる
-\begin{eqnarray*}
+\begin{align*}
   f_1(v + h) - f_1(v) =  f_1'[v] h + o_1( h )
-\end{eqnarray*}
+\end{align*}
 と，
-\begin{eqnarray*}
+\begin{align*}
   \frac{\| o_2( h ) \|_{Y}  }{ \| h \|_{X} } \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となる
-\begin{eqnarray*}
+\begin{align*}
   f_2(v + h) - f_2(v) =  f_2'[v] h + o_2( h )
-\end{eqnarray*}
+\end{align*}
 を持つ．
 
-\begin{eqnarray*}
+\begin{align*}
 g(v + h) &=& \alpha f_1(v + h) + \beta f_2( v + h ) \\
 &=& \alpha \left( f_1(v) + f_1'[v] h + o_{f_1}( h ) \right) + \beta \left(  f_2(v) + f_2'[v] h + o_{f_2}( h ) \right) \\
 &=& \left( \alpha f_1(v) + \beta f_2(v) \right) + \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right) \\
 &=& g(v) +  \left( \alpha f_1'[v] + \beta f_2'[v] \right) h +  \left( \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \right)
-\end{eqnarray*}
+\end{align*}
 となる．
 その上，
-\begin{eqnarray*}
+\begin{align*}
 \frac{ \| \alpha o_{f_1}( h ) + \beta  o_{f_2}( h ) \|_{Y} }{ \| h \|_X } \le \frac{ | \alpha | \| o_{f_1}( h ) \|_{Y} }{\| h \|_X} + \frac{ | \beta |  \|  o_{f_2}( h ) \|_{Y} }{ \| h \|_X } \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となるため，作用素$g$は$v \in U$においてFr\'echet微分可能で，$g$のFr\'echet微分$g'[v]$は
-\begin{eqnarray*}
+\begin{align*}
 g'[v] = \alpha f_1'[v] + \beta f_2'[v]
-\end{eqnarray*}
+\end{align*}
 となる．
 
 \qed
@@ -1320,70 +1320,70 @@ $X, Y, Z$をBanach空間とする．
 また，と$U_2 \subset {\mathcal R}(f_1) \subset Y$とし，定義域を${\mathcal D}(f_2) = U_2$とする$U_2$から$Z$への作用素$f_2$が，$f_1(v) \in U_2 \subset {\mathcal R}(f_1)$でFr\'echet微分可能とする．
 各々のFr\'echet微分を$f_1'[v]$と$f_2'[f_1(v)]$と表記する．
 ${\mathcal D}(g)  = U_1$とする$U_1$から$Z$への作用素$g$を
-\begin{eqnarray*}
+\begin{align*}
 g(u) = f_2( f_1(u) ), ~ u \in U_1
-\end{eqnarray*}
+\end{align*}
 とすると，作用素$g$も$v \in U_1$にてFr\'echet微分可能である．
 その上，$g$の$v \in U_1$におけるFr\'echet微分を$g'[v]$と表記すると
-\begin{eqnarray*}
+\begin{align*}
 g'[v] = f_2'[ f_1( v ) ] f_1'[ v ]
-\end{eqnarray*}
+\end{align*}
 が成立する．
 \end{Thm}
 
 \begin{Proof}
 作用素$f_1$が$U_1$でFr\'echet微分可能であるため，ランダウの記号を用いた表記
-\begin{eqnarray*}
+\begin{align*}
   \frac{\| o_1( h_1 ) \|_{Y}  }{ \| h_1 \|_{X} } \rightarrow 0, ~ (h_1 \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となる
-\begin{eqnarray*}
+\begin{align*}
   f_1(v + h_1) - f_1(v) =  f_1'[v] h_1 + o_1( h_1 )
-\end{eqnarray*}
+\end{align*}
 となる．
 同様に作用素$f_2$が$U_2$でFr\'echet微分可能であるため
-\begin{eqnarray*}
+\begin{align*}
   \frac{\| o_2( h_2 ) \|_{Z}  }{ \| h_2 \|_{Y} } \rightarrow 0, ~ (h_2 \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となる
-\begin{eqnarray*}
+\begin{align*}
   f_2( f_1(v) + h_2 ) - f_2( f_1(v) ) =  f_2'[ f_1(v) ] h_2 + o_2( h_2 )
-\end{eqnarray*}
+\end{align*}
 をもつ．
 
-\begin{eqnarray*}
+\begin{align*}
   f_2( f_1( v + h_1 ) ) = f_2( f_1(v) + f_1'[v] h_1 + o_1( h_1 ) )
-\end{eqnarray*}
+\end{align*}
 となる．
 $h_2 =  f_1'[v] h_1 + o_1( h_1 )$とおくと
-\begin{eqnarray*}
+\begin{align*}
   f_2( f_1( v + h_1 ) ) &=& f_2( f_1(v) + f_1'[v] h_1 + o_1( h_1 ) ) \\
 &=& f_2( f_1(v) + h_2) \\
 &=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] h_2 + o_2( h_2 ) \\
 &=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] ( f_1'[v] h_1 + o_1( h_1 ) ) + o_2( h_2 ) \\
 &=&  f_2( f_1(v) ) + f_2'[ f_1(v) ] f_1'[v] h_1 + \left( f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \right)
-\end{eqnarray*}
+\end{align*}
 となる．
 その上，Fr\'echet微分の定義より$f_2'[ f_1(v) ] \in {\mathcal B}(Y, Z)$であるため，$\| f_2'[ f_1(v) ] \|_{{\mathcal B}(Y, Z)} \le M$となる定数$M > 0$が存在する．
 また，
-\begin{eqnarray*}
+\begin{align*}
 \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } &\le& \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) \|_{Z} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{X} } \\
 &\le& M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} }
-\end{eqnarray*}
+\end{align*}
 となり，
-\begin{eqnarray*}
+\begin{align*}
 \frac{ \| h_2 \|_{Y} }{ \| h_1 \|_{X} } &=& \frac{ \|  f_1'[v] h_1 + o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } \\
 &\le& M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} } 
-\end{eqnarray*}
+\end{align*}
 から
-\begin{eqnarray*}
+\begin{align*}
 && \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } \\
 &\le& M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \left( M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} }  \right) \rightarrow 0, ~ h_1, h_2 \rightarrow 0
-\end{eqnarray*}
+\end{align*}
 となるため，作用素$g$は$v \in U_1$においてFr\'echet微分可能で，$g$のFr\'echet微分$g'[v]$は
-\begin{eqnarray*}
+\begin{align*}
 g'[v] = f_2'[ f_1( v ) ] f_1'[ v ]
-\end{eqnarray*}
+\end{align*}
 となる．
 
 \qed
@@ -1401,9 +1401,9 @@ g'[v] = f_2'[ f_1( v ) ] f_1'[ v ]
 
 本節ではBochner積分のエッセンスのみ提示します．
 $f$を実数の閉区間$[a, b]$から${\mathbb R}$の写像としたとき，$f$の$[a, b]$上のRiemann積分は
-\begin{eqnarray*}
+\begin{align*}
 \int_a^b f(x) dx
-\end{eqnarray*}
+\end{align*}
 のように微積分で習っていると思います．
 Bochner積分では，\\
 \noindent ~~ 1. 区間$[a, b]$上ではなく一般的な測度空間$S$上の積分を考える \\
@@ -1426,13 +1426,13 @@ Bochner積分では，\\
 
 \begin{defi}[単純関数]\label{def:simple_function}
 $(S, \Sigma, \mu)$を測度空間とし，可測集合$A_i \in \Sigma, ~ i = 1, 2, \cdots, n$を
-\begin{eqnarray*}
+\begin{align*}
 A_i \cap A_j, ~ i \neq j ~~  ~ \mbox{が空集合}
-\end{eqnarray*}
+\end{align*}
 かつ
-\begin{eqnarray*}
+\begin{align*}
 S = \bigcup_{i = 1}^{ \infty } A_i
-\end{eqnarray*}
+\end{align*}
 とする．
 $X$をBanach空間とし，$f$を定義域が$S$となる$S$から$X$への作用素が各$A_i$上でBanach空間$X$としての定数をとるとき，$f$を単純関数と呼ぶ．
 \end{defi}
@@ -1443,35 +1443,35 @@ $X$をBanach空間とし，$f$を定義域が$S$となる$S$から$X$への作�
 $(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
 $f$を$S$から$X$への単純関数とする．
 すなわち，
-\begin{eqnarray*}
+\begin{align*}
 f(s) = f_n, ~ (s \in A_n) 
-\end{eqnarray*}
+\end{align*}
 となるBanach空間$X$の定数$f_n \in X$と
-\begin{eqnarray*}
+\begin{align*}
 A_i \cap A_j, ~ i \neq j ~~  ~ \mbox{が空集合}
-\end{eqnarray*}
+\end{align*}
 かつ
-\begin{eqnarray*}
+\begin{align*}
 S = \bigcup_{i = 1}^{ \infty } A_i
-\end{eqnarray*}
+\end{align*}
 となる可測集合$A_i \in \Sigma, ~ i = 1, 2, \cdots, n$が存在する．
 そのとき，
-\begin{eqnarray*}
+\begin{align*}
  \| f(s) \|_{X} \mbox{が}S\mbox{上でLebesgue可積分}
-\end{eqnarray*}
+\end{align*}
 のとき，$f(s)$は$S$上でBochner可積分であるといい，$f(s)$の$S$上のBochner積分を
-\begin{eqnarray*}
+\begin{align*}
  \int_S f(s) d \mu := \sum_{i = 1}^{\infty} f_n \mu(A_i) \in X
-\end{eqnarray*}
+\end{align*}
 と定義する．
 \end{defi}
 
 $\mu(A_i)$は集合$A_i$の測度です．
 厳密ではない言葉で表現すると，集合$A_i$の面積に相当するものですので，$\mu(A_i)$の定義には$\mu(A_i) \ge 0$が含まれます．
 そのため，単純関数のBochner積分の定義より
-\begin{eqnarray*}
+\begin{align*}
  \left\| \int_S f(s) d \mu \right\|_{X} \le \int_S \| f(s) \|_{X} d \mu
-\end{eqnarray*}
+\end{align*}
 を満たします．
 (上式の右辺になればLebesgue積分で十分ですね．)
 
@@ -1481,18 +1481,18 @@ $\mu(A_i)$は集合$A_i$の測度です．
 $(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
 定義域${\mathcal D}(f) = S$となる$S$から$X$への作用素を$f$とする．
 $s \in S$に対してほとんど至るところで
-\begin{eqnarray*}
+\begin{align*}
 f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty) 
-\end{eqnarray*}
+\end{align*}
 かつ
-\begin{eqnarray*}
+\begin{align*}
 \int_S \| f(s) - f_n(s) \|_{X} d \mu \rightarrow 0, ~ ( n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 となるような$S$上でBochner可積分な単純関数の列$\{ f_n(s) \}$が存在するとき，$f(s)$は$S$上でBochner可積分であるという．
 その上，$f(s)$の$S$上のBochner積分を$\int_S f_n(s) d$の極限，すなわち
-\begin{eqnarray*}
+\begin{align*}
 \int_S f_n(s) d \mu \rightarrow \int_S f(s) d \mu , ~ ( n \rightarrow \infty)
-\end{eqnarray*}
+\end{align*}
 として定義する．
 \end{defi}
 
@@ -1503,9 +1503,9 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 	$(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
 	$f$を$S$から$X$への$S$上のBochner可積分な関数とする．
 	そのとき
-	\begin{eqnarray*}
+	\begin{align*}
 		\left\| \int_S f(s) d \mu \right\|_{X} \le \int_S \| f(s) \|_{X} d \mu
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 \end{Thm}
 
@@ -1513,9 +1513,9 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 	$(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
 	$f$と$g$を$S$から$X$への$S$上のBochner可積分な関数とする．
 	$\alpha, \beta \in {\mathbb K}$としたとき，
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_S \left( \alpha f(s) + \beta g(s) \right) d \mu = \alpha \int_S f(s) d \mu + \beta \int_S g(s) d \mu
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 \end{Thm}
 
@@ -1523,9 +1523,9 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 	$(S, \Sigma, \mu)$を測度空間とし，$X$をBanach空間とする．
 	$f$と$g$を$S$から$X$への$S$上のBochner可積分な関数とする．
 	$\alpha, \beta \in {\mathbb K}$としたとき，
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_S \left( \alpha f(s) + \beta g(s) \right) d \mu = \alpha \int_S f(s) d \mu + \beta \int_S g(s) d \mu
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 \end{Thm}
 
@@ -1534,9 +1534,9 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 	$f$を$S$から$X$への$S$上のBochner可積分な関数とする．
 	$B \in {\mathcal B}(X, Y)$とすると
 	$\alpha, \beta \in {\mathbb K}$としたとき，
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_S B f(s) d \mu = B \int_S f(s) d \mu
-	\end{eqnarray*}
+	\end{align*}
 	となる．
 \end{Thm}
 
@@ -1545,9 +1545,9 @@ f_n(s) \rightarrow f(s), ~  (n \rightarrow \infty)
 \begin{defi}[閉区間上のBochner積分]\label{def:bochner_integral_for_interval}
 $X$をBanach空間とし，$f$を閉区間$[a, b]$から$X$への$[a,b]$上のBochner可積分な関数とする．
 そのとき，$[a,b]$上のBochner積分を
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_a^b f(s) d s := \int_{[a,b]} f(s) d \mu
-	\end{eqnarray*}
+	\end{align*}
 と記述する．
 \end{defi}
 
@@ -1565,25 +1565,25 @@ $X$をBanach空間とし，$f$を閉区間$[a, b]$から$X$への$[a,b]$上のBo
 $X$をBanach空間とする．
 $f$を閉区間$[a, b]$から$X$への$[a,b]$上で連続な関数とする．
 $t \in (a, b )$とし，関数$g$を
-\begin{eqnarray*}
+\begin{align*}
 	g( t ) := \int_a^t f(s) ds
-\end{eqnarray*}
+\end{align*}
 とすると，$g$は$t \in (a, b )$においてFr\'echet微分可能である．
 その上，$g$の$t$のFr\'echet微分を$g'[t]$とすると
-\begin{eqnarray*}
+\begin{align*}
 	g'[t] = f(t)
-\end{eqnarray*}
+\end{align*}
 となる．
 \end{Thm}
 
 \begin{Proof}
 $f$は任意の$t \in [a, b]$において連続であるため，
-\begin{eqnarray*}
+\begin{align*}
 	\forall \varepsilon > 0 ~ \exists \delta > 0 ~ | s - t | < \delta ~ \mbox{となる} ~ \forall s \in [a, b] ~ \mbox{に対して} ~ \| f(s) - f(t) \|_{X} < \varepsilon
-\end{eqnarray*}
+\end{align*}
 が成立する．
 その上，$g$の$t$のFr\'echet微分可能か定義にあてはめると
-\begin{eqnarray*}
+\begin{align*}
 	\frac{ \left\| g(t + h) - g(t) - f(t)h \right\|_{X} }{ |h| } &=& \frac{ \left\| \int_{a}^{t+h} f(s) ds - \int_{a}^{t} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
 	&=& \frac{ \left\| \int_{t}^{t+h} f(s) ds - f(t)h \right\|_{X} }{ |h| } \\
 	&=& \frac{ \left\| \int_{t}^{t+h} f(s) ds - \left( f(t)( t+h) - f(t)t \right) \right\|_{X} }{ |h| } \\
@@ -1591,12 +1591,12 @@ $f$は任意の$t \in [a, b]$において連続であるため，
 	&=& \frac{ \left\| \int_{t}^{t+h} \left( f(s)  - f(t) \right) ds \right\|_{X} }{ |h| } \\
 	&\le& \frac{ \int_{t}^{t+h} \left\| f(s)  - f(t) \right\|_{X} ds }{ |h| } \\
 	&<& \frac{ \varepsilon   \int_{t}^{t+h}  ds }{ |h| } = \varepsilon 
-\end{eqnarray*}
+\end{align*}
 となる．
 その上，$\varepsilon > 0$は任意であるため，
-\begin{eqnarray*}
+\begin{align*}
 	\frac{ \left\| g(t + h) - g(t) - f(t)h \right\|_{X} }{ |h| } \rightarrow 0, ~ (h \rightarrow 0)
-\end{eqnarray*}
+\end{align*}
 となるため，$g$はFr\'echet微分可能で$g$の$t$におけるFr\'echet微分は$f(t)$となる．
 
 \qed
@@ -1620,51 +1620,51 @@ $f'[v] \in {\mathcal B}(X, Y)$が$h \in Y$で連続とは
 が成立することです．
 }
 であるとすると，
-\begin{eqnarray*}
+\begin{align*}
 	\int_{a}^{b} f'[s] ds = f(b) - f(a)
-\end{eqnarray*}
+\end{align*}
 となる．
 \end{Thm}
 
 \begin{Proof}
 	$f'$が$[a, b]$から${\mathcal B}({\mathbb R},X)$で連続であるため定理\ref{thm:Bochnerable}から$f'[s], ~ s \in [a, b]$でBochner可積分ある．
 	その上，$g$を
-	\begin{eqnarray*}
+	\begin{align*}
 		g(t) = \int_{a}^{t} f'[s] ds
-	\end{eqnarray*}
+	\end{align*}
 	とすると定理\ref{the:fund_theorem_i}から，$g$は$t \in (a, b)$においてFr\'echet微分可能で，
-	\begin{eqnarray*}
+	\begin{align*}
 		g'[t] = f'[t]  ~ \forall t \in (a, b)
-	\end{eqnarray*}	
+	\end{align*}	
 	となる．
-	\begin{eqnarray*}
+	\begin{align*}
 		F(t) = g(t) - f(t)
-	\end{eqnarray*}	
+	\end{align*}	
 	とおくと，$g$も$f$も$t \in (a, b)$においてFr\'echet微分可能であることから，
-	\begin{eqnarray*}
+	\begin{align*}
 		F'[t] = g'[t] - f'[t] = 0, ~ \forall t \in (a, b)
-	\end{eqnarray*}	
+	\end{align*}	
 	となる．
 	また，$F'[t]$がゼロであることから，Fr\'echet微分の定義により$F(t)$は$t$に依存しない作用素になる．
 	よって
-	\begin{eqnarray*}
+	\begin{align*}
 		F(t) = g(t) - f(t) = c
-	\end{eqnarray*}	
+	\end{align*}	
 	となる$t \in [a, b]$によって変化しない$c \in X$が存在する．
 	その上，上の式の$t$に$a$を代入すると
-	\begin{eqnarray*}
+	\begin{align*}
 		g(a) - f(a) = 0 - f(a) = c
-	\end{eqnarray*}	
+	\end{align*}	
 	となるため，$c = -f(a)$である．
 	よって，$g(t) - f(t) = c$に注意すると
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_{a}^{t} f'[s] ds = g(t) = f(t) + c = f(t) - f(a)
-	\end{eqnarray*}	
+	\end{align*}	
 	が成り立つ．
 	ゆえに$t = b$とすると
-	\begin{eqnarray*}
+	\begin{align*}
 		\int_{a}^{b} f'[s] ds = f(a) - f(b)
-	\end{eqnarray*}	
+	\end{align*}	
 	となる．
 
 \qed
@@ -1675,15 +1675,15 @@ $X, Y$をBanach空間とし，$U$を$X$の開部分集合とする．
 作用素$F:U \rightarrow Y$とし，任意の$v \in U$においてFr\'echet微分可能であるとする．
 $W$を$W \subset U$となる(開，閉を問わない)部分集合とする．
 任意の$u, v \in W$について
-\begin{eqnarray*}
+\begin{align*}
 	w(t) = (1 - t) u + t v, ~ t \in [0,1]
-\end{eqnarray*}
+\end{align*}
 が$W$に属すると仮定する．
 $F': U \rightarrow {\mathcal B}(X,Y)$が$W$上で連続であると仮定する．
 そのとき，
-\begin{eqnarray*}
+\begin{align*}
 	F(v)  - F(u) = \int_0^1 F'[(1 - t) u + t v](v - u)dt
-\end{eqnarray*}
+\end{align*}
 となる．
 \end{Thm}
 
@@ -1697,25 +1697,25 @@ $\tilde{w}: (1 - t) u + t v, ~ t \in {\mathbb R}$となる$\tilde{w}: {\mathbb R
 よって，$\tilde{w}$の定義域を$[0, 1]$に制限した$w:[0, 1] \rightarrow W$は$[0, 1]$上でFr\'echet微分可能であり，$\tilde{w}'$の定義域を$[0,1]$にしたFr\'echet微分$w' : [0, 1] \rightarrow {\mathcal B}({\mathbb R}, X)$は$[0, 1]$上で連続である．
 
 $f: [0, 1] \rightarrow Y$を
-\begin{eqnarray*}
+\begin{align*}
 	f(t) := F(w(t))
-\end{eqnarray*}
+\end{align*}
 とする．
 $W \subset U$から作用素$F:U \rightarrow Y$が任意の$v \in W$においてFr\'echet微分可能であり，$f$のFr\'echet微分は連鎖律定理\ref{thm:frechet_chain}より
-\begin{eqnarray*}
+\begin{align*}
 	f'[t] = F'[w(t)]w'[t] = F'[w(t)]( v - u)
-\end{eqnarray*}
+\end{align*}
 となるため，任意の$[0, 1]$上でFr\'echet微分可能である．
 また，仮定から$F': U \rightarrow {\mathcal B}(X, Y)$が$W$上で連続していることより，$f':[0, 1] \rightarrow {\mathcal B}({\mathbb R}, Y)$は$[0, 1]$上で連続となる．
 よって，$f$に対して定理\ref{thm:fund_theorem_ii}を利用でき，
-\begin{eqnarray*}
+\begin{align*}
 	f(1) - f(0) = \int_0^1 f'[t] dt
-\end{eqnarray*}
+\end{align*}
 となる．
 ゆえに，
-\begin{eqnarray*}
+\begin{align*}
 	F(v)  - F(u) = f(1) - f(0) = \int_0^1 f'[t] dt = \int_0^1 F'[w(t)]( v - u) dt
-\end{eqnarray*}
+\end{align*}
 となり，題意は示せた．
 
 \qed
@@ -1742,9 +1742,9 @@ $X$を係数体が${\mathbb K}$のBanach空間とする．
 $M$は空でない閉集合で$M \subset X$を満たすとする．
 $A$を$M$から$M$への写像とする．
 $x \in M$がAの不動点であるとは，$x$が
-\begin{eqnarray*}
+\begin{align*}
 x = Ax
-\end{eqnarray*}
+\end{align*}
 を満たすことである．
 \end{defi}
          
@@ -1753,9 +1753,9 @@ $X$を係数体が${\mathbb K}$のBanach空間とする．
 $M$は空でない閉集合で$M \subset X$を満たすとする．
 写像$A: M \rightarrow M$が$k$次の縮小写像であるとは，$0 \le k < 1$を満たす定数$k$が存在し，
 $\forall x,y \in M$について
-\begin{eqnarray*}
+\begin{align*}
 \| A x - A y \| \le k \| x - y\|
-\end{eqnarray*}
+\end{align*}
 を満たすことである．
 \end{defi}
 
@@ -1764,10 +1764,10 @@ $X$を係数体が${\mathbb K}$のBanach空間とする．
 $M$は空でない閉集合で$M \subset X$を満たすとする．
 $A$は$M$から$M$への$k$次の縮小写像とする．
 そのとき，問題
-\begin{eqnarray}
+\begin{equation}
 \text{Find} ~ u \in M ~ \text{s.t.} ~ u = Au
 \label{Eq:FixedPointEq}
-\end{eqnarray}
+\end{equation}
 は真の解$u^*$を$M$内にただ一つ持つ．
 即ち，写像$A$は$M$上にただ一つ不動点$u^*$を持つ．
 \end{Thm}
@@ -1776,16 +1776,16 @@ $A$は$M$から$M$への$k$次の縮小写像とする．
 $X$,$M$,$A$,$k$は定理\ref{thm:Banach}で定義されている集合，写像及び定数とする．
 $u_0$を閉集合$M$の元として与えられていると仮定する．
 そのとき反復法
-\begin{eqnarray*}
+\begin{align*}
 u_{n+1} = A u_n, ~ n = 0,1,\cdots
-\end{eqnarray*}
+\end{align*}
 によって得られる点列$(u_n)$は(\ref{Eq:FixedPointEq})を満たす真の唯一解$u^{*}$に収束する．
 さらに，$\forall n \in {\mathbb N}$について不等式
-\begin{eqnarray}
-\| u_n - u^* \| &\le& k^n (1-k)^{-1} \| u_1 - u_0 \| \label{Ine:Apri} \\
-\| u_{n+1} - u^* \| &\le& k (1-k)^{-1} \| u_{n+1} - u_n \| \label{Ine:Apos} \\
-\| u_{n+1} - u^* \| &\le& k \| u_n - u^* \| \label{Ine:rate}
-\end{eqnarray}
+\begin{align}
+\| u_n - u^* \| &\le k^n (1-k)^{-1} \| u_1 - u_0 \| \label{Ine:Apri} \\
+\| u_{n+1} - u^* \| &\le k (1-k)^{-1} \| u_{n+1} - u_n \| \label{Ine:Apos} \\
+\| u_{n+1} - u^* \| &\le k \| u_n - u^* \| \label{Ine:rate}
+\end{align}
 が成立する．
 \end{Cor}
 
@@ -1797,9 +1797,9 @@ u_{n+1} = A u_n, ~ n = 0,1,\cdots
 \begin{Proof}[Banachの不動点定理]
 $u_0$を閉集合$M$の元として与えられていると仮定する．
 点列$(u_n)$は反復法
-\begin{eqnarray}
+\begin{equation}
 u_{n+1} = A u_n, ~ n = 0,1,\cdots \label{pr:Eq:ita}
-\end{eqnarray}
+\end{equation}
 によって得られる．
 そのとき，証明のプロセスは次のように考える:\\
 I) $(u_n)$がCauchy列になること，さらにBanach空間の完備性を使うことで，$u_n \rightarrow u, ~ n \rightarrow \infty$となる$u$が$X$内に存在することを示す．\\
@@ -1809,63 +1809,63 @@ III) 真の解$u^*$が$M$内で一意であることを示す．\\
 I)
 
 (\ref{pr:Eq:ita})より
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u_{n+1} \| = \| A u_{n-1} - A u_n \|
-\end{eqnarray*}
+\end{align*}
 となる．
 仮定より$A$は$k$次の縮小写像であるため，
-\begin{eqnarray*}
+\begin{align*}
 \| A u_{n-1} - A u_n \| \le k \| u_{n-1} - u_n \|
-\end{eqnarray*}
+\end{align*}
 となる定数$k$が存在する．
 同様に$\| u_{n-1} - u_n \|$に(\ref{pr:Eq:ita})と$A$の縮小写像の性質を使うと
 最終的に
-\begin{eqnarray}
+\begin{equation}
 \| u_n - u_{n+1} \| \le k^n \| u_0 - u_1 \|
 \label{prof:1}
-\end{eqnarray}
+\end{equation}
 を得る．
 
 
 次に三角不等式(定義\ref{def:App:norm} (iv))より，$n=0,1,2,\cdots, ~ m > n $について
-\begin{eqnarray}
-\| u_n - u_m \| &=& \| (u_n - u_{n+1}) + (u_{n+1} - u_{n+2} ) + \cdots + ( u_{m-1} - u_m) \| \nonumber \\
-&\le& \| u_n - u_{n+1} \| + \| u_{n+1} - u_{n+2} \| + \cdots + \| u_{m-1} - u_m \|
+\begin{align}
+\| u_n - u_m \| &= \| (u_n - u_{n+1}) + (u_{n+1} - u_{n+2} ) + \cdots + ( u_{m-1} - u_m) \| \nonumber \\
+&\le \| u_n - u_{n+1} \| + \| u_{n+1} - u_{n+2} \| + \cdots + \| u_{m-1} - u_m \|
 \label{prof:3}
-\end{eqnarray}
+\end{align}
 となる．
 上の式に(\ref{prof:1})を適用すると
-\begin{eqnarray}
-\| u_n - u_m \| &\le& \| u_n - u_{n+1} \| + \| u_{n+1} - u_{n+2} \| + \cdots + \| u_{m-1} - u_m \| \nonumber \\
-&\le& k^n \| u_0 - u_1 \| + k^{n+1} \| u_0 - u_1 \| + \cdots + k^{m-1} \| u_0 - u_1 \| \nonumber \\
-&=& k^n (1+k+\cdots+k^{m-n-1}) \| u_0 - u_1 \|
+\begin{align}
+\| u_n - u_m \| &\le \| u_n - u_{n+1} \| + \| u_{n+1} - u_{n+2} \| + \cdots + \| u_{m-1} - u_m \| \nonumber \\
+&\le k^n \| u_0 - u_1 \| + k^{n+1} \| u_0 - u_1 \| + \cdots + k^{m-1} \| u_0 - u_1 \| \nonumber \\
+&= k^n (1+k+\cdots+k^{m-n-1}) \| u_0 - u_1 \|
 \label{prof:2}
-\end{eqnarray}
+\end{align}
 となる．
 ここで，$k$は$0 \le k < 1$であるため，$1+k+\cdots+k^{m-n-1} \le 1+k+\cdots+k^{m-1}$となる．
 さらに，等比級数から
-\begin{eqnarray}
+\begin{equation}
 1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
 \label{prof:5}
-\end{eqnarray}
+\end{equation}
 であるため，(\ref{prof:2})は
-\begin{eqnarray}
-\| u_n - u_m \| &\le& \frac{k^n(1-k^m)}{1-k}  \| u_0 - u_1 \|
+\begin{equation}
+\| u_n - u_m \| \le \frac{k^n(1-k^m)}{1-k}  \| u_0 - u_1 \|
 \label{prof:4}
-\end{eqnarray}
+\end{equation}
 となる．
 よって，$k$は$0 \le k < 1$から$k^n \rightarrow 0, ~ n \rightarrow \infty$と$k^m \rightarrow 0, ~ m \rightarrow \infty$となる．
 即ち，
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u_m \| \rightarrow 0, ~ (n,m \rightarrow \infty )
-\end{eqnarray*}
+\end{align*}
 となるため，点列$(u_n)$はCauchy列である．
 さらに$X$はBanach空間であるため，$X$は完備である(定義\ref{def:App:Banach})．
 即ち，任意のCauchy列が$X$の中で極限を持つ(定義\ref{def:App:Comp})．
 よって，点列$(u_n)$は
-\begin{eqnarray*}
+\begin{align*}
 u_n \rightarrow u, ~ n \rightarrow \infty
-\end{eqnarray*}
+\end{align*}
 となる$u \in X$が存在する．\\
 \\
 II)
@@ -1877,20 +1877,20 @@ $u_0$を$M$の元とする．
 さらに，$M$は閉集合であるため，I)で存在を示した$u$は$M$に属する(定義\ref{def:App:CloseSet})．
 よって$Au$も$M$に属する．
 その上で仮定より$A$は$k$次の縮小写像であるため，
-\begin{eqnarray*}
+\begin{align*}
 \| A u_n - A u \| \le k \| u_n - u \|
-\end{eqnarray*}
+\end{align*}
 を得る．
 I)より点列$(u_n)$は極限を持つため，$\| u_n - u \| \rightarrow 0, ~ n \rightarrow \infty$となる(定義\ref{def:App:Con})．
 即ち
-\begin{eqnarray*}
+\begin{align*}
 \| A u_n - A u \| \rightarrow 0, ~ n \rightarrow \infty
-\end{eqnarray*}
+\end{align*}
 となるため，$Au$は$Au_n$の極限である(定義\ref{def:App:Con})．
 よって，(\ref{pr:Eq:ita})について$n \rightarrow \infty$とすると
-\begin{eqnarray*}
+\begin{align*}
 u=Au
-\end{eqnarray*}
+\end{align*}
 が成立する．
 よって，$u$は(\ref{Eq:FixedPointEq})を満たす真の解$u^*$となる．\\
 \\
@@ -1898,9 +1898,9 @@ III)
 
 $u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとする．
 そのとき，$A$は$k$次の縮小写像であるため，
-\begin{eqnarray*}
+\begin{align*}
 \| u^* - v^* \| = \| A u^* -A v^* \| \le k\|u^* - v^*\|
-\end{eqnarray*}
+\end{align*}
 を得る．
 ここで$0 \le k < 1$であるため，不等式を満たすものは$u^* = v^*$の場合のみである．
 即ち，(\ref{Eq:FixedPointEq})を満たす真の解は一意である．
@@ -1914,37 +1914,37 @@ $u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとす�
 
 (\ref{Ine:Apri})の証明\\
 (\ref{prof:4})について$m \rightarrow \infty$とすると$k^m \rightarrow 0$より
-\begin{eqnarray*}
+\begin{align*}
 \| u_n - u \| &\le& \frac{k^n}{1-k}  \| u_1 - u_0 \|
-\end{eqnarray*}
+\end{align*}
 
 (\ref{Ine:Apos})の証明\\
 (\ref{prof:3})より
-\begin{eqnarray*}
+\begin{align*}
 \| u_{n+1} - u_m \| &\le& \| u_{n+1} - u_{n+2} \| + \| u_{n+2} - u_{n+3} \| + \cdots + \| u_{m-1} - u_m \|\\
 &\le& k \| u_n - u_{n+1} \| + k^2 \| u_n - u_{n+1} \| + \cdots + k^{m-n-1} \| u_n - u_{n+1} \| \\
 &=& k (1 + k + \cdots + k^{m-n-1}) \| u_n - u_{n+1} \|
-\end{eqnarray*}
+\end{align*}
 を得る．
 ここで$1 + k + \cdots + k^{m-n-1} \le 1 + k + \cdots + k^{m-1}$より，
-\begin{eqnarray*}
+\begin{align*}
 \| u_{n+1} - u_m \| &\le& k  (1 + k + \cdots + k^{m-1}) \| u_n - u_{n+1} \|
-\end{eqnarray*}
+\end{align*}
 となる．
 よって(\ref{prof:5})より
-\begin{eqnarray*}
+\begin{align*}
 \| u_{n+1} - u_m \| &\le&  k \frac{1-k^m}{1-k} \| u_n - u_{n+1} \|
-\end{eqnarray*}
+\end{align*}
 となる．
 よって$m \rightarrow \infty$とすると
-\begin{eqnarray*}
+\begin{align*}
 \| u_{n+1} - u \| &\le&  \frac{k}{1-k} \| u_{n+1} - u_n  \|
-\end{eqnarray*}
+\end{align*}
 
 (\ref{Ine:rate})の証明\\
-\begin{eqnarray*}
+\begin{align*}
 \| u_{n+1} - u \| = \| Au_n - Au \| \le k \| u_n - u \|
-\end{eqnarray*}
+\end{align*}
 
 \qed
 \end{Proof}
@@ -1956,9 +1956,9 @@ $u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとす�
 \subsection{方程式の解の品質保証のための基本定理}\label{sec:define_Basic_theorem}
 本節では方程式の解の品質保証を行うための基本的な定理を紹介する．
 $X, Y$をBanach空間とし，非線形方程式
-\begin{eqnarray*}
+\begin{align*}
 	\mbox{Find} ~ u \in X ~ \mbox{s.t.} ~ F(u) = 0
-\end{eqnarray*}
+\end{align*}
 を求める問題を考えます．
 この問題は有限次元や無限次元を問わず，連立一次方程式や非線形方程式，偏微分方程式などを取り扱うことができます．
 この問題に対して近似解の品質保証を行う定理として，以下のNewton-Kantorovichの定理の亜種を紹介します:

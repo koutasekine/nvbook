@@ -226,7 +226,7 @@ singleは32 bitの長さで近似して保持し，doubleは64 bitの長さで�
 {\begin{center} \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4610935} \end{center}}
 
 本章では，IEEE 754 規格の簡単な紹介と，品質保証に必要となる丸め変更について説明します．
-前述したとおりIEEE 754 規格では{\it single}と{\it double}という$2$進数の浮動小数点数のフォーマット
+前述したとおりIEEE 754 規格では\textit{single}と\textit{double}という$2$進数の浮動小数点数のフォーマット
 \[
 	(-1)^s \times 2^e \times m
 \]
@@ -237,7 +237,7 @@ singleは32 bitの長さで近似して保持し，doubleは64 bitの長さで�
 \noindent \hspace{10mm} b) 指数部$e$ : $e_{\min} \le e \le e_{\max}$となる整数 \\
 \noindent \hspace{10mm} c) 仮数部$m$ : 正規化された形式 $d_0.d_1 d_2 \cdots d_{p-1}$で表現される．ただし，$d_i$は$0$ or $1$.\\
 \noindent です．
-$e_{\max}, e_{\min}, p$は{\it single}と{\it double}で変化し，表\ref{3:table_val}のように定められています(ただし，$e_{\min} := 1 - e_{\max}$です)．
+$e_{\max}, e_{\min}, p$は\textit{single}と\textit{double}で変化し，表\ref{3:table_val}のように定められています(ただし，$e_{\min} := 1 - e_{\max}$です)．
 
 \begin{table}[htb]
 \centering
@@ -250,7 +250,7 @@ $e_{\max}$     & 127   &    1023 \\   \hline
 \end{tabular}
 \end{table} 
 
-また，図\ref{3:fig_float}に{\it{Single}}の場合の表現を図示します．
+また，図\ref{3:fig_float}に\textit{Single}の場合の表現を図示します．
 ポイントは，正規化数と呼ばれる状態では常に$d_0 = 1$としておき，$d_1$から記憶させています．
 これにより$1$ bit分だけお得に記憶できるため，「ケチビット」と呼ばれます．
 
@@ -258,7 +258,7 @@ $e_{\max}$     & 127   &    1023 \\   \hline
  \begin{center}
   \includegraphics[width=150mm]{figs/3_fig_float.eps}
  \end{center}
-  \caption{{\it{Single}}の場合の表現方法}
+  \caption{\textit{Single}の場合の表現方法}
  \label{3:fig_float}
 \end{figure}
 
@@ -267,15 +267,15 @@ $e_{\max}$     & 127   &    1023 \\   \hline
 	ただし，$p$は($d_0$も含め)$6$ bitとし，$e$は$3$ bitとする．\\
 
 \noindent 解答\\	
-	\begin{eqnarray*}
+	\begin{align*}
 	7.25 &=& (111.01)_2 \\
 	&=& (-1)^0 \times 2^2 \times (1.1101)_2
-	\end{eqnarray*}
+	\end{align*}
 	ここで，$(\cdot)_2$は2進数を意味する．
 	そのため，解答は
-	\begin{eqnarray*}
+	\begin{align*}
 	0 ~~ 010 ~~ 11010
-	\end{eqnarray*}
+	\end{align*}
 	となる．\\
 
 仮数部$p = 3$ bitとすると，上記の例題にある科数部のビット$11010$は表現できないことに気が付くと思います．
@@ -362,35 +362,35 @@ ${\mathbb{F}}$をIEEE 754 規格で定義された浮動小数点数の集合と
 品質の保証を行う際の信念は，「1bitたりともさぼらずに必ず数学的に正しい結果」を返すことです．
 しかしながら，$a+b$という結果は多くの場合，実数${\mathbb R}$になってしまいコンピュータでは表現できません．
 そこで，コンピュータで表現できる$a+b$で表せる数学的に正しい結果は，2つの浮動小数点数$c_l, c_u \in {\mathbb F}$を用いて
-\begin{eqnarray*}
+\begin{align*}
 	c_l \le a + b \le c_u
-\end{eqnarray*}
+\end{align*}
 のように結果を挟み込むことです．
 別の言い方をすれば，「区間$[c_l, c_u]$の中に$a + b$の結果が含まれている」あるいは「$a + b \in [c_l, c_u]$」といえます．
 もちろん$c_l$と$c_u$の幅が大きければ，使い物にならない結果かもしれません．
 
 では，次に$c_l$と$c_u$をどのように作ればよいか，考えてみましょう．
 まず，演算子$+$を用いて丸めも含めた演算をもう一度おさらいすると
-\begin{eqnarray*}
+\begin{align*}
  a + b \in {\mathbb R}&:& ~ \mbox{数学における足し算．結果は浮動小数点数とは限らない} \\
  a ~ \tilde{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$に最も近い浮動小数点数．} \\
  a ~ \overline{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$よりも大きい浮動小数点数のうち最も小さい数．}\\
  a ~ \underline{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$よりも小さい浮動小数点数のうち最も大きい数．}
-\end{eqnarray*}
+\end{align*}
 でした．
 IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモードの変更による動作の保証がされておりましたね．
 よって，$c_l = a ~ \underline{+} ~ b$, $c_u = a ~ \overline{+} ~ b$とすれば，
-\begin{eqnarray*}
+\begin{align*}
 	a + b \in [ a ~ \underline{+} ~ b, a ~ \overline{+} ~ b  ] = \{ c \in {\mathbb R} ~ | ~  a ~ \underline{+} ~ b \le c \le a ~ \overline{+} ~ b \}
-\end{eqnarray*}
+\end{align*}
 となり，$a + b$の真の結果はわからないですが，コンピュータで数学的に正しい結果$[ a ~ \underline{+} ~ b, a ~ \overline{+} ~ b  ]$を得ることができます．
 
 同様に他の四則演算についても
-\begin{eqnarray*}
+\begin{align*}
 	a - b &\in& [ a ~ \underline{-} ~ b, a ~ \overline{-} ~ b  ] \\
 	a \cdot b &\in& [ a ~ \underline{\cdot} ~ b, a ~ \overline{\cdot} ~ b  ] \\
 	a / b &\in& [ a ~ \underline{/} ~ b, a ~ \overline{/} ~ b  ]
-\end{eqnarray*}
+\end{align*}
 のように2つの浮動小数点数の丸めモードを用いて真の結果を含む区間を得ることができます．
 
 \noindent 問題\\
@@ -481,15 +481,15 @@ $0.1$と書いてしまうと誤差が発生するために，$1.0/10.0$のよ�
 
 まず，丸め誤差が入らない状況における区間同士の演算を考えています．
 $a \in[a_l, a_u]$, $b \in [b_l, b_u]$としたときの$a + b$の結果は集合
-\begin{eqnarray*}
+\begin{align*}
 	\{ a + b \in {\mathbb R} ~ | ~ \forall a \in [a_l, a_u], ~ \forall b \in [b_l, b_u] \}
-\end{eqnarray*}
+\end{align*}
 で表されます．
 もちろん足し算以外の四則演算($-, \cdot, /$)でも同じです．
 例えば，$a = 0.1 \in[a_l, a_u]$, $b = 1.1 \in [b_l, b_u]$のとき，$a + b = 1.2$は
-\begin{eqnarray*}
+\begin{align*}
 	1.2 \in \{ a + b \in {\mathbb R} ~ | ~ \forall a \in [a_l, a_u], ~ \forall b \in [b_l, b_u] \}
-\end{eqnarray*}
+\end{align*}
 のように集合内に元の足し算結果が必ず含まれます．
 すなわち，この右辺の集合を区間同士の演算結果として考えれば，数学的に正しい結果を得ることが可能です．
 すなわち，区間同士の四則演算は
@@ -794,14 +794,14 @@ $x^2$や$x - x$のようにわかりきった計算の場合は，専用の演�
 
 
 次の例として回転行列
-\begin{eqnarray*}
+\begin{align*}
 	A(\theta) = \left( \begin{array}{cc}
 	\cos(\theta) & -\sin(\theta) \\
 	\sin(\theta) & \cos(\theta)
 	\end{array}\right),
-\end{eqnarray*}
+\end{align*}
 と区間ベクトル
-\begin{eqnarray*}
+\begin{align*}
 	x = \left( \begin{array}{c}
 	x_1 \\
 	x_2
@@ -811,7 +811,7 @@ $x^2$や$x - x$のようにわかりきった計算の場合は，専用の演�
 	\mbox{[-1, 1]}
 	\end{array}
 	\right).
-\end{eqnarray*}
+\end{align*}
 について考えてみます．
 $x$を図で書いてみると図 \ref{3:wrap1}のようになります．
 
@@ -825,7 +825,7 @@ $x$を図で書いてみると図 \ref{3:wrap1}のようになります．
 
 $\pi/4$だけ$x$を回転を意味する$A(\pi/4)x$の像は図 \ref{3:wrap2}のようになります．
 しかしながら，区間演算を用いて計算すると
-\begin{eqnarray*}
+\begin{align*}
 	A(\pi/4)x = \left( \begin{array}{cc}
 	\frac{\sqrt{2}}{2} & -\frac{\sqrt{2} }{2} \\
 	\frac{\sqrt{2} }{2} & \frac{\sqrt{2} }{2}
@@ -840,7 +840,7 @@ $\pi/4$だけ$x$を回転を意味する$A(\pi/4)x$の像は図 \ref{3:wrap2}の
 	\mbox{[}-\sqrt{2}, \sqrt{2}\mbox{]}
 	\end{array}
 	\right),
-\end{eqnarray*}
+\end{align*}
 のようになり，図で表すと図 \ref{3:wrap3}のオレンジ色の部分になります．
 図を見てもわかるように，区間演算はそれぞれの軸に対して区間を作成するために，2次元ベクトル以上の場合は表現できる集合が非常に限定されてしまいます．
 
@@ -862,14 +862,14 @@ $\pi/4$だけ$x$を回転を意味する$A(\pi/4)x$の像は図 \ref{3:wrap2}の
 
 さらに、もう一度，$\pi/4$だけ回転させる，すなわち$A(\pi/4) \left( A(\pi/4)x \right)$とすると真の像は図 \ref{3:wrap2}に戻ります．
 しかしながら，区間演算では
-\begin{eqnarray*}
+\begin{align*}
 A\left( \frac{\pi}{4} \right) \left( A\left( \frac{\pi}{4} \right)x \right) = \left(
 \begin{array}{c}
 \mbox{[}-2, 2\mbox{]} \\
 \mbox{[}-2, 2\mbox{]}
 \end{array}
 \right)
-\end{eqnarray*}
+\end{align*}
 から図 \ref{3:wrap4}のようになり，非常に過大評価になってしまうことがわかります．
 
 \begin{figure}[htb]
@@ -883,7 +883,7 @@ A\left( \frac{\pi}{4} \right) \left( A\left( \frac{\pi}{4} \right)x \right) = \l
 このような影響はラッピングエフェクトと呼ばれます．
 そのために，区間演算はできる限りあとに行った方が良いです．
 例えば，計算順序をかえると
-\begin{eqnarray*}
+\begin{align*}
 \left( A\left( \frac{\pi}{4} \right) A\left( \frac{\pi}{4} \right) \right) x  = \left( \begin{array}{cc}
 0 & -1 \\
 1 & 0
@@ -898,7 +898,7 @@ A\left( \frac{\pi}{4} \right) \left( A\left( \frac{\pi}{4} \right)x \right) = \l
 \mbox{[}-1, 1 \mbox{]}
 \end{array}
 \right).
-\end{eqnarray*}
+\end{align*}
 となることから，精度の良い結果を得ることができます．
 
 

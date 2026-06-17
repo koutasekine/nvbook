@@ -15,16 +15,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # メインファイルのコンパイル（相互参照のため2回実行）
-platex book.tex
-platex book.tex
+lualatex book.tex
+lualatex book.tex
 
 # 参考文献を含む場合
 bibtex book
-platex book.tex
-platex book.tex
-
-# PDF生成
-dvipdfmx book.dvi
+lualatex book.tex
+lualatex book.tex
 
 # 全 .tex ファイルを一括ビルド（commands.tex を除く）
 bash tete.sh
@@ -32,7 +29,7 @@ bash tete.sh
 
 ## File structure
 
-- `book.tex` — メインファイル。`jbook` クラス、日本語組版
+- `book.tex` — メインファイル。`jlreq` クラス、LuaLaTeX + 日本語組版
 - `commands.tex` — カスタムマクロ定義（`\input{commands.tex}` で読み込まれる）
 - `ref.bib` — BibTeX 参考文献データベース
 - `figs/` — 図ファイル（EPS・PDF形式）

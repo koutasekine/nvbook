@@ -65,7 +65,7 @@
 \def\endfunction{\mathbf{end}}
 \def\zeromat{O}
 \def\ep{\varepsilon}
-\def\vector#1{\mbox{\boldmath $#1$}}
+\renewcommand{\vector}[1]{\bm{#1}}
 
 
 \newcommand{\abs}[1]{|#1|}
@@ -128,6 +128,6 @@
 \newtheorem{Proof}{証明}
 \renewcommand{\theProof}{}
 
-\def\qed{\hfill $\Box$}
+\renewcommand{\qed}{\hfill\ensuremath{\square}}
 
 
