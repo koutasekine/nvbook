@@ -49,7 +49,7 @@ $\hat{x}$や$R$を作成する段階は，丸め誤差を気にする必要は�
 ここから，区間演算で計算する必要があります．
 すなわち，$\| RA - I  \|_{\infty}$を丸め誤差まで含めて求める必要があります．
 そのため，多くの場合は計算が簡単な最大値ノルムを選択することが多いです．
-その上で，$\| RA - I  \|_{\infty}$の丸め誤差まで含めた上界が$1$未満であれば，行列$A$が正則であることが証明され，解を$1$つ持つことが示されました．
+そのうえで，$\| RA - I  \|_{\infty}$の丸め誤差まで含めた上界が$1$未満であれば，行列$A$が正則であることが証明され，解を$1$つ持つことが示されました．
 
 さらに，\eqref{linear_prpblem_err}の右辺
 \[
@@ -78,8 +78,8 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 %----------------------------------------------------------------------------------------------------------------------------------------------
 \section{成分毎評価}\label{sec:element_basic_linear_problem}
 定理\ref{thm:basic_linear_problem}では「真の解$x^*$と近似解$\hat{x}$の差の絶対値最大」を見積もっていましたが，有限次元問題の場合は，簡単に成分毎の評価に切り替えることができます．
-まず，よく知られている定理であるノイマン級数の定理から準備したいと思います．
-無限次元Banach空間上の線形作用素に関するノイマン級数展開については定理\ref{thm:linear_operator_injective2}を参照してください．
+まず，よく知られている定理であるNeumann級数の定理から準備したいと思います．
+無限次元Banach空間上の線形作用素に関するNeumann級数展開については定理\ref{thm:linear_operator_injective2}を参照してください．
 
 \begin{Thm}\label{thm:finite_Neumann}
 	$G \in {\mathbb R}^{n \times n}$としたとき，以下は同等である
@@ -192,7 +192,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 
 \begin{Proof}
 	$\mbox{rank}(A)$を行列の階数とすると，行列積の階数は$\mbox{rank}(RA) \le \mbox{rank}(R), ~\mbox{rank}(RA) \le \mbox{rank}(A)$となることが知られている(忘れてしまっている場合，線形代数の教科書で探してみましょう!)．
-	その上，$RA$が逆行列を持つことから線形代数の基本定理(あるいは次元定理とも呼ばれます．こちらも忘れている場合は，線形代数の教科書をみなおしましょう)から$\mbox{rank}(RA) = n$となるために，$\mbox{rank}(RA) = \mbox{rank}(A) = \mbox{rank}(R) = n$となり，$A$も$R$も全単射となり逆行列を持つ．
+	そのうえ，$RA$が逆行列を持つことから線形代数の基本定理(あるいは次元定理とも呼ばれます．こちらも忘れている場合は，線形代数の教科書をみなおしましょう)から$\mbox{rank}(RA) = n$となるために，$\mbox{rank}(RA) = \mbox{rank}(A) = \mbox{rank}(R) = n$となり，$A$も$R$も全単射となり逆行列を持つ．
 	よって，
 	\begin{align*}
 		x^* - \hat{x} =& R(b - A \hat{x}) - R(b - A \hat{x}) + x^* - \hat{x} \\
@@ -232,7 +232,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 
 \begin{Proof}
 	ノルムの定義から$\| x \|_{\infty} \le \| x \|_{2} \le \| x \|_{1}$となるため，$\| \cdot \|_{\infty}$についてのみ示せばよい．
-	その上，$\| x  \|_{\infty} = \max_{1 \le i \le n} (|x_i|)$であるため，
+	そのうえ，$\| x  \|_{\infty} = \max_{1 \le i \le n} (|x_i|)$であるため，
 	\begin{align*}
 		| x | \le \left(\begin{array}{c}
 			\| x \|_{\infty} \\
@@ -268,7 +268,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 \end{Thm}
 
 \begin{Proof}
-	\eqref{cond:RAminusI2}と定理\ref{thm:spec_norm}より$\rho(G) < 1$であることからノイマン級数の定理である定理\ref{thm:finite_Neumann}を用いると$RA$は逆行列を持つ．
+	\eqref{cond:RAminusI2}と定理\ref{thm:spec_norm}より$\rho(G) < 1$であることからNeumann級数の定理である定理\ref{thm:finite_Neumann}を用いると$RA$は逆行列を持つ．
 	そのうえで，補題\ref{lem:linear_iter}から
 	\begin{align*}
 		\left| x^* - \hat{x} \right| =& \left|  \sum_{i = 0}^N G^i R (b - A \hat{x}) + G^{N + 1}( x^* - \hat{x} ) \right| \\

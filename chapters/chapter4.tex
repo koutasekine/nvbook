@@ -12,9 +12,9 @@
 を考えます．
 定理\ref{thm:Basic_Theorem_five_order_nonlinear}や定理\ref{thm:basic_linear_problem}などでは，第\ref{chap:basic_theorem}章の最終目標である定理\ref{thm:Basic_Theorem}を利用してきました．
 線形方程式や非線形方程式と同様に固有値問題にも定理\ref{thm:Basic_Theorem}を使うことも可能ですが，重複固有値の取り扱いや全固有値と全固有ベクトルを1つの方程式としてみなす巨大な方程式を考えなければならないため，直接利用することはあまりおすすめしません．
-そのかわりに数値解析でもよく利用されるゲルシュゴリンの定理を利用します:
+そのかわりに数値解析でもよく利用されるGershgorinの定理を利用します:
 
-\begin{Thm}[ゲルシュゴリンの定理]\label{thm:gerschgorin}
+\begin{Thm}[Gershgorinの定理]\label{thm:gerschgorin}
 	$n$次元行列$A = (a_{ij})$に対し
 	\begin{align*}
 		r_i := \sum_{j = 1, j \neq i}^n | a_{ij} |, ~ U_i := \{ z \in {\mathbb C} ~|~~ | z - a_{ii} | \le r_i  \}
@@ -70,7 +70,7 @@
 	\qed
 \end{Proof}
 
-ゲルシュゴリンの定理(定理\ref{thm:gerschgorin})と補題\ref{lem:trans_eigenvalue}を用いると$Ax = \lambda B x$に対する全固有値に対する品質保証法を考えることができます:
+Gershgorinの定理(定理\ref{thm:gerschgorin})と補題\ref{lem:trans_eigenvalue}を用いると$Ax = \lambda B x$に対する全固有値に対する品質保証法を考えることができます:
 
 
 \begin{Thm} \label{thm:eig_basic}
@@ -104,7 +104,7 @@
 		\mbox{Find} ~ (\mu, y) \in {\mathbb C} \times {\mathbb C}^n ~ \mbox{s.t.} ~ \left( \tilde{\Lambda} + Q  \right) y = \mu y
 	\end{align*}
 	を考えればよい．
-	そのうえ，上の固有値問題に対し，ゲルシュゴリンの定理を適用すると，
+	そのうえ，上の固有値問題に対し，Gershgorinの定理を適用すると，
 	\begin{align*}
 		q_i := \sum_{j = 1, j \neq i}^{n} | Q_{ij} |, ~~ \tilde{U}_{i} := \left\{ z \in {\mathbb C} ~ | ~~ \left| z - (\tilde{\lambda}_i + Q_{ii}) \right| \le q_i \right\}
 	\end{align*}
@@ -132,7 +132,7 @@
 	\qed
 \end{Proof}
 
-この定理\ref{thm:eig_basic}に対して，ノイマン級数の定理(定理\ref{thm:finite_Neumann} や定理\ref{thm:linear_operator_injective2})を適用すると，次の宮島の定理がいえます:
+この定理\ref{thm:eig_basic}に対して，Neumann級数の定理(定理\ref{thm:finite_Neumann} や定理\ref{thm:linear_operator_injective2})を適用すると，次の宮島の定理がいえます:
 \begin{Thm} \label{thm:eig_miyajima}
 	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
 	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$を与えられている行列とする．
@@ -167,7 +167,7 @@
 \end{Thm}
 
 \begin{Proof}
-	$\| G \|_{\infty} < 1$であるから，ノイマン級数の定理より$I - G = Y B \tilde{X}$は正則である．
+	$\| G \|_{\infty} < 1$であるから，Neumann級数の定理より$I - G = Y B \tilde{X}$は正則である．
 	そのうえ，
 	\begin{align*}
 		\| (I - G)^{-1} \|_{\infty} \le \frac{ 1 }{1 - \| G \|_{\infty}}
@@ -213,7 +213,7 @@
 とすると$D^{-1} Y B \tilde{X}$の対角成分はすべて$1$となるため，$G$の対角成分は$0$となります．
 
 
-定理\ref{thm:eig_miyajima}では十分条件$\| G \|_{\infty} < 1$を利用して，ノイマン級数の定理から$Y B \tilde{X}$の正則性を検証していました．
+定理\ref{thm:eig_miyajima}では十分条件$\| G \|_{\infty} < 1$を利用して，Neumann級数の定理から$Y B \tilde{X}$の正則性を検証していました．
 この条件を緩めるために，$\rho(G) < 1$と置き換えたいところですが，\ref{sec:optional_linear_program}節と同様に，まだ，リーズナブルな評価が見つかっていません．
 そのために，十分条件を変更し，
 	\begin{align*}
@@ -301,7 +301,7 @@
 
 \begin{Proof}
 	十分条件$M \hat{v} > \vector{0} ~~ \mbox{かつ} ~~ \hat{v} > \vector{0}$となる$\hat{v}$が存在することから，定理\ref{thm:fiedler2}より$\rho(| G |) < 1$となる．
-	そのうえ，$\rho(G) \le \rho(| G | ) < 1$から，ノイマン級数の定理より$D^{-1} Y B \tilde{X} $は正則である．
+	そのうえ，$\rho(G) \le \rho(| G | ) < 1$から，Neumann級数の定理より$D^{-1} Y B \tilde{X} $は正則である．
 	さらに，\ref{sec:optional_linear_program}節の議論より
 	\begin{align*}
 		O \le M^{-1} \le I + \hat{v} w^T
@@ -317,7 +317,7 @@
 		\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right|  (I + | G | + | G |^2 + \cdots ) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
 	\end{align*}
 	となる．
-	$\rho(| G | ) < 1$からノイマン級数の定理より$I + | G | + | G |^2 + \cdots = (I - |G|)^{-1} = M^{-1}$となるため
+	$\rho(| G | ) < 1$からNeumann級数の定理より$I + | G | + | G |^2 + \cdots = (I - |G|)^{-1} = M^{-1}$となるため
 	\begin{align*}
 		| Q | \vector{e}　\le&  \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| M^{-1} \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e} \\
 		\le& \left| \sum_{i = 0}^N G^i D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}   + \left|  G^{N+1} \right| (I + \hat{v} w^T) \left| D^{-1} Y ( A \tilde{X} - B \tilde{X} \tilde{\Lambda} ) \right| \vector{e}
