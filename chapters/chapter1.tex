@@ -372,10 +372,10 @@ ${\mathbb{F}}$をIEEE 754 規格で定義された浮動小数点数の集合と
 では，次に$c_l$と$c_u$をどのように作ればよいか，考えてみましょう．
 まず，演算子$+$を用いて丸めも含めた演算をもう一度おさらいすると
 \begin{align*}
- a + b \in {\mathbb R}&:& ~ \mbox{数学における足し算．結果は浮動小数点数とは限らない} \\
- a ~ \tilde{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$に最も近い浮動小数点数．} \\
- a ~ \overline{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$よりも大きい浮動小数点数のうち最も小さい数．}\\
- a ~ \underline{+} ~ b \in {\mathbb F}&:& ~ \mbox{$a+b$よりも小さい浮動小数点数のうち最も大きい数．}
+ a + b \in {\mathbb R}&: ~ \mbox{数学における足し算．結果は浮動小数点数とは限らない} \\
+ a ~ \tilde{+} ~ b \in {\mathbb F}&: ~ \mbox{$a+b$に最も近い浮動小数点数．} \\
+ a ~ \overline{+} ~ b \in {\mathbb F}&: ~ \mbox{$a+b$よりも大きい浮動小数点数のうち最も小さい数．}\\
+ a ~ \underline{+} ~ b \in {\mathbb F}&: ~ \mbox{$a+b$よりも小さい浮動小数点数のうち最も大きい数．}
 \end{align*}
 でした．
 IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモードの変更による動作の保証がされておりましたね．
@@ -387,9 +387,9 @@ IEEE 754 標準では，$+$以外にも$-, *, /$と$\sqrt{\cdot}$のみ丸めモ
 
 同様に他の四則演算についても
 \begin{align*}
-	a - b &\in& [ a ~ \underline{-} ~ b, a ~ \overline{-} ~ b  ] \\
-	a \cdot b &\in& [ a ~ \underline{\cdot} ~ b, a ~ \overline{\cdot} ~ b  ] \\
-	a / b &\in& [ a ~ \underline{/} ~ b, a ~ \overline{/} ~ b  ]
+	a - b &\in [ a ~ \underline{-} ~ b, a ~ \overline{-} ~ b  ] \\
+	a \cdot b &\in [ a ~ \underline{\cdot} ~ b, a ~ \overline{\cdot} ~ b  ] \\
+	a / b &\in [ a ~ \underline{/} ~ b, a ~ \overline{/} ~ b  ]
 \end{align*}
 のように2つの浮動小数点数の丸めモードを用いて真の結果を含む区間を得ることができます．
 

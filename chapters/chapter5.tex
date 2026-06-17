@@ -467,9 +467,9 @@ A (A^{-1}  (v)) = v , ~ v \in {\mathcal R}( A )
 単射の定義\ref{def:inj_operator}の対偶「任意の$u_1, u_2 \in {\mathcal D}(A)$に対し$A (u_1) = A (u_2) \Rightarrow u_1 = u_2$」を満たすことを確かめる．
 $A$の逆作用素を$A^{-1}$とすると，任意の$u_1, u_2 \in {\mathcal D}(A)$に対し
 \begin{align*}
- && A (u_1) = A (u_2) \\
- &\Rightarrow& A^{-1} (A ( u_1 ) ) = A^{-1} (A (u_2)) \\
- &\Rightarrow& u_1 = u_2
+ & A (u_1) = A (u_2) \\
+ \Rightarrow& A^{-1} (A ( u_1 ) ) = A^{-1} (A (u_2)) \\
+ \Rightarrow& u_1 = u_2
 \end{align*}
 となる．
 最後の変形は逆作用素$A^{-1}$の定義に由来する．\\
@@ -578,9 +578,9 @@ A = B
 \begin{defi}[線形作用素]\label{def:linearoperator}
 線形空間$X$から線形空間$Y$への作用素$A$が，任意の$u, v \in {\mathcal D}(A) \subset X$と$\alpha \in \mathbb{K}$に対し，
 \begin{align*}
-&& {\mathcal D}(A) ~ \mbox{が} X \mbox{の線形部分空間}\\
-&& A(u + v) = A u + A v \\
-&& A(\alpha u) = \alpha A u
+& {\mathcal D}(A) ~ \mbox{が} X \mbox{の線形部分空間}\\
+& A(u + v) = A u + A v \\
+& A(\alpha u) = \alpha A u
 \end{align*}
 を満たすとき，$A$を線形作用素と呼ぶ．
 \end{defi}
@@ -1377,7 +1377,7 @@ $h_2 =  f_1'[v] h_1 + o_1( h_1 )$とおくと
 \end{align*}
 から
 \begin{align*}
-&& \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } \\
+& \frac{ \| f_2'[ f_1(v) ] o_1( h_1 ) + o_2( h_2 ) \|_{ Z } }{ \| h_1 \|_{ X } } \\
 &\le M \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{ X } } + \frac{ \| o_2( h_2 ) \|_{ Z } }{ \| h_2 \|_{Y} } \left( M + \frac{ \| o_1( h_1 ) \|_{Y} }{ \| h_1 \|_{X} }  \right) \rightarrow 0, ~ h_1, h_2 \rightarrow 0
 \end{align*}
 となるため，作用素$g$は$v \in U_1$においてFr\'echet微分可能で，$g$のFr\'echet微分$g'[v]$は
@@ -1590,7 +1590,7 @@ $f$は任意の$t \in [a, b]$において連続であるため，
 	&= \frac{ \left\| \int_{t}^{t+h} f(s) ds - \int_{t}^{t+h} f(t) ds \right\|_{X} }{ |h| } \\
 	&= \frac{ \left\| \int_{t}^{t+h} \left( f(s)  - f(t) \right) ds \right\|_{X} }{ |h| } \\
 	&\le \frac{ \int_{t}^{t+h} \left\| f(s)  - f(t) \right\|_{X} ds }{ |h| } \\
-	&<& \frac{ \varepsilon   \int_{t}^{t+h}  ds }{ |h| } = \varepsilon 
+	&< \frac{ \varepsilon   \int_{t}^{t+h}  ds }{ |h| } = \varepsilon 
 \end{align*}
 となる．
 その上，$\varepsilon > 0$は任意であるため，
