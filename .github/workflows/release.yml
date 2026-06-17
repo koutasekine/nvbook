@@ -12,32 +12,23 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/being24/latex-docker:latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check fonts
-        run: |
-          lualatex --version
-          kpsewhich HaranoAjiMincho-Regular.otf || true
-          kpsewhich LibertinusSerif-Regular.otf || true
-          kpsewhich LibertinusMath-Regular.otf || true
-          luaotfload-tool --find="Libertinus Serif" || true
-          luaotfload-tool --find="Libertinus Math" || true
-
-      - name: Build PDF
-        run: |
-          luaotfload-tool --force --update
-          lualatex -interaction=nonstopmode -halt-on-error book.tex
-          if grep -q '\\citation' book.aux; then
-            bibtex book
-            lualatex -interaction=nonstopmode -halt-on-error book.tex
-            lualatex -interaction=nonstopmode -halt-on-error book.tex
-          else
-            lualatex -interaction=nonstopmode -halt-on-error book.tex
-          fi
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: book.tex
+          latexmk_use_lualatex: true
+          texlive_version: 2026
+          os: debian
+          extra_system_packages: "fonts-libertinus"
+          pre_compile: |
+            luaotfload-tool --force --update
+            kpsewhich HaranoAjiMincho-Regular.otf || true
+            luaotfload-tool --find="Libertinus Serif" || true
+            luaotfload-tool --find="Libertinus Math" || true
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
