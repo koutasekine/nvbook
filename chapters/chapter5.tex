@@ -1226,7 +1226,7 @@ $X, Y$をBanach空間とし，開部分集合$U \subset X$とする．
 \begin{align*}
 \frac{ \| f(v + h) - f(v) - f'[v] h \|_{Y} }{\| h \|_{X}} \rightarrow 0, ~ (h \rightarrow 0)
 \end{align*}
-を満たす線形作用素$f'[v] \in {\mathcal B}(X, Y)$が存在するとき，作用素$f$は点$v$においてFr\'echet微分可能といい，$f'[v] \in {\mathcal B}(X, Y)$を$f$の点$v$におけるFr\'echet微分と呼ぶ.
+を満たす線形作用素$f'[v] \in {\mathcal B}(X, Y)$が存在するとき，作用素$f$は点$v$においてFr\'echet微分可能といい，$f'[v] \in {\mathcal B}(X, Y)$を$f$の点$v$におけるFr\'echet微分と呼ぶ．
 \end{defi}
 
 Fr\'echet微分の定義\ref{def:frechet_diff}はランダウの記号$o$を用いると
@@ -1987,13 +1987,13 @@ $X, Y$をBanach空間とし，非線形方程式
 	\begin{align*}
 	\| R \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \le K, ~ v \in \bar{B}\left( 0, \frac{2\eta}{1-\delta} \right)
 	\end{align*}
-	を満たす定数とする.
+	を満たす定数とする．
 	もし$2K+\delta \le 1$ならば，
 	\begin{align*}
 	\| u^* - \hat{u} \|_{X} \le \frac{ \eta }{1 - (K+\delta)} =: \rho
 	\end{align*}
-	に対し，真の解$u^*$は$\bar{B}(\hat{u}, \rho)$内に存在する.
-	その上，$\bar{B}(\hat{u}, 2\eta/(1-\delta))$内で一意である.
+	に対し，真の解$u^*$は$\bar{B}(\hat{u}, \rho)$内に存在する．
+	その上，$\bar{B}(\hat{u}, 2\eta/(1-\delta))$内で一意である．
 \end{Thm}
 
 \begin{Proof}
@@ -2011,7 +2011,7 @@ $X, Y$をBanach空間とし，非線形方程式
 	
 	続いて，Banachの不動点定理\ref{thm:Banach}を用いて解の存在を示す．
 	まず，作用素方程式$F(u) = 0$を不動点方程式に変形する．
-	$w := u^* - \hat{u}$とする.
+	$w := u^* - \hat{u}$とする．
 	$R$が単射であるため，
 	\begin{align*}
 		& F(u^*) = 0 \\
@@ -2037,7 +2037,7 @@ $X, Y$をBanach空間とし，非線形方程式
 	となる．
 	よって，$\rho \le 2\eta/(1 - \delta) $から$\bar{B}(0, \rho) \subset \bar{B}(0, 2\eta/(1 - \delta))$となる．
 	
-	次に${\mathcal T}( \bar{B}(0, \rho) ) \subset \bar{B}(0, \rho)$を示す.
+	次に${\mathcal T}( \bar{B}(0, \rho) ) \subset \bar{B}(0, \rho)$を示す．
 	仮定から$F'$が$\bar{B}(\hat{u}, 2\eta/(1-\delta))$上で連続であることから，任意の$w \in \bar{B}(0, \rho)$に対しFr\'echet微分とBochner積分に対する微分積分学の基本定理\ref{thm:fundamental_theorem_of_calculus}を用いることで
 	\begin{align*}
 		\| {\mathcal T}(w) \|_{X} \le& \left\| R F(\hat{u}) \right\|_{X} + \left\| w - R \left(  F(\hat{u} + w) - F(\hat{u})  \right) \right\|_{X} \\
@@ -2126,13 +2126,13 @@ $X, Y$をBanach空間とし，非線形方程式
 	\begin{align*}
 	\| F'[\hat{u}]^{-1} \left( F'[\hat{u}] -  F'[\hat{u} + v] \right) \|_{{\mathcal B}(X)} \le K, ~ v \in \bar{B}\left( 0, 2\eta \right)
 	\end{align*}
-	を満たす定数とする.
+	を満たす定数とする．
 	もし$2K \le 1$ならば，
 	\begin{align*}
 	\| u^* - \hat{u} \|_{X} \le \frac{ \eta }{1 - K} =: \rho
 	\end{align*}
-	に対し，真の解$u^*$は$\bar{B}(\hat{u}, \rho)$内に存在する.
-	その上，$\bar{B}(\hat{u}, 2\eta)$内で一意である.
+	に対し，真の解$u^*$は$\bar{B}(\hat{u}, \rho)$内に存在する．
+	その上，$\bar{B}(\hat{u}, 2\eta)$内で一意である．
 \end{Cor}
 
 
