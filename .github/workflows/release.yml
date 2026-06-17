@@ -23,7 +23,10 @@ jobs:
           latexmk_use_lualatex: true
           os: debian
           pre_compile: |
-            tlmgr install libertinus libertinus-fonts || tlmgr install libertinus-fonts
+            set -eux
+            tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
+            tlmgr update --self
+            tlmgr install libertinus libertinus-fonts
             luaotfload-tool --force --update
             kpsewhich HaranoAjiMincho-Regular.otf || true
             kpsewhich LibertinusSerif-Regular.otf || true
