@@ -20,15 +20,14 @@ jobs:
 
       - name: Build PDF
         run: |
-          platex -interaction=nonstopmode book.tex
+          lualatex -interaction=nonstopmode book.tex
           if grep -q '\\citation' book.aux; then
             bibtex book
-            platex -interaction=nonstopmode book.tex
-            platex -interaction=nonstopmode book.tex
+            lualatex -interaction=nonstopmode book.tex
+            lualatex -interaction=nonstopmode book.tex
           else
-            platex -interaction=nonstopmode book.tex
+            lualatex -interaction=nonstopmode book.tex
           fi
-          dvipdfmx book.dvi
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
