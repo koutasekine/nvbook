@@ -1,16 +1,16 @@
 name: Build and Release PDF
 
 on:
+  workflow_dispatch:
   push:
     tags:
-      - 'v*'
-  workflow_dispatch:
+      - "v*"
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,16 +28,10 @@ jobs:
 
               export PATH="/opt/texlive/texdir/bin/x86_64-linux:$PATH"
 
-              tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-              tlmgr update --self
-              tlmgr install libertinus libertinus-fonts
-              luaotfload-tool --force --update
-
               kpsewhich HaranoAjiMincho-Regular.otf
               kpsewhich LibertinusSerif-Regular.otf
               kpsewhich LibertinusMath-Regular.otf
-              luaotfload-tool --find="Libertinus Serif"
-              luaotfload-tool --find="Libertinus Math"
+              luaotfload-tool --force --update
 
               latexmk -lualatex -file-line-error -halt-on-error -interaction=nonstopmode book.tex
             '
@@ -48,8 +42,11 @@ jobs:
           name: book-pdf
           path: book.pdf
 
-      - name: Upload PDF to GitHub Release
+      - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: book.pdf
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" book.pdf \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "Release ${GITHUB_REF_NAME}"
