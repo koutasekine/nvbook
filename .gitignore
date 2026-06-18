@@ -17,6 +17,8 @@
 *.synctex
 texput.*
 
+CLAUDE.md
+
 # Generated PDF (ビルド成果物)
 # 公開したい場合はこの行を削除
 *.pdf
