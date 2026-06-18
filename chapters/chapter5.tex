@@ -1744,7 +1744,7 @@ $M$は空でない閉集合で$M \subset X$を満たすとする．
 $A$を$M$から$M$への写像とする．
 $x \in M$が$A$の不動点であるとは，$x$が
 \begin{align*}
-x = Ax
+x = A(x)
 \end{align*}
 を満たすことである．
 \end{defi}
@@ -1755,7 +1755,7 @@ $M$は空でない閉集合で$M \subset X$を満たすとする．
 写像$A: M \rightarrow M$が$k$次の縮小写像であるとは，$0 \le k < 1$を満たす定数$k$が存在し，
 $\forall x,y \in M$について
 \begin{align*}
-\| A x - A y \| \le k \| x - y\|
+\| A(x) - A(y) \| \le k \| x - y\|
 \end{align*}
 を満たすことである．
 \end{defi}
@@ -1766,7 +1766,7 @@ $M$は空でない閉集合で$M \subset X$を満たすとする．
 $A$は$M$から$M$への$k$次の縮小写像とする．
 そのとき，問題
 \begin{equation}
-\text{Find} ~ u \in M ~ \text{s.t.} ~ u = Au
+\text{Find} ~ u \in M ~ \text{s.t.} ~ u = A(u)
 \label{Eq:FixedPointEq}
 \end{equation}
 は真の解$u^*$を$M$内にただ一つ持つ．
@@ -1778,7 +1778,7 @@ $X$,$M$,$A$,$k$は定理\ref{thm:Banach}で定義されている集合，写像�
 $u_0$を閉集合$M$の元として与えられていると仮定する．
 そのとき反復法
 \begin{align*}
-u_{n+1} = A u_n, ~ n = 0,1,\cdots
+u_{n+1} = A(u_n), ~ n = 0,1,\cdots
 \end{align*}
 によって得られる点列$(u_n)$は(\ref{Eq:FixedPointEq})を満たす真の唯一解$u^{*}$に収束する．
 さらに，$\forall n \in {\mathbb N}$について不等式
@@ -1799,7 +1799,7 @@ u_{n+1} = A u_n, ~ n = 0,1,\cdots
 $u_0$を閉集合$M$の元として与えられていると仮定する．
 点列$(u_n)$は反復法
 \begin{equation}
-u_{n+1} = A u_n, ~ n = 0,1,\cdots \label{pr:Eq:ita}
+u_{n+1} = A(u_n), ~ n = 0,1,\cdots \label{pr:Eq:ita}
 \end{equation}
 によって得られる．
 そのとき，証明のプロセスは次のように考える:\\
@@ -1811,12 +1811,12 @@ I)
 
 (\ref{pr:Eq:ita})より
 \begin{align*}
-\| u_n - u_{n+1} \| = \| A u_{n-1} - A u_n \|
+\| u_n - u_{n+1} \| = \| A(u_{n-1}) - A(u_n) \|
 \end{align*}
 となる．
 仮定より$A$は$k$次の縮小写像であるため，
 \begin{align*}
-\| A u_{n-1} - A u_n \| \le k \| u_{n-1} - u_n \|
+\| A(u_{n-1}) - A(u_n) \| \le k \| u_{n-1} - u_n \|
 \end{align*}
 となる定数$k$が存在する．
 同様に$\| u_{n-1} - u_n \|$に(\ref{pr:Eq:ita})と$A$の縮小写像の性質を使うと
@@ -1873,34 +1873,34 @@ II)
 
 $u_0$を$M$の元とする．
 仮定より$A$は$M$から$M$の写像であるため，$A(M) \subset M$となる．
-即ち，$u_1 = A u_0$が成立する$u_1 \in M$が存在する．
+即ち，$u_1 = A(u_0)$が成立する$u_1 \in M$が存在する．
 同様に，$\forall n \in {\mathbb N}$について$u_n \in M$が存在する．
 さらに，$M$は閉集合であるため，I)で存在を示した$u$は$M$に属する(定義\ref{def:App:CloseSet})．
-よって$Au$も$M$に属する．
+よって$A(u)$も$M$に属する．
 そのうえで仮定より$A$は$k$次の縮小写像であるため，
 \begin{align*}
-\| A u_n - A u \| \le k \| u_n - u \|
+\| A(u_n) - A(u) \| \le k \| u_n - u \|
 \end{align*}
 を得る．
 I)より点列$(u_n)$は極限を持つため，$\| u_n - u \| \rightarrow 0, ~ n \rightarrow \infty$となる(定義\ref{def:App:Con})．
 即ち
 \begin{align*}
-\| A u_n - A u \| \rightarrow 0, ~ n \rightarrow \infty
+\| A(u_n) - A(u) \| \rightarrow 0, ~ n \rightarrow \infty
 \end{align*}
-となるため，$Au$は$Au_n$の極限である(定義\ref{def:App:Con})．
+となるため，$A(u)$は$A(u_n)$の極限である(定義\ref{def:App:Con})．
 よって，(\ref{pr:Eq:ita})について$n \rightarrow \infty$とすると
 \begin{align*}
-u=Au
+u=A(u)
 \end{align*}
 が成立する．
 よって，$u$は(\ref{Eq:FixedPointEq})を満たす真の解$u^*$となる．\\
 \\
 III)
 
-$u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとする．
+$u^*,v^* \in M $をそれぞれ$u^* = A(u^*)$と$v^* = A(v^*)$を満たすとする．
 そのとき，$A$は$k$次の縮小写像であるため，
 \begin{align*}
-\| u^* - v^* \| = \| A u^* -A v^* \| \le k\|u^* - v^*\|
+\| u^* - v^* \| = \| A(u^*) -A(v^*) \| \le k\|u^* - v^*\|
 \end{align*}
 を得る．
 ここで$0 \le k < 1$であるため，不等式を満たすものは$u^* = v^*$の場合のみである．
@@ -1944,7 +1944,7 @@ $u^*,v^* \in M $をそれぞれ$u^* = A u^*$と$v^* = A v^*$を満たすとす�
 
 (\ref{Ine:rate})の証明\\
 \begin{align*}
-\| u_{n+1} - u \| = \| Au_n - Au \| \le k \| u_n - u \|
+\| u_{n+1} - u \| = \| A(u_n) - A(u) \| \le k \| u_n - u \|
 \end{align*}
 
 \qed
