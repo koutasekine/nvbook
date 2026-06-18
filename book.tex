@@ -96,13 +96,13 @@
 \textbf{数値計算の品質保証法}\\[0.3em]
 \textit{Numerical Verification Methods}\\[0.8em]
 著者：関根 晃太 \quad (Kouta Sekine)\\[1.5em]
-Copyright \copyright~2026 関根 晃太\\[0.8em]
+Copyright \copyright~2026 Kouta Sekine\\[0.8em]
 本書は Creative Commons Attribution-NonCommercial-NoDerivatives 4.0\\
 International License (CC BY-NC-ND 4.0) のもとで公開されています．\\[0.5em]
 非営利目的であれば原文をそのまま共有することは許可されていますが，\\
 改変および商用利用は禁止されています．\\[0.8em]
 \url{https://creativecommons.org/licenses/by-nc-nd/4.0/}\\[1.5em]
-\textbf{GitHub リポジトリ}\\[0.4em]
+\textbf{GitHub リポジトリ(本書の最新版はこちらから...)}\\[0.4em]
 \url{https://github.com/koutasekine/nvbook}\\[1.5em]
 \textbf{引用方法}\\[0.4em]
 本書を引用する際は以下の形式を使用してください．\\[0.6em]
@@ -182,13 +182,33 @@ Newton法では，正確な実数計算を無限回繰り返すことで真の�
 その際には，匙を投げてしまう前に「こんな問題はこうやって品質保証できるぞ!」，「こうやればもっと簡単だぞ!」といった改善法を非才な著者に投げつけてください．
 
 
-本書の最低限の知識は章によって異なりますが，共通して線形代数，微積分，数値計算，プログラミングの知識は前提としております．
+本書の最低限の知識は章によって異なりますが，共通して線形代数，微積分，数値計算，プログラミングの知識は前提としております\footnote{\ref{sec:element_basic_linear_problem}節の定理\ref{thm:finite_Neumann}で利用するOldenburgerの定理，\ref{sec:define_Frechet_diff}項，及び，あとがきの3箇所のみ前提知識の要求レベルが高いです．すみません...}．
 第\ref{chap:basic_theorem}章以降では，関数解析を展開していますが，ほとんどの定理に証明をつけました．
 線形代数，微積分，数値計算，プログラミングの知識しか持っていない読者にとっては，第\ref{chap:basic_theorem}章以降の内容は一見すると抽象的な内容で理解しにくいかもしれません．
 実際に著者自身も修士2年生までは電気電子工学科に所属しており，数学や数値計算とは大きく異なった勉強をしていたため，線形代数，微積分，数値計算，プログラミングの知識すら怪しい状況でした．
 しかし，博士課程以降なんとか独学で勉強をし，今では少しくらいは感覚がつかめたかな?と思えるようになってきました．
-本書籍でも第\ref{chap:basic_theorem}章がわかりにくい場合，まずは定理\ref{thm:Basic_Theorem}の使い方のみ理解していただけたら幸いです．
-また，\ref{sec:infinite_dimensional}章と\ref{sec:infinite_dimensional_nonlinear}章は無限次元問題の解に対して品質保証をする際に利用するためのエッセンスを書きました．
+本書でも第\ref{chap:basic_theorem}章がわかりにくい場合，まずは定理\ref{thm:Basic_Theorem}の使い方のみ理解していただけたら幸いです．
+
+第\ref{sec:infinite_dimensional}章と第\ref{sec:infinite_dimensional_nonlinear}章はさらなる専門家を目指す志が高い人向けの内容です．
+実際に無限次元問題に定理\ref{thm:Basic_Theorem}を利用する際は系\ref{Cor:Kantorovich}で使います．
+系\ref{Cor:Kantorovich}の内，最も厄介なところは線形化作用素の逆作用素の存在とその評価を如何にコンピュータで行うのか?という点につきます．
+そこで，第\ref{sec:infinite_dimensional}章として無限次元線形問題を如何にして解くのかを紹介します．
+具体的には，著者が提案している無限次元Gaussの消去法を紹介します．
+
+そして，最後に第\ref{sec:infinite_dimensional_nonlinear}章として，抽象的な無限次元非線形問題に対して系\ref{Cor:Kantorovich}の十分条件を確かめる際に必要な定数を無限次元Gaussの消去法で求める方法を紹介します．
+第\ref{sec:infinite_dimensional_nonlinear}章はとても抽象的なため，具体的に解きたい問題に当てはめる際には，さらに細かく検討する必要があります．
+しかし，例えば半線形楕円型偏微分方程式に利用しようとすると，Lebesgue積分論やSobolev空間論，Hilbert空間論などの知識が必要となり，本書の前提条件が崩れてしまします．
+そこで，あとがきにかえて，簡単に半線形楕円型偏微分方程式への応用方法を書きたいと思います．
+
+本書をまとめるにあたり，いつも私を支えてくれた家族に感謝を記したいと思います．
+研究に没頭する私を温かく見守り，日々の暮らしを支えてくれた妻・有希，そして無邪気な笑顔でいつも癒やしを与えてくれる息子・翠春（すばる）に，心から感謝します．
+また，私をここまで育て，見守り続けてくれた父・功，母・三枝子，そして折にふれて協力してくれた姉・平塚由香にも，改めて御礼申し上げます．
+
+\vspace{1cm}
+
+\begin{flushright}
+\textbf{関根 晃太}
+\end{flushright}
 
 
 \newpage
