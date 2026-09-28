@@ -1,0 +1,223 @@
+\chapter*{後書き}
+\phantomsection
+\addcontentsline{toc}{chapter}{後書き}
+\label{chap:afterword}
+
+本書では，第\ref{chap:basic_theorem}章の基本定理（定理\ref{thm:Basic_Theorem}）とその系\ref{Cor:Kantorovich}を出発点として，
+無限次元の線形問題（第\ref{sec:infinite_dimensional}章）と非線形問題（第\ref{sec:infinite_dimensional_nonlinear}章）の品質保証法を，
+可能な限り抽象的な枠組みのまま紹介してきました．
+抽象的なまま述べたのは，特定の問題に縛られず広い応用を持たせるためでしたが，
+一方で「結局，自分の解きたい問題にはどう当てはめれば良いのか」という疑問が残った読者も多いと思います．
+そこで本書の締めくくりとして，前書きで予告したとおり，最も典型的な応用先である半線形楕円型偏微分方程式への当て方の一部を，後書きにかえて簡単に紹介します．
+
+前書きでも述べたとおり，ここからの議論にはLebesgue積分論($L^p$空間)，Sobolev空間論($W^{m,p}$空間やSobolevの埋め込み定理)，Hilbert空間論(完備な内積空間や射影)の知識を前提とします．
+これらは本書全体の前提知識（線形代数，微積分，数値計算，プログラミング）を超えるため，
+詳細は専門書に譲り，ここでは「基本定理の枠組みにどう乗せるか」から\ref{sec:check_biject}節で扱った「$F'[\hat{u}]$の全単射性の確認方法」までを示すことにします．
+
+
+\section*{対象とする問題と関数空間}
+
+ここではわかりやすさを重視するために，簡単な問題を考えます．
+領域$\Omega$を二次元正方領域$(0,1)^2$とします．
+この$\Omega$上で，次のEmden方程式（非線形楕円型境界値問題）を考えます:
+\begin{align}
+	\left\{
+	\begin{aligned}
+		-\Delta u &= u^2 && \text{in}~ \Omega, \\
+		u &= 0 && \text{on}~ \partial\Omega.
+	\end{aligned}
+	\right.
+	\label{eq:afterword_semilinear}
+\end{align}
+ここで$p \ge 1$とし$L^p(\Omega)$を$p$乗Lebesgue積分可能な空間とし，そのノルムを$\| \cdot \|_{L^p}$とします．また，$p=2$における内積とそのノルムを
+\begin{align*}
+	(u, v)_{L^2} := \int_{\Omega} u(x) v(x) dx, ~~ \| u \|_{L^2} := \sqrt{(u, u)_{L^2}}
+\end{align*}
+と表記します．
+$H^1(\Omega)$を1階の$L^2$ Sobolev空間とし，Dirichlet境界条件を持つ部分空間を
+\begin{align*}
+	H_0^1(\Omega) := \{ u \in H^1(\Omega) ~|~ u = 0 ~\text{on}~ \partial\Omega \}
+\end{align*}
+とします．
+$H_0^1(\Omega)$には内積
+\begin{align*}
+	(u, w)_{H_0^1} := (\nabla u, \nabla w)_{L^2}
+\end{align*}
+を入れ，その位相的共役空間を$H^{-1}(\Omega)(:={\mathcal B}(H_0^1, {\mathbb R}))$と表します．
+Sobolev不等式を満たす定数$C_{s,p}$を
+\begin{align*}
+	\| \phi \|_{L^p} \le C_{s,p} \| \phi \|_{H^1_0}, ~ \phi \in H^1_0(\Omega) 
+\end{align*}
+とします．
+正方領域$(0,1)^2$におけるほぼ最良値の上界は
+\begin{align*}
+C_{s,2} =& \frac{1}{\sqrt{2} \pi}, & C_{s,3} =& 0.25712475017620, & C_{s,4} =& 0.28524446071929, \\ 
+C_{s,5} =& 0.31058015094512, & C_{s,6} =& 0.33384042151112, & C_{s,7} =& 0.35547994288634 
+\end{align*}
+であることがわかっています\footnote{K.Tanaka, K.Sekine, M.Mizuguchi, S.Oishi, ``Sharp numerical inclusion of the best constant for embedding $H^1_0(\Omega) \hookrightarrow L^p (\Omega)$ on bounded convex domain", Journal of Computational and Applied Mathematics, Volume 311, pp. 306-313, (2017)}．
+非線形項$N : H_0^1(\Omega) \to H^{-1}(\Omega)$を$N(u) = u^2$とすると，$N$はFr\'echet微分可能です．
+
+問題\eqref{eq:afterword_semilinear}を古典解として直接扱うと，第\ref{sec:infinite_dimensional_nonlinear}章で見た「無限」の困難をそのまま抱えてしまいます．
+そこで，弱Laplace作用素のマイナスを表す線形作用素$A : H_0^1(\Omega) \to H^{-1}(\Omega)$を用いて，問題を弱形式（作用素方程式）として捉え直します．
+
+弱Laplace作用素$A$と非線形項$N$を用いると，問題\eqref{eq:afterword_semilinear}は
+\begin{align}
+	\mbox{Find} ~ u \in H_0^1(\Omega) ~ \mbox{s.t.} ~ A u - N(u) = 0
+	\label{eq:afterword_abstract}
+\end{align}
+と書けます．
+これは第\ref{sec:infinite_dimensional_nonlinear}章の抽象的な問題$F(u) = Au - N(u) = 0$に他なりません．
+すなわち，本書の枠組みにそのまま乗ります．
+
+いま，計算機で求めた近似解$\hat{u}$が，$H_0^1(\Omega)$の有限次元部分空間$V_M$の元として与えられているとします．
+正方領域$\Omega = (0,1)^2$では，ゼロ境界条件を自動的に満たすFourier正弦基底
+\begin{align}
+	\phi_{mn}(x, y) := \sin(m\pi x) \sin(n\pi y), \quad 1 \le m \le M,~ 1 \le n \le M
+	\label{eq:afterword_basis}
+\end{align}
+を$V_M := \mathrm{span}\{ \phi_{mn} ~|~ 1 \le m, n \le M \}$の基底に選ぶのが便利です．
+このとき近似解は
+\begin{align}
+	\hat{u} = \sum_{m=1}^{M} \sum_{n=1}^{M} u_{mn} \phi_{mn}, \quad u_{mn} \in \mathbb{R}
+	\label{eq:afterword_uhat}
+\end{align}
+となります．
+各$\phi_{mn}$は弱Laplace作用素の固有関数（$-\Delta \phi_{mn} = \pi^2(m^2 + n^2) \phi_{mn}$）であり，$A$を対角化するため，後述のRitz射影や誤差定数$C_M$の評価が見通しよく行えます．
+非線形項$N(u)$の$\hat{u}$におけるFr\'echet微分を$N'[\hat{u}]$と表すと，抽象問題\eqref{eq:afterword_abstract}の$F$の$\hat{u}$におけるFr\'echet微分（線形化作用素）は
+\begin{align}
+	F'[\hat{u}] = A - N'[\hat{u}] : H_0^1(\Omega) \to H^{-1}(\Omega)
+	\label{eq:afterword_L}
+\end{align}
+で与えられます．
+
+
+\section*{基本定理の系に必要な条件と定数の構成}
+
+あとは系\ref{Cor:Kantorovich}の十分条件を，計算機上で検証可能な形に落とし込むだけです．
+系\ref{Cor:Kantorovich}が要求するのは，$F'[\hat{u}]$の全単射性と2つの定数$\eta$，$K$です．
+
+\begin{itemize}
+	\item \textbf{$F'[\hat{u}]$の全単射性(\ref{sec:check_biject}節)} ~これを証明することが大きな障壁です．
+	\item \textbf{Newton法の修正項の定数(\ref{sec:general_eta}節)} ~$\eta$: 不等式
+	\begin{align*}
+		\| F'[\hat{u}]^{-1} F(\hat{u}) \|_{H_0^1} \le \eta
+	\end{align*}
+	を満たす定数です．
+	\item \textbf{Lipschitz型の定数(\ref{sec:general_K}節)}~$K$: $\bar{B}(0, 2\eta)$上の$v$に対し，不等式
+	\begin{align*}
+		\| F'[\hat{u}]^{-1} \left( F'[\hat{u}] - F'[\hat{u} + v] \right) \|_{{\mathcal B}(H_0^1)} \le K
+	\end{align*}
+	を満たす定数です．
+\end{itemize}
+
+これら$\eta$，$K$がそろい，系\ref{Cor:Kantorovich}の判定不等式$2K \le 1$が計算機上の区間演算で確かめられれば，
+近似解$\hat{u}$の近傍$\bar{B}(\hat{u}, \rho)$（$\rho = \eta / (1-K)$）に真の弱解が一意に存在することが「絶対に間違いがない」形で保証されます．
+これが前書きで述べた「正解が分からない問題に品質基準を設ける」ことの，半線形楕円型偏微分方程式における具体例です．
+
+
+
+\section*{$F'[\hat{u}]$の全単射性: \ref{sec:check_biject}節の定数$C_1$と$C_2$の評価}
+
+最も厄介なのは，定数$\eta$，$K$のいずれもが線形化作用素$F'[\hat{u}]$の可逆性とその逆作用素$F'[\hat{u}]^{-1}$の評価を必要とする点です．
+しかし$F'[\hat{u}]^{-1}$は無限次元の作用素であり，直接は計算できません．
+そこで第\ref{sec:infinite_dimensional}章の射影を用いた無限次元線形問題の解法，特に定理\ref{thm:infinite_Gauss}の無限次元Gaussの消去法とそれを適用した\ref{sec:check_biject}節の話題が重要になります．
+
+具体的には，$V_M$への射影として
+\begin{align*}
+	((I - R_M) u, v_M)_{H_0^1} = 0 \qquad \forall v_M \in V_M
+\end{align*}
+で定まるRitz射影$R_M : H_0^1(\Omega) \to V_M$を用います．ここで$I$は$H_0^1(\Omega)$上の恒等作用素です．
+$R_M$については，$\Delta v \in L^2(\Omega)$となる$v \in H_0^1(\Omega)$に対し，射影誤差定数
+\begin{align}
+	\| u - R_M u \|_{H_0^1} \le C_M \| \Delta u \|_{L^2}
+	\label{eq:afterword_ritz}
+\end{align}
+を満たし，かつ$M \to \infty$で$C_M \to 0$となる構成的な定数$C_M$が数値的に得られるとします．
+実際にFourier正弦基底では，
+\begin{align}
+	C_M = \frac{1}{\pi \sqrt{ (M+1)^2 + 1 }}
+\end{align}
+が最良定数となります．
+この$R_M$によって空間$H_0^1(\Omega)$を有限次元部分$V_M$と無限次元の直交補空間
+\begin{align*}
+	V_\perp := \{ u \in H_0^1(\Omega) ~|~ (u, v_M)_{H_0^1} = 0,~ v_M \in V_M \}
+\end{align*}
+に分解します．
+有限次元部分$V_M$上では$F'[\hat{u}]$は精度保証付きの行列計算で扱え，無限次元部分$V_\perp$上では誤差定数$C_M$を介した解析的な作用素ノルム評価で押さえられます．
+また，射影誤差定数$C_M$はAubin–Nitscheの技巧より
+\begin{align*}
+	\| u - R_M u \|_{L^2} \le C_M \| u - R_M u \|_{H^1_0}, ~ \forall u \in H^1_0(\Omega)
+\end{align*}
+も満たします．
+
+定数$C_1$と定数$C_2$の定義は
+\begin{align*}
+	\| (I - P_N) A^{-1} N'[\hat{u}] \phi_c \|_{X} \le& C_1 \| \phi_c \|_{X}, ~ \forall \phi_c \in X_c \\
+	\| CT^{-1}B \phi_c \|_{X} \le& C_2 \| \phi_c \|_{X}, ~ \forall \phi_c \in X_c
+\end{align*}
+でした．
+
+まずは$C_1$から取り掛かりましょう．
+今回の問題に翻訳すると$C_1$は
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& C_1 \| \phi_c \|_{H^1_0}, ~ \forall \phi_c \in V_{\bot}
+\end{align*}
+です．
+そのうえで，弱ラプラス作用素の逆$A^{-1}: H^{-1}(\Omega) \rightarrow H^1_0(\Omega)$は$A^{-1} \phi = -\Delta^{-1} \phi, ~ \forall \phi \in L^2$が成立することから，
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& C_M \| 2\hat{u} \phi_c \|_{L^2} \\
+	\le& 2 C_M \| \hat{u} \|_{L^\infty} \| \phi_c \|_{L^2} \\
+	\le& 2 C_M^2 \| \hat{u} \|_{L^\infty} \| \phi_c \|_{H^1_0}
+\end{align*}
+となります．
+ここで，$\| \hat{u} \|_{L^\infty}$はコンピュータで求めた近似解$\hat{u}$の最大値と最小値を求め，絶対値最大を使います．
+すなわち，$C_1 = 2 C_M^2 \| \hat{u} \|_{L^\infty}$は完全にコンピュータで求められます!
+
+続いて定数$C_2$です．
+同様に，今回の問題に翻訳すると$C_2$は
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& C_2 \| \phi_c \|_{H^1_0}, ~ \forall \phi_c \in V_\perp
+\end{align*}
+となります．
+そのうえで，前半の$(I - R_M) A^{-1} (2\hat{u}) (=C)$の部分は定数$C_1$と同じように処理ができ，
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& 2 C_M  \| \hat{u} \|_{L^\infty} \| T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{L^2}
+\end{align*}
+となります．
+さらに，$p=2$におけるSobolev不等式より
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& 2 C_M C_{s,2}  \| \hat{u} \|_{L^\infty} \| T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{H^1_0}
+\end{align*}
+となります．
+さらに，
+\begin{align*}
+	\| (I - R_M) A^{-1} (2\hat{u}) T^{-1} R_M A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \le& 2 C_M C_{s,2}  \| \hat{u} \|_{L^\infty} \| T^{-1} \|_{{\mathcal B}(V_M)} \| R_M A^{-1} (2\hat{u}) \phi_c \|_{V_M} \\
+	\le& 2 C_M C_{s,2}  \| \hat{u} \|_{L^\infty} \| T^{-1} \|_{{\mathcal B}(V_M)} \|  A^{-1} (2\hat{u}) \phi_c \|_{H^1_0} \\
+	\le& 2 C_M C_{s,2}^2  \| \hat{u} \|_{L^\infty} \| T^{-1} \|_{{\mathcal B}(V_M)} \|  (2\hat{u}) \phi_c \|_{L^2} \\
+	\le& 4 C_M C_{s,2}^2  \| \hat{u} \|_{L^\infty}^2 \| T^{-1} \|_{{\mathcal B}(V_M)} \| \phi_c \|_{L^2} \\
+	\le& 4 C_M^2 C_{s,2}^2  \| \hat{u} \|_{L^\infty}^2 \| T^{-1} \|_{{\mathcal B}(V_M)} \| \phi_c \|_{H^1_0}
+\end{align*}
+を得ます\footnote{$\| CT^{-1}B \phi_c \|_{X}$を如何にノルムで分けないか?というのは重要な課題です．今回は，解説用として，とてもおおざっぱに分ける方針を取っています．条件によっては$\| CT^{-1}B \phi_c \|_{X}$を一切ノルムを分けずに評価できます．一般的な楕円型偏微分方程式という仮定の下でも$\| f'[\hat{u}] T^{-1} R_M A^{-1} \|_{{\mathcal B}(L^2)}$は，ノルムで分けずに計算できます．}．
+あとは，$\| T^{-1} \|_{ {\mathcal B}(V_M)}$の計算方法がわかれば$C_2$も計算できますね．
+$\| T^{-1} \|_{ {\mathcal B}(V_M)}$は実は一切無限次元を介さない有限次元から有限次元への作用素のノルムのため，行列の固有値問題に帰着できます．
+実際に変形などは，長いため省略しますが，K.Sekine, M.T. Nakao, S.OishiのNumerical verification methods for a system of elliptic PDEs, and their software libraryのLemma 2などを参照してみて下さい(行列の固有値問題への変形はこれ以外にも標準的なテキストなどにも，書かれています!)．
+行列の固有値問題に帰着される，ということは，\ref{sec:standard_eigenvalue}節の内容を使います．
+ついでに，$\| C \|_{ {\mathcal B}(V_M, V_\perp) } = \| B \|_{ {\mathcal B}(V_\perp, V_M) } = 2 C_M C_{s,2}  \| \hat{u} \|_{L^\infty}$となることも重要です．
+実は，$\| C \|_{ {\mathcal B}(V_M, V_\perp) }, \| B \|_{ {\mathcal B}(V_\perp, V_M) }, \| T^{-1} \|_{ {\mathcal B}(V_M) }, C_1$の値がすべてわかれば，$\eta$や$K$の計算に現れる$F'[\hat{u}]^{-1}$に由来する計算は(過大評価にはなりますが)すべて対処できます．
+
+\section*{残された課題と結びに}
+
+もっとも，ここで述べたのはあくまで骨格にすぎません．
+実際に問題\eqref{eq:afterword_semilinear}を解こうとすると，一般領域におけるSobolevの埋め込み定数の精度保証付き評価，基底ごとのRitz射影の誤差定数$C_M$の構成的な評価\eqref{eq:afterword_ritz}，残差$\| F(\hat{u}) \|$やLipschitz型の定数$K$の具体例など，本書では立ち入らなかった多くの技術的な道具立てが必要になります．
+それぞれが一つの研究テーマになり得るほど奥が深く，
+だからこそ数値計算の品質保証は今なお発展途上の，面白い分野なのです．
+
+前書きにも書いたとおり，本書を読んで「こんな問題はこう品質保証できる」「ここはもっと簡単にできる」と気づかれた点があれば，
+ぜひ非才な著者に投げつけていただければ幸いです．
+本書が，読者の皆さんが自らの計算結果を自信をもって「検証済み」として提供するための，最初の一歩になることを心から願っています．
+
+\vspace{1cm}
+
+\begin{flushright}
+\textbf{関根 晃太}
+\end{flushright}
