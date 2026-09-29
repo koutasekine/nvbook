@@ -48,7 +48,7 @@ Zenodo の DOI が付与されている場合は、下記の形式で引用し�
 
 ```
 Kouta Sekine. 数値計算の品質保証法 (Numerical Verification Methods). Zenodo, 2026.
-https://doi.org/10.5281/zenodo.XXXXXXX
+https://doi.org/10.5281/zenodo.23027502
 ```
 
 BibTeX:
@@ -60,8 +60,8 @@ BibTeX:
   subtitle  = {Numerical Verification Methods},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXX},
-  url       = {https://doi.org/10.5281/zenodo.XXXXXXX}
+  doi       = {10.5281/zenodo.23027502},
+  url       = {https://doi.org/10.5281/zenodo.23027502}
 }
 ```
 
