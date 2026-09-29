@@ -17,6 +17,7 @@
 *.synctex
 texput.*
 CLAUDE.md
+ref.bib
 
 # Generated PDF (ビルド成果物)
 # 公開したい場合はこの行を削除
@@ -37,7 +38,6 @@ CLAUDE.md
 *.swo
 *~
 
-# 不要なスクリプト
-tete.sh
+# 校正メモ(非公開)
 proofreading_report_claude.md
 proofreading_report_codex.md

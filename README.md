@@ -20,35 +20,39 @@
 6. **射影を用いた無限次元線形問題の解法**
 7. **無限次元非線形問題の解法のエッセンス〜$A$ が全単射の場合〜**
 
+後書き（半線形楕円型偏微分方程式への応用）、索引
+
 ## PDF のダウンロード
 
-最新版の PDF は [Releases](../../releases) ページから入手できます。
+最新版の PDF はリポジトリ内の [book.pdf](book.pdf) です。Zenodo（下記 DOI）からも入手できます。
 
 ## ビルド方法
 
-LuaLaTeX と BibTeX が必要です。
+LuaLaTeX と upmendex（索引の生成）が必要です。いずれも TeX Live に含まれています。
 
 ```bash
-# 通常のビルド（相互参照のため2回実行）
-lualatex book.tex
-lualatex book.tex
+# latexmk を使う場合（.latexmkrc により索引の生成も自動で行われます）
+latexmk -lualatex book.tex
 
-# 参考文献を含む場合
-bibtex book
+# 手動で行う場合
 lualatex book.tex
+lualatex book.tex
+upmendex -g -s book.ist -o book.ind book.idx   # 相互参照が確定した後に索引を生成
 lualatex book.tex
 ```
 
-使用フォントは `HaranoAjiMincho`（和文）および `Libertinus Serif`（欧文・数式）です。
-これらが環境にない場合は `book.tex` の `\setmainjfont` / `\setmainfont` / `\setmathfont` を適宜変更してください。
+同じ手順をまとめたスクリプト `tete.sh` も同梱しています（`bash tete.sh`）。
+
+使用フォントは `HaranoAjiMincho` / `HaranoAjiGothic`（和文）、`Libertinus Serif`（欧文）、`Libertinus Math`（数式）です。
+これらが環境にない場合は `book.tex` の `\setmainjfont` / `\setsansjfont` / `\setmainfont` / `\setmathfont` を適宜変更してください。
 
 ## 引用方法
 
-Zenodo の DOI が付与されている場合は、下記の形式で引用してください（DOI は公開後に更新します）。
+下記の形式で引用してください。DOI は全バージョン共通のもの（常に最新版を指します）です。
 
 ```
 Kouta Sekine. 数値計算の品質保証法 (Numerical Verification Methods). Zenodo, 2026.
-https://doi.org/10.5281/zenodo.23027502
+https://doi.org/10.5281/zenodo.23007581
 ```
 
 BibTeX:
@@ -60,8 +64,8 @@ BibTeX:
   subtitle  = {Numerical Verification Methods},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.23027502},
-  url       = {https://doi.org/10.5281/zenodo.23027502}
+  doi       = {10.5281/zenodo.23007581},
+  url       = {https://doi.org/10.5281/zenodo.23007581}
 }
 ```
 
