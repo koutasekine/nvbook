@@ -56,10 +56,10 @@
       ([yshift=-136mm]current page.north west)
       rectangle ([yshift=-139mm]current page.north east);
     % 日本語タイトル
-    \node[anchor=north west, text=white, align=left, inner sep=0pt]
+    \node[anchor=north west, text=white, align=left, inner sep=0pt,
+          font=\fontsize{26}{40}\selectfont\sffamily\bfseries]
       at ([xshift=20mm, yshift=-38mm]current page.north west)
-      {\fontsize{26}{40}\selectfont\sffamily\bfseries
-       数値計算の\\品質保証法};
+      {数値計算の\\品質保証法};
     % 英語タイトル
     \node[anchor=north west, text=white!60!coverblue, align=left, inner sep=0pt]
       at ([xshift=20mm, yshift=-108mm]current page.north west)
@@ -73,13 +73,10 @@
     \node[anchor=south east, text=black!65, align=right, inner sep=0pt]
       at ([xshift=-20mm, yshift=24mm]current page.south east)
       {\fontsize{9.5}{14}\selectfont\rmfamily Kouta Sekine};
-    % 年
-    \node[anchor=south east, text=black!45, align=right, inner sep=0pt]
-      at ([xshift=-20mm, yshift=12mm]current page.south east)
-      {\fontsize{9.5}{14}\selectfont\rmfamily 2026};
   \end{tikzpicture}%
   \null%
 }
+\renewcommand{\maketitle}{\@maketitle}% jlreq(book)の \maketitle は \@maketitle を使わないため差し替える
 \makeatother
 
 \title{数値計算の品質保証法}
@@ -88,7 +85,11 @@
 %\date{\today}
 
 \begin{document}
+\pagenumbering{roman}% 表紙と直後の空白ページはページ数に数えない(番号は印字しない)
 \maketitle
+\clearpage
+\null\thispagestyle{empty}\clearpage% 表紙の裏の空白ページ
+\pagenumbering{arabic}% ここから 1 ページ目
 
 \newpage
 \thispagestyle{empty}
@@ -233,5 +234,42 @@ Newton法では，正確な実数計算を無限回繰り返すことで真の�
 \bibliography{ref}
 
 \printindex
+
+% ---- 裏表紙 ----
+\clearpage
+\ifodd\value{page}\null\thispagestyle{empty}\clearpage\fi % 裏表紙を偶数ページ(見開きの左)に置く
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  % 濃紺の背景ブロック(ページ下部)
+  \fill[coverblue]
+    ([yshift=75mm]current page.south west)
+    rectangle (current page.south east);
+  % ゴールドのアクセントライン
+  \fill[coveraccent]
+    ([yshift=75mm]current page.south west)
+    rectangle ([yshift=78mm]current page.south east);
+  % 書名(濃紺部分)
+  \node[anchor=north west, text=white, align=left, inner sep=0pt]
+    at ([xshift=20mm, yshift=62mm]current page.south west)
+    {\fontsize{15}{22}\selectfont\sffamily\bfseries 数値計算の品質保証法};
+  \node[anchor=north west, text=white!60!coverblue, align=left, inner sep=0pt]
+    at ([xshift=20mm, yshift=52mm]current page.south west)
+    {\fontsize{9}{13}\selectfont\rmfamily\itshape Numerical Verification Methods};
+  \node[anchor=north west, text=white, align=left, inner sep=0pt]
+    at ([xshift=20mm, yshift=42mm]current page.south west)
+    {\fontsize{10.5}{15}\selectfont\sffamily\bfseries 関根\quad 晃太};
+  % 日付
+  \node[anchor=north west, text=white!80!coverblue, align=left, inner sep=0pt]
+    at ([xshift=20mm, yshift=32mm]current page.south west)
+    {\fontsize{9.5}{14}\selectfont\rmfamily 2026 年 9 月};
+  % DOI・リポジトリ・ライセンス
+  \node[anchor=south west, text=white!75!coverblue, align=left, inner sep=0pt]
+    at ([xshift=20mm, yshift=14mm]current page.south west)
+    {\fontsize{7.5}{12}\selectfont\rmfamily
+     DOI: 10.5281/zenodo.23007582\\
+     https://github.com/koutasekine/nvbook\\
+     CC BY-NC-ND 4.0 \quad \copyright~2026 Kouta Sekine};
+\end{tikzpicture}%
+\null
 
 \end{document}

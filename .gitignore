@@ -16,7 +16,6 @@
 *.synctex.gz
 *.synctex
 texput.*
-
 CLAUDE.md
 
 # Generated PDF (ビルド成果物)
