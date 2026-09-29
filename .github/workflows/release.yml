@@ -34,6 +34,7 @@ jobs:
               luaotfload-tool --force --update
 
               latexmk -lualatex -file-line-error -halt-on-error -interaction=nonstopmode book.tex
+              test -s book.ind
             '
 
       - name: Upload PDF artifact

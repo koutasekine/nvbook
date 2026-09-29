@@ -23,6 +23,8 @@
 \input{commands.tex}
 
 \usepackage{enumitem}
+\usepackage{imakeidx}
+\makeindex[title=索引,intoc,noautomatic]
 \usepackage[hidelinks,unicode]{hyperref}
 \hypersetup{
   pdftitle={数値計算の品質保証法},
@@ -229,5 +231,7 @@ Newton法では，正確な実数計算を無限回繰り返すことで真の�
 
 \bibliographystyle{plain}
 \bibliography{ref}
+
+\printindex
 
 \end{document}

@@ -76,12 +76,12 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 
 
 %----------------------------------------------------------------------------------------------------------------------------------------------
-\section{成分毎評価}\label{sec:element_basic_linear_problem}
+\section{成分毎評価}\label{sec:element_basic_linear_problem}\index{せいぶんごとひょうか@成分毎評価}
 定理\ref{thm:basic_linear_problem}では「真の解$x^*$と近似解$\hat{x}$の差の絶対値最大」を見積もっていましたが，有限次元問題の場合は，簡単に成分毎の評価に切り替えることができます．
 まず，よく知られているNeumann級数の定理から準備したいと思います．
-無限次元Banach空間上の線形作用素に関するNeumann級数展開については定理\ref{thm:linear_operator_injective2}を参照してください．
+無限次元Banach空間\index{ばなっはくうかん@Banach空間}上の線形作用素\index{せんけいさようそ@線形作用素}に関するNeumann級数展開については定理\ref{thm:linear_operator_injective2}を参照してください．
 
-\begin{Thm}\label{thm:finite_Neumann}
+\begin{Thm}\label{thm:finite_Neumann}\index{のいまんきゅうすうのていり@Neumann級数の定理}
 	$G \in {\mathbb R}^{n \times n}$としたとき，以下は同等である
 	\begin{enumerate}
 		\item $\rho(G) < 1$ (スペクトル半径が1未満)
@@ -285,7 +285,7 @@ $A \hat{x} - b$も同様の理由で$b - A \hat{x}$ではなく，$A \hat{x} - b
 \qed
 \end{Proof}
 
-定理\ref{thm:element_wize}に対して，$i = 0$のときは特に山本の定理として知られています:
+定理\ref{thm:element_wize}に対して，$i = 0$のときは特に山本の定理\index{やまもとのていり@山本の定理}として知られています:
 \begin{Cor}\label{cor:yamamoto}
 	$\vector{e} \in {\mathbb R}^n$をすべての要素が$1$のベクトルとする．
 	$A,\ R\in {\mathbb R}^{n\times n}$，$\hat{x},\ b\in {\mathbb R}^n$，$I$を単位行列とする．

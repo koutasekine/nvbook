@@ -14,7 +14,7 @@
 線形方程式や非線形方程式と同様に固有値問題にも定理\ref{thm:Basic_Theorem}を使うことも可能ですが，重複固有値の取り扱いや全固有値と全固有ベクトルを1つの方程式としてみなす巨大な方程式を考えなければならないため，直接利用することはあまりおすすめしません．
 そのかわりに数値解析でもよく利用されるGershgorinの定理を利用します:
 
-\begin{Thm}[Gershgorinの定理]\label{thm:gerschgorin}
+\begin{Thm}[Gershgorinの定理]\label{thm:gerschgorin}\index{げるしゅごりんのていり@Gershgorinの定理}
 	$n$次元行列$A = (a_{ij})$に対し
 	\begin{align*}
 		r_i := \sum_{j = 1, j \neq i}^n | a_{ij} |, ~ U_i := \{ z \in {\mathbb C} ~|~~ | z - a_{ii} | \le r_i  \}
@@ -133,7 +133,7 @@ Gershgorinの定理(定理\ref{thm:gerschgorin})と補題\ref{lem:trans_eigenval
 \end{Proof}
 
 この定理\ref{thm:eig_basic}に対して，Neumann級数の定理(定理\ref{thm:finite_Neumann} や定理\ref{thm:linear_operator_injective2})を適用すると，次の宮島の定理がいえます:
-\begin{Thm} \label{thm:eig_miyajima}
+\begin{Thm} \label{thm:eig_miyajima}\index{せいぶんごとひょうか@成分毎評価}\index{みやじまのていり@宮島の定理}
 	$A, B \in {\mathbb C}^{n \times n}$を与えられている行列とする．
 	$\tilde{X}, ~ Y \in {\mathbb C}^{n \times n}$を与えられている行列とする．
 	対角行列$\tilde{\Lambda} \in {\mathbb C}^{n \times n}$を対角成分
