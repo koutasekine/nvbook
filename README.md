@@ -39,6 +39,7 @@ lualatex book.tex
 lualatex book.tex
 upmendex -g -s book.ist -o book.ind book.idx   # 相互参照が確定した後に索引を生成
 lualatex book.tex
+lualatex book.tex   # 目次に索引の項目を反映させるためもう 1 回
 ```
 
 同じ手順をまとめたスクリプト `tete.sh` も同梱しています（`bash tete.sh`）。

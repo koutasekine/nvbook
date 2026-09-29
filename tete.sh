@@ -10,6 +10,7 @@ for e in ${texfiles[@]};do
 			upmendex -g -s book.ist -o ${e%.tex}.ind ${e%.tex}.idx
 		fi
 		lualatex ${e}
+		lualatex ${e}   # 目次に索引の項目を反映させるためもう 1 回
 
 	fi
 done
